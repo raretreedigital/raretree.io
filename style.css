@@ -13,14 +13,16 @@ body {
 
 /* HEADER */
 header {
-  background: #0a0a0a;
-  padding: 20px 60px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  padding: 20px 60px;
 }
-header img {
-  height: 50px;
+
+.logo {
+  height: 120px; /* increase this to desired size */
+  width: auto;
+  max-width: 100%; /* prevent it from overflowing */
 }
 nav a {
   color: white;
@@ -116,11 +118,6 @@ footer a {
 }
 footer a:hover {
   text-decoration: underline;
-}
-/* Logo styling */
-.logo {
-  height: 120px;       /* Adjust height as needed */
-  width: auto;        /* Maintains aspect ratio */
 }
 
 /* RESPONSIVE */
