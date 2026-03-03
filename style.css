@@ -117,6 +117,11 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+/* Logo styling */
+.logo {
+  height: 80px;       /* Adjust height as needed */
+  width: auto;        /* Maintains aspect ratio */
+}
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
