@@ -20,9 +20,8 @@ header {
 }
 
 .logo {
-  height: 120px; /* increase this to desired size */
+  height: 200px; /* increase this to desired size */
   width: auto;
-  max-width: 100%; /* prevent it from overflowing */
 }
 nav a {
   color: white;
