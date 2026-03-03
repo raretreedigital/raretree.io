@@ -1,74 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raretree | AI Automation & Consulting</title>
-<style>
-body {margin:0;font-family:Arial, sans-serif;color:#111;line-height:1.6;}
-header {background:#0a0a0a;color:white;padding:80px 20px;text-align:center;}
-header h1 {font-size:3rem;margin-bottom:10px;}
-header p {font-size:1.2rem;margin-bottom:20px;}
-button {background:#1f6feb;color:white;border:none;padding:14px 30px;font-size:1rem;cursor:pointer;border-radius:5px;}
-section {padding:70px 20px;text-align:center;max-width:1000px;margin:auto;}
-.services {display:flex;flex-wrap:wrap;justify-content:center;gap:25px;margin-top:40px;}
-.card {border:1px solid #e0e0e0;padding:25px;width:280px;border-radius:8px;}
-.card h3 {margin-top:0;}
-.cta {background:#111;color:white;padding:60px 20px;}
-footer {background:#0a0a0a;color:white;text-align:center;padding:25px;font-size:0.9rem;}
-a {color:#1f6feb;text-decoration:none;}
-@media (max-width:768px){
-.services {flex-direction:column;align-items:center;}
-header h1 {font-size:2.2rem;}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raretree | AI Automation & Consulting</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-  <a href="index.html">
-    <img src="logo.png" alt="Raretree Logo" style="height:50px; vertical-align:middle;">
-  </a>
+  <a href="index.html"><img src="logo.png" alt="Raretree Logo"></a>
   <nav>
     <a href="index.html">Home</a>
     <a href="services.html">Services</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
+    <a href="https://www.linkedin.com/in/yourprofile/" target="_blank">LinkedIn</a>
   </nav>
 </header>
 
-<section>
-<h2>Our Services</h2>
-<div class="services">
-<div class="card">
-<h3>AI Workflow Automation</h3>
-<p>Automate repetitive processes using intelligent systems that reduce cost and increase efficiency.</p>
-</div>
-<div class="card">
-<h3>Business Consulting</h3>
-<p>Strategic optimization of operations, digital transformation, and scalable systems.</p>
-</div>
-<div class="card">
-<h3>Lead Generation Systems</h3>
-<p>AI-driven funnels, WhatsApp automation, and CRM integration to increase qualified leads.</p>
-</div>
-</div>
+<section class="hero">
+  <h1>AI Automation That Scales Your Business</h1>
+  <p>We design intelligent systems that reduce costs, increase efficiency, and drive revenue.</p>
+  <a href="contact.html" class="btn-primary">Book a Strategy Call</a>
 </section>
 
-<section>
-<h2>Why Raretree?</h2>
-<p>We combine consulting expertise with real-world automation engineering. Our approach is practical, measurable, and built for growth.</p>
+<section class="section">
+  <h2>What We Do</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>AI Workflow Automation</h3>
+      <p>Automate repetitive tasks and build smart operational flows.</p>
+    </div>
+    <div class="card">
+      <h3>Consulting & Strategy</h3>
+      <p>Optimize your business processes for growth and efficiency.</p>
+    </div>
+    <div class="card">
+      <h3>Lead Generation Systems</h3>
+      <p>Deploy pipelines that generate qualified leads consistently.</p>
+    </div>
+  </div>
 </section>
 
-<section class="cta" id="contact">
-<h2>Let’s Build Your Automation Stack</h2>
-<p>Email us at <strong>contact@raretree.io</strong></p>
-<p>Or connect via LinkedIn.</p>
+<section class="section">
+  <h2>Our Impact</h2>
+  <div class="stats">
+    <div><span>50+</span><br>Projects Completed</div>
+    <div><span>30+</span><br>Clients Served</div>
+    <div><span>95%</span><br>Satisfaction Rate</div>
+  </div>
+</section>
+
+<section class="section testimonials">
+  <h2>What Clients Say</h2>
+  <div class="cards">
+    <div class="card">
+      <p>"Raretree transformed our workflow — results were immediate."</p><br><strong>— CEO, Clinic</strong>
+    </div>
+    <div class="card">
+      <p>"Highly professional with deep automation expertise."</p><br><strong>— Director, SME</strong>
+    </div>
+  </div>
 </section>
 
 <footer>
-© 2026 Raretree.io — All Rights Reserved
-<a href="https://www.linkedin.com/company/105315419/" target="_blank">LinkedIn</a>
+  © 2026 Raretree.io | <a href="https://www.linkedin.com/company/105315419" target="_blank">LinkedIn</a>
 </footer>
 
 </body>
