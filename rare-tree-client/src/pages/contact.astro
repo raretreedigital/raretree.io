@@ -172,12 +172,14 @@ const faqs = [
               <textarea id="message" name="message" rows="4" placeholder="Describe your goals, challenges, and what success looks like..." required></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary form-submit">
+            <button type="submit" class="btn btn-primary form-submit" id="submitBtn">
               <span id="submitText">Send Message</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </button>
+
+            <div id="formStatus" class="form-status" aria-live="polite"></div>
 
             <p class="form-disclaimer">
               No spam, ever. We'll reply within 4 hours on business days.
@@ -232,18 +234,61 @@ const faqs = [
 </Layout>
 
 <script>
-  // Simple form handler (demo)
-  const form = document.getElementById('contactForm') as HTMLFormElement;
-  const submitText = document.getElementById('submitText')!;
+  import emailjs from '@emailjs/browser';
 
-  form?.addEventListener('submit', (e) => {
+  // ── EmailJS config ──────────────────────────────────────────
+  // Replace these three values with your EmailJS dashboard values:
+  //   https://dashboard.emailjs.com/admin
+  const EMAILJS_PUBLIC_KEY  = 'fKr4q8EP9jJCEPwHB';  // Account > API Keys
+  const EMAILJS_SERVICE_ID  = 'service_mnokgta';   // Email Services
+  const EMAILJS_TEMPLATE_ID = 'template_ua0g68a';  // Email Templates
+  // ────────────────────────────────────────────────────────────
+
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+  const form       = document.getElementById('contactForm') as HTMLFormElement;
+  const submitBtn  = document.getElementById('submitBtn') as HTMLButtonElement;
+  const submitText = document.getElementById('submitText')!;
+  const statusEl   = document.getElementById('formStatus')!;
+
+  function setStatus(type: 'success' | 'error', msg: string) {
+    statusEl.textContent = msg;
+    statusEl.className = `form-status form-status--${type}`;
+  }
+
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    submitText.textContent = 'Sending...';
-    setTimeout(() => {
+    submitBtn.disabled = true;
+    submitText.textContent = 'Sending…';
+    statusEl.className = 'form-status';
+    statusEl.textContent = '';
+
+    const fd = new FormData(form);
+    const templateParams = {
+      from_name:  `${fd.get('firstName')} ${fd.get('lastName')}`.trim(),
+      from_email: fd.get('email'),
+      company:    fd.get('company') || 'N/A',
+      service:    fd.get('service') || 'N/A',
+      budget:     fd.get('budget')  || 'N/A',
+      message:    fd.get('message'),
+      to_email:   'raretreedigital@gmail.com',
+    };
+
+    try {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
       submitText.textContent = '✓ Message Sent!';
+      setStatus('success', '🎉 Got it! We\'ll be in touch within 4 hours.');
       form.reset();
-      setTimeout(() => { submitText.textContent = 'Send Message'; }, 3000);
-    }, 1500);
+      setTimeout(() => {
+        submitText.textContent = 'Send Message';
+        submitBtn.disabled = false;
+      }, 4000);
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      submitText.textContent = 'Send Message';
+      submitBtn.disabled = false;
+      setStatus('error', '⚠ Something went wrong. Please email us directly at contact@raretree.io');
+    }
   });
 
   // FAQ accordion
@@ -585,6 +630,29 @@ const faqs = [
     font-size: 0.78rem;
     color: #475569;
     text-align: center;
+  }
+
+  .form-status {
+    display: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 12px 16px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .form-status--success {
+    display: block;
+    background: rgba(6, 214, 196, 0.1);
+    border: 1px solid rgba(6, 214, 196, 0.3);
+    color: #00f5e4;
+  }
+
+  .form-status--error {
+    display: block;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #f87171;
   }
 
   @media (max-width: 600px) {
