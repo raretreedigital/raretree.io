@@ -241,248 +241,113 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- ====== TECH STACK ====== -->
-  <section class="section tech-stack-section">
-    <div class="ts-bg" aria-hidden="true">
-      <div class="ts-orb ts-orb-1"></div>
-      <div class="ts-orb ts-orb-2"></div>
-      <div class="ts-grid-lines"></div>
+  <!-- ====== CAPABILITIES ====== -->
+  <section class="section cap-section">
+    <div class="cap-bg" aria-hidden="true">
+      <div class="cap-orb cap-orb-1"></div>
+      <div class="cap-orb cap-orb-2"></div>
+      <div class="cap-grid-lines"></div>
     </div>
     <div class="container">
       <div class="section-header">
-        <span class="section-eyebrow reveal">Our Tech Arsenal</span>
-        <h2 class="section-title reveal delay-1">We Build With <span class="gradient-text">The Best</span></h2>
-        <p class="section-subtitle reveal delay-2">Full-stack mastery from blazing-fast frontends to resilient APIs and production-grade AI systems.</p>
+        <span class="section-eyebrow reveal">What We Build</span>
+        <h2 class="section-title reveal delay-1">Six Ways We <span class="gradient-text">Move the Needle</span></h2>
+        <p class="section-subtitle reveal delay-2">Every engagement draws from our full capability stack — strategy, execution, and engineering working as one.</p>
       </div>
 
-      <!-- Tab Switcher -->
-      <div class="ts-tabs reveal delay-2">
-        <button class="ts-tab active" data-tab="frontend">
-          <span>⚛</span> Frontend
-        </button>
-        <button class="ts-tab" data-tab="backend">
-          <span>⚙</span> Backend
-        </button>
-        <button class="ts-tab" data-tab="ai">
-          <span>🧠</span> AI & ML
-        </button>
+      <div class="cap-grid reveal delay-1">
+
+        <div class="cap-card" data-tilt>
+          <div class="cap-card-glow" style="--cg:#06d6c4"></div>
+          <div class="cap-icon" style="--ci:#06d6c4">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h3 class="cap-title">Web Applications</h3>
+          <p class="cap-desc">Fast, scalable web products — React, Next.js, Vue, Nuxt, Svelte paired with resilient backends in Spring Boot, FastAPI, Express, Elysia or Gin.</p>
+          <div class="cap-stack">
+            <span>React</span><span>Next.js</span><span>Vue</span><span>FastAPI</span><span>Spring Boot</span>
+          </div>
+          <div class="cap-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <div class="cap-card" data-tilt>
+          <div class="cap-card-glow" style="--cg:#3b82f6"></div>
+          <div class="cap-icon" style="--ci:#3b82f6">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+          </div>
+          <h3 class="cap-title">Mobile Apps</h3>
+          <p class="cap-desc">iOS + Android — beautifully crafted, offline-capable apps with real-time sync, push notifications, and App Store/Play Store deployment.</p>
+          <div class="cap-stack">
+            <span>React Native</span><span>Flutter</span><span>Swift</span><span>Kotlin</span><span>Firebase</span>
+          </div>
+          <div class="cap-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <div class="cap-card cap-card-featured" data-tilt>
+          <div class="cap-card-glow" style="--cg:#a855f7"></div>
+          <div class="cap-icon" style="--ci:#a855f7">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M12 2a10 10 0 1 0 10 10M22 2l-5 5M17 2h5v5"/><circle cx="12" cy="12" r="3"/><path d="M12 9V7M12 17v-2M9 12H7M17 12h-2"/></svg>
+          </div>
+          <h3 class="cap-title">AI & Automation</h3>
+          <p class="cap-desc">LLM fine-tuning, RAG pipelines, computer vision, and n8n / Zapier automation workflows that eliminate manual work and run around the clock.</p>
+          <div class="cap-stack">
+            <span>OpenAI</span><span>LangChain</span><span>PyTorch</span><span>n8n</span><span>Zapier</span>
+          </div>
+          <div class="cap-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <div class="cap-card" data-tilt>
+          <div class="cap-card-glow" style="--cg:#f59e0b"></div>
+          <div class="cap-icon" style="--ci:#f59e0b">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <h3 class="cap-title">Growth & Sales</h3>
+          <p class="cap-desc">Full-funnel growth strategy, paid acquisition, CRM-powered sales pipelines, and retention systems that compound month over month.</p>
+          <div class="cap-stack">
+            <span>Meta Ads</span><span>Google Ads</span><span>HubSpot</span><span>SEO</span><span>CRO</span>
+          </div>
+          <div class="cap-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <div class="cap-card" data-tilt>
+          <div class="cap-card-glow" style="--cg:#e8441a"></div>
+          <div class="cap-icon" style="--ci:#e8441a">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3 class="cap-title">CRM & ERP Systems</h3>
+          <p class="cap-desc">End-to-end Zoho, Salesforce, and Odoo deployments — custom modules, automation workflows, and full ecosystem integrations that run your business.</p>
+          <div class="cap-stack">
+            <span>Zoho</span><span>Salesforce</span><span>Odoo</span><span>WhatsApp API</span>
+          </div>
+          <div class="cap-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <div class="cap-card" data-tilt>
+          <div class="cap-card-glow" style="--cg:#06b6d4"></div>
+          <div class="cap-icon" style="--ci:#06b6d4">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M3 3v18h18"/><path d="m7 16 4-4 4 4 5-5"/></svg>
+          </div>
+          <h3 class="cap-title">Data & Analytics</h3>
+          <p class="cap-desc">Custom dashboards, multi-channel attribution, and predictive analytics that turn raw data into decisions — and decisions into revenue.</p>
+          <div class="cap-stack">
+            <span>BigQuery</span><span>Looker</span><span>Python</span><span>Metabase</span><span>Power BI</span>
+          </div>
+          <div class="cap-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
       </div>
-
-      <!-- Panels -->
-      <div class="ts-panels">
-
-        <!-- FRONTEND PANEL -->
-        <div class="ts-panel ts-panel-active" id="panel-frontend">
-          <div class="ts-panel-inner">
-            <div class="ts-tech-grid">
-              <div class="ts-tech-card reveal delay-1" style="--tc:#61dafb">
-                <div class="ts-tech-glyph" style="background:rgba(97,218,251,0.08);border-color:rgba(97,218,251,0.2)">
-                  <span style="color:#61dafb;font-size:1.6rem">⚛</span>
-                </div>
-                <div class="ts-tech-name">React</div>
-                <div class="ts-tech-sub">UI Library</div>
-                <div class="ts-tech-bar"><div class="ts-tech-fill" style="--w:95%"></div></div>
-              </div>
-              <div class="ts-tech-card reveal delay-2" style="--tc:#fff">
-                <div class="ts-tech-glyph" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.15)">
-                  <span style="color:#fff;font-size:1.4rem;font-weight:900">▲</span>
-                </div>
-                <div class="ts-tech-name">Next.js</div>
-                <div class="ts-tech-sub">React Framework</div>
-                <div class="ts-tech-bar"><div class="ts-tech-fill" style="--w:93%"></div></div>
-              </div>
-              <div class="ts-tech-card reveal delay-3" style="--tc:#4fc08d">
-                <div class="ts-tech-glyph" style="background:rgba(79,192,141,0.08);border-color:rgba(79,192,141,0.2)">
-                  <span style="color:#4fc08d;font-size:1.4rem">◆</span>
-                </div>
-                <div class="ts-tech-name">Vue</div>
-                <div class="ts-tech-sub">Progressive Framework</div>
-                <div class="ts-tech-bar"><div class="ts-tech-fill" style="--w:88%"></div></div>
-              </div>
-              <div class="ts-tech-card reveal delay-4" style="--tc:#00dc82">
-                <div class="ts-tech-glyph" style="background:rgba(0,220,130,0.08);border-color:rgba(0,220,130,0.2)">
-                  <span style="color:#00dc82;font-size:1.3rem;font-weight:700">N</span>
-                </div>
-                <div class="ts-tech-name">Nuxt</div>
-                <div class="ts-tech-sub">Vue Meta-Framework</div>
-                <div class="ts-tech-bar"><div class="ts-tech-fill" style="--w:85%"></div></div>
-              </div>
-              <div class="ts-tech-card reveal delay-5" style="--tc:#ff3e00">
-                <div class="ts-tech-glyph" style="background:rgba(255,62,0,0.08);border-color:rgba(255,62,0,0.2)">
-                  <span style="color:#ff3e00;font-size:1.3rem">🔥</span>
-                </div>
-                <div class="ts-tech-name">Svelte</div>
-                <div class="ts-tech-sub">Compiled Framework</div>
-                <div class="ts-tech-bar"><div class="ts-tech-fill" style="--w:82%"></div></div>
-              </div>
-            </div>
-            <div class="ts-terminal">
-              <div class="ts-term-header">
-                <span class="ts-term-dot" style="background:#ff5f57"></span>
-                <span class="ts-term-dot" style="background:#febc2e"></span>
-                <span class="ts-term-dot" style="background:#28c840"></span>
-                <span class="ts-term-title">raretree ~ frontend</span>
-              </div>
-              <div class="ts-term-body" id="ts-term-frontend">
-                <div class="ts-term-line"><span class="ts-t-prompt">$</span> <span class="ts-t-cmd">npx create-next-app@latest my-app</span></div>
-                <div class="ts-term-line ts-term-out"><span class="ts-t-green">✓</span> Installing dependencies...</div>
-                <div class="ts-term-line ts-term-out"><span class="ts-t-green">✓</span> Setting up TypeScript config</div>
-                <div class="ts-term-line ts-term-out"><span class="ts-t-green">✓</span> Configuring Tailwind CSS</div>
-                <div class="ts-term-line"><span class="ts-t-prompt">$</span> <span class="ts-t-cmd">npm run dev</span></div>
-                <div class="ts-term-line ts-term-out"><span class="ts-t-teal">▲</span> Next.js 15.0 ready on <span class="ts-t-teal">http://localhost:3000</span></div>
-                <div class="ts-term-line ts-term-out ts-blink">▮</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- BACKEND PANEL -->
-        <div class="ts-panel" id="panel-backend">
-          <div class="ts-panel-inner">
-            <div class="ts-tech-grid">
-              <div class="ts-tech-card reveal delay-1" style="--tc:#6db33f">
-                <div class="ts-tech-glyph" style="background:rgba(109,179,63,0.08);border-color:rgba(109,179,63,0.2)">
-                  <span style="color:#6db33f;font-size:1.3rem">🍃</span>
-                </div>
-                <div class="ts-tech-name">Spring Boot</div>
-                <div class="ts-tech-sub">Java Framework</div>
-                <div class="ts-tech-bar"><div class="ts-tech-fill" style="--w:90%"></div></div>
-              </div>
-              <div class="ts-tech-card reveal delay-2" style="--tc:#059669">
-                <div class="ts-tech-glyph" style="background:rgba(5,150,105,0.08);border-color:rgba(5,150,105,0.2)">
-                  <span style="color:#059669;font-size:1.3rem">⚡</span>
-                </div>
-                <div class="ts-tech-name">FastAPI</div>
-                <div class="ts-tech-sub">Python API</div>
-                <div class="ts-tech-bar"><div class="ts-tech-fill" style="--w:92%"></div></div>
-              </div>
-              <div class="ts-tech-card reveal delay-3" style="--tc:#00acd7">
-                <div class="ts-tech-glyph" style="background:rgba(0,172,215,0.08);border-color:rgba(0,172,215,0.2)">
-                  <span style="color:#00acd7;font-size:1.3rem;font-weight:900">Go</span>
-                </div>
-                <div class="ts-tech-name">Gin</div>
-                <div class="ts-tech-sub">Go HTTP Framework</div>
-                <div class="ts-tech-bar"><div class="ts-tech-fill" style="--w:85%"></div></div>
-              </div>
-              <div class="ts-tech-card reveal delay-4" style="--tc:#a855f7">
-                <div class="ts-tech-glyph" style="background:rgba(168,85,247,0.08);border-color:rgba(168,85,247,0.2)">
-                  <span style="color:#a855f7;font-size:1.2rem;font-weight:700">E</span>
-                </div>
-                <div class="ts-tech-name">Elysia</div>
-                <div class="ts-tech-sub">Bun-native API</div>
-                <div class="ts-tech-bar"><div class="ts-tech-fill" style="--w:80%"></div></div>
-              </div>
-              <div class="ts-tech-card reveal delay-5" style="--tc:#f97316">
-                <div class="ts-tech-glyph" style="background:rgba(249,115,22,0.08);border-color:rgba(249,115,22,0.2)">
-                  <span style="color:#f97316;font-size:1.2rem;font-weight:700">H</span>
-                </div>
-                <div class="ts-tech-name">Hono</div>
-                <div class="ts-tech-sub">Edge-native API</div>
-                <div class="ts-tech-bar"><div class="ts-tech-fill" style="--w:83%"></div></div>
-              </div>
-              <div class="ts-tech-card reveal delay-6" style="--tc:#68a063">
-                <div class="ts-tech-glyph" style="background:rgba(104,160,99,0.08);border-color:rgba(104,160,99,0.2)">
-                  <span style="color:#68a063;font-size:1.1rem;font-weight:700">Ex</span>
-                </div>
-                <div class="ts-tech-name">Express</div>
-                <div class="ts-tech-sub">Node.js Server</div>
-                <div class="ts-tech-bar"><div class="ts-tech-fill" style="--w:94%"></div></div>
-              </div>
-            </div>
-            <div class="ts-terminal">
-              <div class="ts-term-header">
-                <span class="ts-term-dot" style="background:#ff5f57"></span>
-                <span class="ts-term-dot" style="background:#febc2e"></span>
-                <span class="ts-term-dot" style="background:#28c840"></span>
-                <span class="ts-term-title">raretree ~ backend</span>
-              </div>
-              <div class="ts-term-body">
-                <div class="ts-term-line"><span class="ts-t-prompt">$</span> <span class="ts-t-cmd">bun create elysia my-api</span></div>
-                <div class="ts-term-line ts-term-out"><span class="ts-t-green">✓</span> Scaffolding Elysia app...</div>
-                <div class="ts-term-line ts-term-out"><span class="ts-t-green">✓</span> Setting up Swagger docs</div>
-                <div class="ts-term-line"><span class="ts-t-prompt">$</span> <span class="ts-t-cmd">bun run dev</span></div>
-                <div class="ts-term-line ts-term-out"><span class="ts-t-purple">♦</span> Elysia running at <span class="ts-t-purple">:3000</span></div>
-                <div class="ts-term-line ts-term-out"><span class="ts-t-green">✓</span> Type-safe API ready</div>
-                <div class="ts-term-line ts-term-out ts-blink">▮</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- AI & ML PANEL -->
-        <div class="ts-panel" id="panel-ai">
-          <div class="ts-panel-inner">
-            <div class="ts-tech-grid">
-              <div class="ts-tech-card reveal delay-1" style="--tc:#ee4c2c">
-                <div class="ts-tech-glyph" style="background:rgba(238,76,44,0.08);border-color:rgba(238,76,44,0.2)">
-                  <span style="color:#ee4c2c;font-size:1.3rem">🔥</span>
-                </div>
-                <div class="ts-tech-name">PyTorch</div>
-                <div class="ts-tech-sub">Deep Learning</div>
-                <div class="ts-tech-bar"><div class="ts-tech-fill" style="--w:90%"></div></div>
-              </div>
-              <div class="ts-tech-card reveal delay-2" style="--tc:#ff6f00">
-                <div class="ts-tech-glyph" style="background:rgba(255,111,0,0.08);border-color:rgba(255,111,0,0.2)">
-                  <span style="color:#ff6f00;font-size:1.1rem;font-weight:700">TF</span>
-                </div>
-                <div class="ts-tech-name">TensorFlow</div>
-                <div class="ts-tech-sub">ML Platform</div>
-                <div class="ts-tech-bar"><div class="ts-tech-fill" style="--w:87%"></div></div>
-              </div>
-              <div class="ts-tech-card reveal delay-3" style="--tc:#14b8a6">
-                <div class="ts-tech-glyph" style="background:rgba(20,184,166,0.08);border-color:rgba(20,184,166,0.2)">
-                  <span style="color:#14b8a6;font-size:1.1rem;font-weight:700">LC</span>
-                </div>
-                <div class="ts-tech-name">LangChain</div>
-                <div class="ts-tech-sub">LLM Orchestration</div>
-                <div class="ts-tech-bar"><div class="ts-tech-fill" style="--w:93%"></div></div>
-              </div>
-              <div class="ts-tech-card reveal delay-4" style="--tc:#10a37f">
-                <div class="ts-tech-glyph" style="background:rgba(16,163,127,0.08);border-color:rgba(16,163,127,0.2)">
-                  <span style="color:#10a37f;font-size:1.3rem">◎</span>
-                </div>
-                <div class="ts-tech-name">OpenAI</div>
-                <div class="ts-tech-sub">GPT-4 / Embeddings</div>
-                <div class="ts-tech-bar"><div class="ts-tech-fill" style="--w:95%"></div></div>
-              </div>
-              <div class="ts-tech-card reveal delay-5" style="--tc:#ffcc00">
-                <div class="ts-tech-glyph" style="background:rgba(255,204,0,0.08);border-color:rgba(255,204,0,0.2)">
-                  <span style="font-size:1.3rem">🤗</span>
-                </div>
-                <div class="ts-tech-name">HuggingFace</div>
-                <div class="ts-tech-sub">Model Hub</div>
-                <div class="ts-tech-bar"><div class="ts-tech-fill" style="--w:88%"></div></div>
-              </div>
-              <div class="ts-tech-card reveal delay-6" style="--tc:#cc785c">
-                <div class="ts-tech-glyph" style="background:rgba(204,120,92,0.08);border-color:rgba(204,120,92,0.2)">
-                  <span style="color:#cc785c;font-size:1.1rem;font-weight:700">An</span>
-                </div>
-                <div class="ts-tech-name">Anthropic</div>
-                <div class="ts-tech-sub">Claude API</div>
-                <div class="ts-tech-bar"><div class="ts-tech-fill" style="--w:89%"></div></div>
-              </div>
-            </div>
-            <div class="ts-terminal ts-terminal-ai">
-              <div class="ts-term-header">
-                <span class="ts-term-dot" style="background:#ff5f57"></span>
-                <span class="ts-term-dot" style="background:#febc2e"></span>
-                <span class="ts-term-dot" style="background:#28c840"></span>
-                <span class="ts-term-title">raretree ~ ai-pipeline</span>
-              </div>
-              <div class="ts-term-body">
-                <div class="ts-term-line"><span class="ts-t-prompt">$</span> <span class="ts-t-cmd">python train.py --model llama3-8b</span></div>
-                <div class="ts-term-line ts-term-out"><span class="ts-t-green">✓</span> Loading dataset... 84k samples</div>
-                <div class="ts-term-line ts-term-out"><span class="ts-t-orange">⚡</span> Epoch 1/5 — loss: <span class="ts-t-teal">0.4231</span></div>
-                <div class="ts-term-line ts-term-out"><span class="ts-t-orange">⚡</span> Epoch 2/5 — loss: <span class="ts-t-teal">0.2814</span></div>
-                <div class="ts-term-line ts-term-out"><span class="ts-t-orange">⚡</span> Epoch 3/5 — loss: <span class="ts-t-teal">0.1902</span></div>
-                <div class="ts-term-line ts-term-out"><span class="ts-t-green">✓</span> Model saved → <span class="ts-t-teal">./artifacts/</span></div>
-                <div class="ts-term-line ts-term-out ts-blink">▮</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- end ts-panels -->
     </div>
   </section>
 
@@ -670,6 +535,15 @@ import Layout from '../layouts/Layout.astro';
 
     let W = 0, H = 0, mouse = { x: -9999, y: -9999 };
 
+    // Cursor trail points
+    interface TrailPoint { x: number; y: number; alpha: number; r: number; }
+    const trail: TrailPoint[] = [];
+    const TRAIL_MAX = 28;
+
+    // Click ripples
+    interface Ripple { x: number; y: number; r: number; maxR: number; alpha: number; }
+    const ripples: Ripple[] = [];
+
     function resize() {
       W = canvas!.offsetWidth;
       H = canvas!.offsetHeight;
@@ -682,8 +556,21 @@ import Layout from '../layouts/Layout.astro';
       const r = canvas!.getBoundingClientRect();
       mouse.x = e.clientX - r.left;
       mouse.y = e.clientY - r.top;
+      // Emit trail point
+      if (mouse.x > 0 && mouse.y > 0 && mouse.x < W && mouse.y < H) {
+        trail.push({ x: mouse.x, y: mouse.y, alpha: 0.55, r: Math.random() * 1.6 + 0.8 });
+        if (trail.length > TRAIL_MAX) trail.shift();
+      }
     });
     window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+
+    // Click ripple
+    canvas!.addEventListener('click', (e: MouseEvent) => {
+      const r = canvas!.getBoundingClientRect();
+      const rx = e.clientX - r.left;
+      const ry = e.clientY - r.top;
+      ripples.push({ x: rx, y: ry, r: 0, maxR: 90, alpha: 0.6 });
+    });
 
     // Color palette
     const C_TEAL   = '6,214,196';
@@ -736,6 +623,40 @@ import Layout from '../layouts/Layout.astro';
     function draw(ts: number) {
       ctx.clearRect(0, 0, W, H);
       frame = ts;
+
+      // --- Draw cursor trail ---
+      for (let i = trail.length - 1; i >= 0; i--) {
+        const t = trail[i];
+        t.alpha -= 0.035;
+        if (t.alpha <= 0) { trail.splice(i, 1); continue; }
+        const fade = i / trail.length;
+        ctx.beginPath();
+        ctx.arc(t.x, t.y, t.r * fade, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${C_TEAL},${(t.alpha * fade).toFixed(3)})`;
+        ctx.fill();
+      }
+
+      // --- Draw click ripples ---
+      for (let i = ripples.length - 1; i >= 0; i--) {
+        const rp = ripples[i];
+        rp.r += 2.4;
+        rp.alpha -= 0.018;
+        if (rp.alpha <= 0 || rp.r > rp.maxR) { ripples.splice(i, 1); continue; }
+        const lineA = rp.alpha * (1 - rp.r / rp.maxR);
+        ctx.beginPath();
+        ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(${C_TEAL},${lineA.toFixed(3)})`;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+        // inner ring (tighter)
+        if (rp.r > 20) {
+          ctx.beginPath();
+          ctx.arc(rp.x, rp.y, rp.r * 0.55, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(${C_PURPLE},${(lineA * 0.5).toFixed(3)})`;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
 
       const cx = W / 2;
       const cy = H * 0.46;
@@ -828,8 +749,17 @@ import Layout from '../layouts/Layout.astro';
         t.angle += speed * 16;
         const rr = base * RING_RADII[ri];
         const tilt = 0.42 + RING_TILTS[ri];
-        const nx = cx + Math.cos(t.angle) * rr;
-        const ny = cy + Math.sin(t.angle) * rr * tilt;
+        let nx = cx + Math.cos(t.angle) * rr;
+        let ny = cy + Math.sin(t.angle) * rr * tilt;
+
+        // Magnetic pull toward mouse
+        const mdx = mouse.x - nx, mdy = mouse.y - ny;
+        const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
+        if (mDist < 130 && mDist > 0) {
+          const pull = (1 - mDist / 130) * 14;
+          nx += (mdx / mDist) * pull;
+          ny += (mdy / mDist) * pull;
+        }
 
         // Glow halo
         const g = ctx.createRadialGradient(nx, ny, 0, nx, ny, 28);
@@ -924,45 +854,26 @@ import Layout from '../layouts/Layout.astro';
     counterObserver.observe(el as HTMLElement);
   });
 
-  // ===== Tech Stack Tab Switcher =====
-  const tsTabs = document.querySelectorAll<HTMLButtonElement>('.ts-tab');
-  const tsPanels = document.querySelectorAll<HTMLElement>('.ts-panel');
-
-  tsTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = tab.dataset.tab!;
-      tsTabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      tsPanels.forEach(p => {
-        p.classList.remove('ts-panel-active');
-        if (p.id === `panel-${target}`) {
-          p.classList.add('ts-panel-active');
-          // Animate skill bars in newly shown panel
-          p.querySelectorAll('.ts-tech-fill').forEach((fill: Element) => {
-            const el = fill as HTMLElement;
-            el.style.width = '0';
-            setTimeout(() => { el.style.width = el.style.getPropertyValue('--w') || '80%'; }, 50);
-          });
-        }
-      });
-    });
-  });
-
-  // Animate skill bars when section enters view
-  const tsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.querySelectorAll('.ts-tech-fill').forEach((fill: Element) => {
-          const el = fill as HTMLElement;
-          el.style.width = el.style.getPropertyValue('--w') || '80%';
-        });
-        tsObserver.unobserve(entry.target);
+  // ===== Capability Cards 3D Tilt =====
+  document.querySelectorAll<HTMLElement>('[data-tilt]').forEach(card => {
+    card.addEventListener('mousemove', (e: MouseEvent) => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = `perspective(900px) rotateX(${(-y * 10).toFixed(2)}deg) rotateY(${(x * 10).toFixed(2)}deg) translateZ(8px)`;
+      const glow = card.querySelector<HTMLElement>('.cap-card-glow');
+      if (glow) {
+        const cg = getComputedStyle(card).getPropertyValue('--cg').trim() || '#06d6c4';
+        glow.style.background = `radial-gradient(ellipse at ${((x + 0.5) * 100).toFixed(1)}% ${((y + 0.5) * 100).toFixed(1)}%, color-mix(in srgb, ${cg} 22%, transparent) 0%, transparent 60%)`;
+        glow.style.opacity = '1';
       }
     });
-  }, { threshold: 0.3 });
-
-  const tsSection = document.querySelector('.tech-stack-section');
-  if (tsSection) tsObserver.observe(tsSection);
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      const glow = card.querySelector<HTMLElement>('.cap-card-glow');
+      if (glow) glow.style.opacity = '0';
+    });
+  });
 </script>
 
 <style>
@@ -1645,286 +1556,162 @@ import Layout from '../layouts/Layout.astro';
     animation: floatOrb 8s ease-in-out infinite;
   }
 
-  /* ===== TECH STACK SECTION ===== */
-  .tech-stack-section {
+  /* ===== CAPABILITIES SECTION ===== */
+  .cap-section {
     position: relative;
     overflow: hidden;
-    background: radial-gradient(ellipse at 50% 50%, rgba(15,23,42,0.4) 0%, transparent 70%);
   }
 
-  .ts-bg {
+  .cap-bg {
     position: absolute;
     inset: 0;
     pointer-events: none;
   }
 
-  .ts-orb {
+  .cap-orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(90px);
+    filter: blur(100px);
     animation: floatOrb 11s ease-in-out infinite;
   }
 
-  .ts-orb-1 {
+  .cap-orb-1 {
     width: 500px; height: 400px;
-    background: radial-gradient(circle, rgba(139,92,246,0.14) 0%, transparent 70%);
-    top: -100px; left: -80px;
+    background: radial-gradient(circle, rgba(168,85,247,0.13) 0%, transparent 70%);
+    top: -80px; left: -100px;
   }
 
-  .ts-orb-2 {
-    width: 400px; height: 350px;
-    background: radial-gradient(circle, rgba(20,184,166,0.12) 0%, transparent 70%);
+  .cap-orb-2 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(6,214,196,0.11) 0%, transparent 70%);
     bottom: -80px; right: -60px;
-    animation-delay: 4s;
+    animation-delay: 5s;
   }
 
-  .ts-grid-lines {
+  .cap-grid-lines {
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(rgba(20,184,166,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(20,184,166,0.03) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+      linear-gradient(rgba(6,214,196,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(6,214,196,0.025) 1px, transparent 1px);
+    background-size: 52px 52px;
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
   }
 
-  /* Tabs */
-  .ts-tabs {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 40px;
-    background: rgba(15,23,42,0.5);
-    border: 1px solid rgba(148,163,184,0.08);
-    border-radius: 14px;
-    padding: 6px;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    backdrop-filter: blur(12px);
-  }
-
-  .ts-tab {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 24px;
-    border: none;
-    background: transparent;
-    color: #475569;
-    font-size: 0.9rem;
-    font-weight: 600;
-    font-family: inherit;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    white-space: nowrap;
-  }
-
-  .ts-tab:hover {
-    color: #94a3b8;
-    background: rgba(148,163,184,0.06);
-  }
-
-  .ts-tab.active {
-    background: linear-gradient(135deg, rgba(20,184,166,0.2), rgba(139,92,246,0.15));
-    color: #f1f5f9;
-    border: 1px solid rgba(20,184,166,0.25);
-    box-shadow: 0 2px 12px rgba(20,184,166,0.15);
-  }
-
-  /* Panels */
-  .ts-panels {
-    position: relative;
-  }
-
-  .ts-panel {
-    display: none;
-    animation: tsPanelIn 0.4s ease;
-  }
-
-  .ts-panel-active {
-    display: block;
-  }
-
-  @keyframes tsPanelIn {
-    0%   { opacity: 0; transform: translateY(16px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-
-  .ts-panel-inner {
-    display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 40px;
-    align-items: start;
-  }
-
-  /* Tech Grid */
-  .ts-tech-grid {
+  .cap-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    gap: 20px;
+    perspective: 1200px;
   }
 
-  .ts-tech-card {
-    background: rgba(15,23,42,0.6);
-    border: 1px solid rgba(148,163,184,0.08);
-    border-radius: 16px;
-    padding: 20px 16px;
-    transition: all 0.3s ease;
-    cursor: default;
+  .cap-card {
     position: relative;
+    background: rgba(10, 22, 40, 0.6);
+    border: 1px solid rgba(120,160,200,0.1);
+    border-radius: 20px;
+    padding: 30px 28px 28px;
+    backdrop-filter: blur(14px);
     overflow: hidden;
+    cursor: default;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
   }
 
-  .ts-tech-card::before {
-    content: '';
+  .cap-card:hover {
+    border-color: rgba(var(--cg-r,6),var(--cg-g,214),var(--cg-b,196),0.3);
+    box-shadow:
+      0 24px 64px rgba(0,0,0,0.45),
+      0 0 40px rgba(var(--cg-r,6),var(--cg-g,214),var(--cg-b,196),0.1);
+  }
+
+  .cap-card-glow {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at top right, rgba(var(--tc-r,20),var(--tc-g,184),var(--tc-b,166),0.06) 0%, transparent 60%);
+    background: radial-gradient(ellipse at 30% 0%, color-mix(in srgb, var(--cg) 14%, transparent) 0%, transparent 60%);
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
   }
 
-  .ts-tech-card:hover {
-    border-color: rgba(148,163,184,0.18);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-  }
-
-  .ts-tech-card:hover::before {
+  .cap-card:hover .cap-card-glow {
     opacity: 1;
   }
 
-  .ts-tech-glyph {
-    width: 44px;
-    height: 44px;
-    border-radius: 10px;
-    border: 1px solid;
+  .cap-card-featured {
+    grid-column: span 1;
+    background: linear-gradient(135deg, rgba(168,85,247,0.08), rgba(10,22,40,0.7));
+    border-color: rgba(168,85,247,0.2);
+  }
+
+  .cap-icon {
+    width: 52px; height: 52px;
+    background: color-mix(in srgb, var(--ci) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--ci) 30%, transparent);
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 12px;
-    font-family: monospace;
-    font-size: 1rem;
+    color: var(--ci);
+    margin-bottom: 18px;
+    transition: box-shadow 0.3s ease;
   }
 
-  .ts-tech-name {
-    font-size: 0.9rem;
+  .cap-card:hover .cap-icon {
+    box-shadow: 0 0 24px color-mix(in srgb, var(--ci) 35%, transparent);
+  }
+
+  .cap-title {
+    font-size: 1.05rem;
     font-weight: 700;
-    color: #f1f5f9;
-    margin-bottom: 2px;
+    color: #e8f0ff;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
   }
 
-  .ts-tech-sub {
-    font-size: 0.72rem;
-    color: #475569;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 12px;
+  .cap-desc {
+    font-size: 0.85rem;
+    color: #607898;
+    line-height: 1.7;
+    margin-bottom: 18px;
+    flex: 1;
   }
 
-  .ts-tech-bar {
-    height: 3px;
-    background: rgba(30,41,59,0.8);
-    border-radius: 100px;
-    overflow: hidden;
-  }
-
-  .ts-tech-fill {
-    height: 100%;
-    width: 0;
-    background: linear-gradient(90deg, #14b8a6, #8b5cf6);
-    border-radius: 100px;
-    transition: width 1.2s cubic-bezier(0.4,0,0.2,1) 0.1s;
-  }
-
-  /* Terminal */
-  .ts-terminal {
-    background: rgba(3,7,18,0.9);
-    border: 1px solid rgba(148,163,184,0.1);
-    border-radius: 16px;
-    overflow: hidden;
-    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-    box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(20,184,166,0.08);
-    position: sticky;
-    top: 100px;
-  }
-
-  .ts-terminal-ai {
-    box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(168,85,247,0.12);
-  }
-
-  .ts-term-header {
+  .cap-stack {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     gap: 6px;
-    padding: 12px 16px;
-    background: rgba(15,23,42,0.8);
-    border-bottom: 1px solid rgba(148,163,184,0.07);
+    margin-bottom: 18px;
   }
 
-  .ts-term-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
+  .cap-stack span {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: #4d6480;
+    background: rgba(120,160,200,0.07);
+    border: 1px solid rgba(120,160,200,0.12);
+    padding: 3px 10px;
+    border-radius: 100px;
+    text-transform: uppercase;
   }
 
-  .ts-term-title {
-    font-size: 0.72rem;
-    color: #475569;
-    margin-left: 8px;
-    letter-spacing: 0.04em;
+  .cap-arrow {
+    color: #3a5270;
+    transition: all 0.25s ease;
+    display: inline-flex;
   }
 
-  .ts-term-body {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    min-height: 200px;
-  }
-
-  .ts-term-line {
-    font-size: 0.78rem;
-    line-height: 1.5;
-    display: flex;
-    gap: 8px;
-    align-items: baseline;
-  }
-
-  .ts-term-out {
-    animation: tsLineIn 0.3s ease both;
-  }
-
-  @keyframes tsLineIn {
-    from { opacity: 0; transform: translateX(-6px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-
-  .ts-t-prompt { color: #14b8a6; font-weight: 700; }
-  .ts-t-cmd    { color: #e2e8f0; }
-  .ts-t-green  { color: #4ade80; }
-  .ts-t-teal   { color: #14b8a6; }
-  .ts-t-purple { color: #a855f7; }
-  .ts-t-orange { color: #f97316; }
-
-  .ts-blink {
-    color: #14b8a6;
-    animation: blink 1.1s step-end infinite;
-  }
-
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50%      { opacity: 0; }
+  .cap-card:hover .cap-arrow {
+    color: var(--ci, #06d6c4);
+    transform: translateX(4px);
   }
 
   @media (max-width: 1024px) {
-    .ts-panel-inner { grid-template-columns: 1fr; }
-    .ts-terminal { position: static; }
-    .ts-tech-grid { grid-template-columns: repeat(3, 1fr); }
+    .cap-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 640px) {
-    .ts-tech-grid { grid-template-columns: repeat(2, 1fr); }
-    .ts-tabs { flex-wrap: wrap; width: 100%; justify-content: center; }
+    .cap-grid { grid-template-columns: 1fr; }
   }</style>
