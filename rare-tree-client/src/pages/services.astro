@@ -524,4 +524,166 @@ const services = [
   @media (max-width: 600px) {
     .cta-box { padding: 48px 28px; }
   }
+
+  /* 3D card support */
+  .service-card {
+    transform-style: preserve-3d;
+    will-change: transform;
+    cursor: default;
+  }
+  .service-icon {
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(var(--s-rgb,20,184,166),0.08) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .service-card.card-glow::after { opacity: 1; }
 </style>
+
+<script is:inline>
+(function () {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ─ Word fly-in helper ─ */
+  function splitFly(selector) {
+    document.querySelectorAll(selector).forEach(title => {
+      if (title.dataset.splitDone) return;
+      title.dataset.splitDone = 'true';
+      Array.from(title.childNodes).forEach(node => {
+        if (node.nodeType !== Node.TEXT_NODE) return;
+        const words = node.textContent.trim().split(/\s+/).filter(Boolean);
+        if (!words.length) return;
+        const frag = document.createDocumentFragment();
+        words.forEach((w, idx) => {
+          const outer = document.createElement('span');
+          outer.style.cssText = 'display:inline-block;overflow:hidden;vertical-align:bottom;';
+          const inner = document.createElement('span');
+          inner.className = 'gsap-word'; inner.style.display = 'inline-block';
+          inner.textContent = w; outer.appendChild(inner); frag.appendChild(outer);
+          if (idx < words.length - 1) frag.appendChild(document.createTextNode(' '));
+        });
+        title.replaceChild(frag, node);
+      });
+      title.querySelectorAll('.gradient-text').forEach(gt => {
+        const words = gt.textContent.trim().split(/\s+/).filter(Boolean);
+        gt.innerHTML = words.map(w =>
+          `<span style="display:inline-block;overflow:hidden;vertical-align:bottom;"><span class="gsap-word" style="display:inline-block;">${w}</span></span>`
+        ).join(' ');
+      });
+      ScrollTrigger.create({
+        trigger: title, start: 'top 93%', once: true,
+        onEnter: () => gsap.fromTo(title.querySelectorAll('.gsap-word'),
+          { y: '105%', opacity: 0 },
+          { y: '0%', opacity: 1, duration: 0.42, stagger: 0.03, ease: 'power3.out', clearProps: 'all' }
+        ),
+      });
+    });
+  }
+  splitFly('.page-hero-title, .section-title');
+
+  /* ─ Eyebrow scale-in ─ */
+  document.querySelectorAll('.section-eyebrow').forEach(el => {
+    ScrollTrigger.create({
+      trigger: el, start: 'top 94%', once: true,
+      onEnter: () => gsap.fromTo(el,
+        { scaleX: 0, autoAlpha: 0 },
+        { scaleX: 1, autoAlpha: 1, duration: 0.4, ease: 'power3.out', transformOrigin: 'center', clearProps: 'all' }
+      ),
+    });
+  });
+
+  /* ─ Service cards 3D entrance ─ */
+  const cards = Array.from(document.querySelectorAll('.service-card'));
+  gsap.set(cards, { autoAlpha: 0, y: 48, rotationX: 28 });
+  ScrollTrigger.create({
+    trigger: '.services-grid', start: 'top 85%', once: true,
+    onEnter: () => gsap.to(cards, {
+      autoAlpha: 1, y: 0, rotationX: 0,
+      stagger: { amount: 0.55, from: 'start' },
+      duration: 0.55, ease: 'power3.out', clearProps: 'transform,opacity,visibility',
+    }),
+  });
+
+  /* ─ Service cards 3D hover tilt + spotlight ─ */
+  cards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const nx = (e.clientX - r.left) / r.width - 0.5, ny = (e.clientY - r.top) / r.height - 0.5;
+      card.style.setProperty('--mx', `${((e.clientX - r.left) / r.width * 100).toFixed(1)}%`);
+      card.style.setProperty('--my', `${((e.clientY - r.top)  / r.height * 100).toFixed(1)}%`);
+      card.classList.add('card-glow');
+      gsap.to(card, { rotationY: nx*14, rotationX: -ny*12, transformPerspective: 800, duration: 0.22, ease: 'power2.out', overwrite: 'auto' });
+      const icon = card.querySelector('.service-icon');
+      if (icon) gsap.to(icon, { x: nx*10, y: ny*10, duration: 0.22, ease: 'power2.out', overwrite: 'auto' });
+    });
+    card.addEventListener('mouseleave', () => {
+      card.classList.remove('card-glow');
+      gsap.to(card, { rotationY: 0, rotationX: 0, duration: 0.55, ease: 'elastic.out(1, 0.55)', overwrite: 'auto' });
+      const icon = card.querySelector('.service-icon');
+      if (icon) gsap.to(icon, { x: 0, y: 0, duration: 0.55, ease: 'elastic.out(1, 0.55)', overwrite: 'auto' });
+    });
+    /* Click burst on service icon */
+    const sIcon = card.querySelector('.service-icon');
+    if (sIcon) sIcon.addEventListener('click', () => {
+      const r2 = sIcon.getBoundingClientRect();
+      const cx = r2.left + r2.width/2, cy = r2.top + r2.height/2;
+      for (let i = 0; i < 10; i++) {
+        const p = document.createElement('div');
+        const accent = card.style.getPropertyValue('--s-accent') || '#14b8a6';
+        p.style.cssText = `position:fixed;width:5px;height:5px;border-radius:50%;background:${accent};box-shadow:0 0 8px ${accent};pointer-events:none;z-index:9999;left:${cx}px;top:${cy}px;transform:translate(-50%,-50%);`;
+        document.body.appendChild(p);
+        const a = (i/10)*Math.PI*2, d = 25+Math.random()*55;
+        gsap.to(p,{x:Math.cos(a)*d,y:Math.sin(a)*d-15*Math.random(),autoAlpha:0,scale:0,duration:0.45+Math.random()*0.3,ease:'power2.out',onComplete:()=>p.remove()});
+      }
+    });
+  });
+
+  /* ─ Comparison rows stagger slide ─ */
+  const rows = Array.from(document.querySelectorAll('.comp-row:not(.comp-header)'));
+  gsap.set(rows, { autoAlpha: 0, x: -28 });
+  ScrollTrigger.create({
+    trigger: '.comparison-table', start: 'top 85%', once: true,
+    onEnter: () => gsap.to(rows, { autoAlpha: 1, x: 0, stagger: 0.065, duration: 0.38, ease: 'power2.out', clearProps: 'all' }),
+  });
+
+  /* ─ CTA box pop in + float + hover tilt ─ */
+  const ctaBox = document.querySelector('.cta-box');
+  if (ctaBox) {
+    gsap.set(ctaBox, { autoAlpha: 0, scale: 0.88, y: 36 });
+    ScrollTrigger.create({
+      trigger: ctaBox, start: 'top 85%', once: true,
+      onEnter: () => gsap.to(ctaBox, {
+        autoAlpha: 1, scale: 1, y: 0, duration: 0.65, ease: 'back.out(2)',
+        clearProps: 'transform,opacity,visibility',
+        onComplete: () => gsap.to(ctaBox, { y: -10, duration: 2.8, ease: 'sine.inOut', yoyo: true, repeat: -1 }),
+      }),
+    });
+    ctaBox.addEventListener('mousemove', e => {
+      const r = ctaBox.getBoundingClientRect();
+      const nx = (e.clientX-r.left)/r.width-0.5, ny = (e.clientY-r.top)/r.height-0.5;
+      gsap.to(ctaBox, { rotationY: nx*8, rotationX: -ny*6, transformPerspective: 900, duration: 0.25, ease: 'power2.out', overwrite: 'auto' });
+    });
+    ctaBox.addEventListener('mouseleave', () => gsap.to(ctaBox, { rotationY: 0, rotationX: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)', overwrite: 'auto' }));
+  }
+
+  /* ─ Hero subtitle reveal ─ */
+  ['page-hero-sub'].forEach(cls => {
+    const el = document.querySelector('.' + cls);
+    if (!el) return;
+    gsap.set(el, { autoAlpha: 0, y: 18, filter: 'blur(8px)' });
+    ScrollTrigger.create({
+      trigger: el, start: 'top 96%', once: true,
+      onEnter: () => gsap.to(el, { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.48, ease: 'power3.out', clearProps: 'all' }),
+    });
+  });
+})();
+</script>

@@ -64,6 +64,123 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
 
+    <!-- 3D Floating Shapes -->
+    <div class="hero-3d-shapes">
+      <div class="shape-wrapper shape-cube-1" data-interactive="true">
+        <div class="cube3d">
+          <div class="cube3d-face front"></div><div class="cube3d-face back"></div>
+          <div class="cube3d-face left"></div><div class="cube3d-face right"></div>
+          <div class="cube3d-face top"></div><div class="cube3d-face bottom"></div>
+        </div>
+      </div>
+      <div class="shape-wrapper shape-cube-2" data-interactive="true">
+        <div class="cube3d cube3d-sm">
+          <div class="cube3d-face front"></div><div class="cube3d-face back"></div>
+          <div class="cube3d-face left"></div><div class="cube3d-face right"></div>
+          <div class="cube3d-face top"></div><div class="cube3d-face bottom"></div>
+        </div>
+      </div>
+      <div class="shape-wrapper shape-cube-3" data-interactive="true">
+        <div class="cube3d cube3d-xs">
+          <div class="cube3d-face front"></div><div class="cube3d-face back"></div>
+          <div class="cube3d-face left"></div><div class="cube3d-face right"></div>
+          <div class="cube3d-face top"></div><div class="cube3d-face bottom"></div>
+        </div>
+      </div>
+      <div class="shape-wrapper shape-ring-1" data-interactive="true"><div class="ring3d"></div></div>
+      <div class="shape-wrapper shape-ring-2" data-interactive="true"><div class="ring3d ring3d-sm"></div></div>
+      <div class="shape-wrapper shape-ring-3" data-interactive="true"><div class="ring3d ring3d-lg"></div></div>
+      <div class="shape-wrapper shape-diamond-1" data-interactive="true"><div class="diamond3d"></div></div>
+      <div class="shape-wrapper shape-diamond-2" data-interactive="true"><div class="diamond3d diamond3d-purple"></div></div>
+      <div class="shape-wrapper shape-icosa-1" data-interactive="true"><div class="icosa3d"></div></div>
+      <div class="shape-wrapper shape-pyramid-1" data-interactive="true">
+        <svg class="shape-svg-pyramid" viewBox="0 0 100 100" fill="none">
+          <polygon points="50,5 95,85 5,85" stroke="rgba(6,214,196,0.45)" stroke-width="1.2" fill="rgba(6,214,196,0.03)"/>
+          <polygon points="50,5 95,85 50,55" stroke="rgba(6,214,196,0.25)" stroke-width="0.8" fill="rgba(6,214,196,0.02)"/>
+          <polygon points="50,5 5,85 50,55" stroke="rgba(168,85,247,0.25)" stroke-width="0.8" fill="rgba(168,85,247,0.02)"/>
+        </svg>
+      </div>
+      <div class="shape-wrapper shape-hex-1" data-interactive="true">
+        <svg class="shape-svg-hex" viewBox="0 0 100 100" fill="none">
+          <polygon points="50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5" stroke="rgba(168,85,247,0.4)" stroke-width="1" fill="rgba(168,85,247,0.03)"/>
+          <polygon points="50,18 77,33 77,67 50,82 23,67 23,33" stroke="rgba(168,85,247,0.2)" stroke-width="0.7" fill="none"/>
+        </svg>
+      </div>
+
+      <!-- NEW SHAPES -->
+      <div class="shape-wrapper shape-torus-1" data-interactive="true">
+        <svg class="shape-svg-torus" viewBox="0 0 130 70" fill="none">
+          <ellipse cx="65" cy="35" rx="56" ry="28" stroke="rgba(6,214,196,0.5)" stroke-width="1.1"/>
+          <ellipse cx="65" cy="35" rx="34" ry="14" stroke="rgba(6,214,196,0.22)" stroke-width="0.7"/>
+          <ellipse cx="42" cy="35" rx="12" ry="28" stroke="rgba(168,85,247,0.32)" stroke-width="0.8"/>
+          <ellipse cx="88" cy="35" rx="12" ry="28" stroke="rgba(168,85,247,0.32)" stroke-width="0.8"/>
+          <ellipse cx="65" cy="35" rx="56" ry="10" stroke="rgba(6,214,196,0.12)" stroke-width="0.5"/>
+          <ellipse cx="65" cy="35" rx="22" ry="28" stroke="rgba(99,179,255,0.18)" stroke-width="0.5" stroke-dasharray="4 4"/>
+        </svg>
+      </div>
+      <div class="shape-wrapper shape-dna-1" data-interactive="true">
+        <svg class="shape-svg-dna" viewBox="0 0 44 130" fill="none">
+          <path d="M6 0 Q38 16 6 32 Q-26 48 6 64 Q38 80 6 96 Q-26 112 6 128" stroke="rgba(6,214,196,0.6)" stroke-width="1.6" fill="none"/>
+          <path d="M38 0 Q6 16 38 32 Q70 48 38 64 Q6 80 38 96 Q70 112 38 128" stroke="rgba(168,85,247,0.6)" stroke-width="1.6" fill="none"/>
+          <line x1="6" y1="16" x2="38" y2="16" stroke="rgba(99,179,255,0.4)" stroke-width="1"/>
+          <line x1="6" y1="48" x2="38" y2="48" stroke="rgba(99,179,255,0.4)" stroke-width="1"/>
+          <line x1="6" y1="80" x2="38" y2="80" stroke="rgba(99,179,255,0.4)" stroke-width="1"/>
+          <line x1="6" y1="112" x2="38" y2="112" stroke="rgba(99,179,255,0.4)" stroke-width="1"/>
+          <circle cx="6" cy="16" r="2.5" fill="rgba(6,214,196,0.7)"/>
+          <circle cx="38" cy="16" r="2.5" fill="rgba(168,85,247,0.7)"/>
+          <circle cx="6" cy="48" r="2.5" fill="rgba(6,214,196,0.7)"/>
+          <circle cx="38" cy="48" r="2.5" fill="rgba(168,85,247,0.7)"/>
+          <circle cx="6" cy="80" r="2.5" fill="rgba(6,214,196,0.7)"/>
+          <circle cx="38" cy="80" r="2.5" fill="rgba(168,85,247,0.7)"/>
+          <circle cx="6" cy="112" r="2.5" fill="rgba(6,214,196,0.7)"/>
+          <circle cx="38" cy="112" r="2.5" fill="rgba(168,85,247,0.7)"/>
+        </svg>
+      </div>
+      <div class="shape-wrapper shape-wave-1" data-interactive="true">
+        <svg class="shape-svg-wave" viewBox="0 0 140 55" fill="none">
+          <path d="M0 27 Q17 8 35 27 Q53 46 70 27 Q87 8 105 27 Q123 46 140 27" stroke="rgba(6,214,196,0.45)" stroke-width="1.4" fill="none"/>
+          <path d="M0 36 Q17 17 35 36 Q53 55 70 36 Q87 17 105 36 Q123 55 140 36" stroke="rgba(168,85,247,0.3)" stroke-width="0.9" fill="none"/>
+          <path d="M0 18 Q17 0 35 18 Q53 36 70 18 Q87 0 105 18 Q123 36 140 18" stroke="rgba(99,179,255,0.2)" stroke-width="0.6" fill="none"/>
+        </svg>
+      </div>
+      <div class="shape-wrapper shape-octa-1" data-interactive="true">
+        <svg class="shape-svg-octa" viewBox="0 0 90 90" fill="none">
+          <polygon points="45,5 85,45 45,85 5,45" stroke="rgba(245,158,11,0.5)" stroke-width="1.1" fill="rgba(245,158,11,0.03)"/>
+          <polygon points="45,22 68,45 45,68 22,45" stroke="rgba(255,90,90,0.38)" stroke-width="0.8" fill="rgba(255,90,90,0.02)"/>
+          <line x1="45" y1="5" x2="45" y2="85" stroke="rgba(245,158,11,0.18)" stroke-width="0.5"/>
+          <line x1="5" y1="45" x2="85" y2="45" stroke="rgba(245,158,11,0.18)" stroke-width="0.5"/>
+          <circle cx="45" cy="5" r="2.5" fill="rgba(245,158,11,0.7)"/>
+          <circle cx="85" cy="45" r="2.5" fill="rgba(245,158,11,0.7)"/>
+          <circle cx="45" cy="85" r="2.5" fill="rgba(245,158,11,0.7)"/>
+          <circle cx="5" cy="45" r="2.5" fill="rgba(245,158,11,0.7)"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Holographic sphere — desktop interactive -->
+    <div class="hero-hologram-wrap" aria-hidden="true">
+      <div class="hero-hologram">
+        <div class="holo-ring holo-r1"></div>
+        <div class="holo-ring holo-r2"></div>
+        <div class="holo-ring holo-r3"></div>
+        <div class="holo-ring holo-r4"></div>
+        <div class="holo-equator"></div>
+        <div class="holo-meridian"></div>
+        <div class="holo-core"></div>
+        <div class="holo-glow"></div>
+        <svg class="holo-grid" viewBox="0 0 200 200" fill="none">
+          <circle cx="100" cy="100" r="90" stroke="rgba(6,214,196,0.18)" stroke-width="0.6"/>
+          <circle cx="100" cy="100" r="70" stroke="rgba(6,214,196,0.12)" stroke-width="0.5"/>
+          <circle cx="100" cy="100" r="50" stroke="rgba(168,85,247,0.15)" stroke-width="0.5"/>
+          <ellipse cx="100" cy="100" rx="90" ry="30" stroke="rgba(6,214,196,0.22)" stroke-width="0.7"/>
+          <ellipse cx="100" cy="100" rx="90" ry="52" stroke="rgba(6,214,196,0.14)" stroke-width="0.5"/>
+          <ellipse cx="100" cy="100" rx="90" ry="75" stroke="rgba(6,214,196,0.1)" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="30" ry="90" stroke="rgba(168,85,247,0.18)" stroke-width="0.6"/>
+          <ellipse cx="100" cy="100" rx="52" ry="90" stroke="rgba(168,85,247,0.1)" stroke-width="0.4"/>
+        </svg>
+      </div>
+    </div>
+
     <!-- Hero canvas animation -->
     <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
   </section>
@@ -96,6 +213,79 @@ import Layout from '../layouts/Layout.astro';
         <p class="section-subtitle reveal delay-2">
           We combine strategy, automation, and creative execution to build growth systems that work while you sleep.
         </p>
+      </div>
+
+      <!-- Platform Implementation trio (featured first) -->
+      <div class="bento-platform-trio">
+        <div class="bento-card bento-platform bento-whatsapp">
+          <div class="bento-platform-orb"></div>
+          <div class="bento-icon bento-icon-glow bento-icon-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              <circle cx="9" cy="10" r="1" fill="currentColor"/>
+              <circle cx="12" cy="10" r="1" fill="currentColor"/>
+              <circle cx="15" cy="10" r="1" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="bento-platform-badge">Most Requested</div>
+          <h3 class="bento-title">WhatsApp Business Automation</h3>
+          <p class="bento-desc">Turn WhatsApp into your most powerful business channel. We set up the official API, build AI chatbots, broadcast campaigns, order notifications, and full CRM integration — so you sell and support where your customers already live.</p>
+          <div class="bento-tags">
+            <span class="tag" style="color:#25d366;border-color:rgba(37,211,102,0.3);background:rgba(37,211,102,0.08)">WhatsApp API</span>
+            <span class="tag" style="color:#25d366;border-color:rgba(37,211,102,0.3);background:rgba(37,211,102,0.08)">AI Chatbot</span>
+            <span class="tag" style="color:#25d366;border-color:rgba(37,211,102,0.3);background:rgba(37,211,102,0.08)">Broadcasts</span>
+          </div>
+          <a href="/services" class="bento-link" style="color:#25d366">
+            See how it works
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div class="bento-card bento-platform bento-zoho">
+          <div class="bento-platform-orb"></div>
+          <div class="bento-icon bento-icon-glow bento-icon-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="7" width="20" height="14" rx="2"/>
+              <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+              <line x1="12" y1="12" x2="12" y2="16"/>
+              <line x1="10" y1="14" x2="14" y2="14"/>
+            </svg>
+          </div>
+          <div class="bento-platform-badge">Full Ecosystem</div>
+          <h3 class="bento-title">Zoho Suite Implementation</h3>
+          <p class="bento-desc">End-to-end Zoho deployment tailored to how your business actually runs — CRM, Books, Desk, Campaigns, People, Projects, and beyond, all connected in one unified platform.</p>
+          <div class="bento-tags">
+            <span class="tag" style="color:#e8441a;border-color:rgba(232,68,26,0.3);background:rgba(232,68,26,0.08)">Zoho CRM</span>
+            <span class="tag" style="color:#e8441a;border-color:rgba(232,68,26,0.3);background:rgba(232,68,26,0.08)">Zoho Books</span>
+            <span class="tag" style="color:#e8441a;border-color:rgba(232,68,26,0.3);background:rgba(232,68,26,0.08)">Automations</span>
+          </div>
+          <a href="/services" class="bento-link" style="color:#e8441a">
+            Explore Zoho
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div class="bento-card bento-platform bento-odoo">
+          <div class="bento-platform-orb"></div>
+          <div class="bento-icon bento-icon-glow bento-icon-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <div class="bento-platform-badge">ERP / All-in-One</div>
+          <h3 class="bento-title">Odoo ERP Implementation</h3>
+          <p class="bento-desc">A truly integrated business OS — Sales, Inventory, Accounting, HR, Manufacturing, Website, and POS all in one. We deploy, customise, and integrate every Odoo module your business needs.</p>
+          <div class="bento-tags">
+            <span class="tag" style="color:#a16207;border-color:rgba(113,75,103,0.35);background:rgba(113,75,103,0.1)">Odoo ERP</span>
+            <span class="tag" style="color:#a16207;border-color:rgba(113,75,103,0.35);background:rgba(113,75,103,0.1)">Custom Modules</span>
+            <span class="tag" style="color:#a16207;border-color:rgba(113,75,103,0.35);background:rgba(113,75,103,0.1)">Integrations</span>
+          </div>
+          <a href="/services" class="bento-link" style="color:#c4a000">
+            Explore Odoo
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
       </div>
 
       <div class="services-bento">
@@ -983,6 +1173,744 @@ import Layout from '../layouts/Layout.astro';
       card.style.setProperty('--my', `${((e.clientY - r.top) / r.height * 100).toFixed(1)}%`);
     });
   });
+</script>
+
+<!-- ===== GSAP SCROLL & 3D ANIMATIONS ===== -->
+<script is:inline>
+(function () {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ─── STEP 1: Strip CSS reveal classes from elements GSAP will control
+  // so the CSS IntersectionObserver + inline-style GSAP don't fight each other.
+  const gsapControlled = [
+    '.hero-badge', '.hero-title', '.hero-subtitle',
+    '.hero-actions .btn', '.hero-stats',
+    '.bento-card', '.cap-card', '.stat-card',
+    '.testimonial-card', '.process-step', '.cta-inner',
+  ];
+  gsapControlled.forEach(sel => {
+    document.querySelectorAll(sel).forEach(el => {
+      el.classList.remove('reveal', 'reveal-left', 'reveal-right', 'reveal-scale');
+      el.classList.remove('delay-1', 'delay-2', 'delay-3', 'delay-4', 'delay-5');
+      // Ensure fully visible by default; GSAP will set initial state via gsap.set()
+      el.style.opacity = '1';
+      el.style.transform = '';
+    });
+  });
+
+  // ─── STEP 2: Set the initial hidden states explicitly via GSAP
+  gsap.set('.hero-badge', { autoAlpha: 0, scale: 0.5 });
+  gsap.set('.hero-title', { autoAlpha: 0, y: 60 });
+  gsap.set('.hero-subtitle', { autoAlpha: 0, y: 30 });
+  gsap.set('.hero-actions .btn', { autoAlpha: 0, y: 20 });
+  gsap.set('.hero-stats', { autoAlpha: 0, y: 20, scale: 0.96 });
+
+  gsap.set('.bento-card', { autoAlpha: 0, y: 55, rotationX: 15, transformOrigin: 'top center' });
+  gsap.set('.cap-card', { autoAlpha: 0, y: 60, scale: 0.9, rotationY: 12 });
+  gsap.set('.stat-card', { autoAlpha: 0, y: 50, scale: 0.85 });
+  gsap.set('.process-step', { autoAlpha: 0, y: 40 });
+  gsap.set('.cta-inner', { autoAlpha: 0, scale: 0.88, y: 40 });
+
+  // Testimonials: set per-card based on index
+  document.querySelectorAll('.testimonial-card').forEach((card, i) => {
+    const xDir = i === 0 ? -80 : i === 2 ? 80 : 0;
+    gsap.set(card, { autoAlpha: 0, x: xDir, y: xDir === 0 ? 50 : 20, rotation: xDir === 0 ? 0 : (i === 0 ? -3 : 3) });
+  });
+
+  /* ─── CUSTOM CURSOR GLOBE ─── */
+  const cursorGlobe = document.createElement('div');
+  cursorGlobe.id = 'cursor-globe';
+  document.body.appendChild(cursorGlobe);
+  const cursorDot = document.createElement('div');
+  cursorDot.id = 'cursor-dot';
+  document.body.appendChild(cursorDot);
+
+  let cursorX = -200, cursorY = -200;
+  let globeX = -200, globeY = -200;
+
+  document.addEventListener('mousemove', (e) => {
+    cursorX = e.clientX;
+    cursorY = e.clientY;
+    gsap.to(cursorDot, { x: cursorX, y: cursorY, duration: 0.08, ease: 'none' });
+  });
+
+  gsap.ticker.add(() => {
+    globeX += (cursorX - globeX) * 0.12;
+    globeY += (cursorY - globeY) * 0.12;
+    gsap.set(cursorGlobe, { x: globeX, y: globeY });
+  });
+
+  document.querySelectorAll('a, button, .btn, .cap-card, .bento-card, .stat-card, .testimonial-card').forEach(el => {
+    el.addEventListener('mouseenter', () => gsap.to(cursorGlobe, { scale: 2.5, opacity: 0.75, duration: 0.3, backgroundColor: 'rgba(6,214,196,0.15)', borderColor: 'rgba(6,214,196,0.8)' }));
+    el.addEventListener('mouseleave', () => gsap.to(cursorGlobe, { scale: 1, opacity: 1, duration: 0.3, backgroundColor: 'transparent', borderColor: 'rgba(6,214,196,0.5)' }));
+  });
+
+  /* ─── MAGNETIC BUTTONS ─── */
+  document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      gsap.to(btn, { x: x * 0.28, y: y * 0.28, duration: 0.35, ease: 'power2.out' });
+    });
+    btn.addEventListener('mouseleave', () => {
+      gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' });
+    });
+  });
+
+  /* ─── HERO ENTRANCE ─── */
+  const heroTl = gsap.timeline({ delay: 0.2 });
+  heroTl
+    .to('.hero-badge',         { autoAlpha: 1, scale: 1, duration: 0.6, ease: 'back.out(2.5)' })
+    .to('.hero-title',         { autoAlpha: 1, y: 0, duration: 0.9, ease: 'power4.out' }, '-=0.25')
+    .to('.hero-subtitle',      { autoAlpha: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.5')
+    .to('.hero-actions .btn',  { autoAlpha: 1, y: 0, stagger: 0.14, duration: 0.55, ease: 'back.out(1.8)' }, '-=0.4')
+    .to('.hero-stats',         { autoAlpha: 1, y: 0, scale: 1, duration: 0.55, ease: 'power3.out' }, '-=0.35');
+
+  /* ─── 3D SHAPES FLOATING ─── */
+  document.querySelectorAll('.shape-wrapper').forEach((shape, i) => {
+    gsap.to(shape, {
+      y: `random(-22, 22)`,
+      x: `random(-10, 10)`,
+      rotation: `random(-7, 7)`,
+      duration: `random(4, 8)`,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+      delay: i * 0.45,
+    });
+    gsap.to(shape, {
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.5 },
+      y: (i % 2 === 0 ? -1 : 1) * (90 + i * 30),
+      autoAlpha: 0,
+      ease: 'none',
+    });
+  });
+
+  /* ─── HERO ORBS PARALLAX ─── */
+  document.querySelectorAll('.hero-orb').forEach((orb, i) => {
+    gsap.to(orb, {
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 2 },
+      y: (i % 2 === 0 ? -140 : -70),
+      ease: 'none',
+    });
+  });
+
+  /* ─── TRUSTED BELT ─── */
+  ScrollTrigger.create({
+    trigger: '.trusted',
+    start: 'top 92%',
+    once: true,
+    onEnter: () => gsap.fromTo('.trusted-label',
+      { autoAlpha: 0, y: 16 },
+      { autoAlpha: 1, y: 0, duration: 0.5, ease: 'power2.out', clearProps: 'all' }
+    ),
+  });
+
+  /* ─── SECTION EYEBROW SCALE-IN ─── */
+  document.querySelectorAll('.section-eyebrow').forEach(el => {
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 92%',
+      once: true,
+      onEnter: () => gsap.fromTo(el,
+        { scaleX: 0, autoAlpha: 0 },
+        { scaleX: 1, autoAlpha: 1, duration: 0.55, ease: 'power3.out', transformOrigin: 'center center', clearProps: 'all' }
+      ),
+    });
+  });
+
+  /* ─── SECTION TITLES WORD FLY-IN ─── */
+  document.querySelectorAll('.section-title, .cta-title').forEach(title => {
+    if (title.dataset.splitDone) return;
+    title.dataset.splitDone = 'true';
+    // Only split direct text nodes (leave child elements like .gradient-text untouched)
+    const childNodes = Array.from(title.childNodes);
+    childNodes.forEach(node => {
+      if (node.nodeType !== Node.TEXT_NODE) return;
+      const words = node.textContent.trim().split(/\s+/).filter(Boolean);
+      if (!words.length) return;
+      const frag = document.createDocumentFragment();
+      words.forEach((w, idx) => {
+        const outer = document.createElement('span');
+        outer.style.cssText = 'display:inline-block;overflow:hidden;vertical-align:bottom;';
+        const inner = document.createElement('span');
+        inner.className = 'gsap-word';
+        inner.style.display = 'inline-block';
+        inner.textContent = w;
+        outer.appendChild(inner);
+        frag.appendChild(outer);
+        if (idx < words.length - 1) frag.appendChild(document.createTextNode(' '));
+      });
+      title.replaceChild(frag, node);
+    });
+    // Also wrap .gradient-text words
+    title.querySelectorAll('.gradient-text').forEach(gt => {
+      const words = gt.textContent.trim().split(/\s+/).filter(Boolean);
+      if (words.length <= 1) return;
+      gt.innerHTML = words.map(w =>
+        `<span style="display:inline-block;overflow:hidden;vertical-align:bottom;"><span class="gsap-word" style="display:inline-block;">${w}</span></span>`
+      ).join(' ');
+    });
+
+    ScrollTrigger.create({
+      trigger: title,
+      start: 'top 94%',
+      once: true,
+      onEnter: () => gsap.fromTo(title.querySelectorAll('.gsap-word'),
+        { y: '100%', opacity: 0, rotation: 3 },
+        { y: '0%', opacity: 1, rotation: 0, duration: 0.42, stagger: 0.028, ease: 'power3.out', clearProps: 'all' }
+      ),
+    });
+  });
+
+  /* ─── BENTO CARDS — STAGGER FLIP-IN ─── */
+  ScrollTrigger.create({
+    trigger: '.services-bento',
+    start: 'top 82%',
+    once: true,
+    onEnter: () => gsap.to('.bento-card', {
+      autoAlpha: 1, y: 0, rotationX: 0,
+      stagger: { amount: 0.55, from: 'start' },
+      duration: 0.7, ease: 'power3.out', clearProps: 'transform,opacity,visibility',
+    }),
+  });
+
+  /* ─── CAPABILITY CARDS — 3D SPIN-IN ─── */
+  ScrollTrigger.create({
+    trigger: '.cap-grid',
+    start: 'top 82%',
+    once: true,
+    onEnter: () => gsap.to('.cap-card', {
+      autoAlpha: 1, y: 0, scale: 1, rotationY: 0,
+      stagger: 0.12,
+      duration: 0.8, ease: 'back.out(1.4)', clearProps: 'transform,opacity,visibility',
+    }),
+  });
+
+  /* ─── STAT CARDS — BOUNCE UP ─── */
+  ScrollTrigger.create({
+    trigger: '.stats-grid',
+    start: 'top 82%',
+    once: true,
+    onEnter: () => gsap.to('.stat-card', {
+      autoAlpha: 1, y: 0, scale: 1,
+      stagger: 0.13,
+      duration: 0.65, ease: 'back.out(2)', clearProps: 'transform,opacity,visibility',
+    }),
+  });
+
+  /* ─── TESTIMONIALS — FLY IN FROM SIDES ─── */
+  document.querySelectorAll('.testimonial-card').forEach((card, i) => {
+    ScrollTrigger.create({
+      trigger: card,
+      start: 'top 88%',
+      once: true,
+      onEnter: () => gsap.to(card, {
+        autoAlpha: 1, x: 0, y: 0, rotation: 0,
+        duration: 0.8, ease: 'power3.out', clearProps: 'transform,opacity,visibility',
+      }),
+    });
+  });
+
+  /* ─── PROCESS STEPS — SEQUENTIAL SLIDE ─── */
+  ScrollTrigger.create({
+    trigger: '.process-steps',
+    start: 'top 82%',
+    once: true,
+    onEnter: () => gsap.to('.process-step', {
+      autoAlpha: 1, y: 0,
+      stagger: 0.2,
+      duration: 0.65, ease: 'power2.out', clearProps: 'transform,opacity,visibility',
+    }),
+  });
+
+  /* ─── CTA SECTION — SCALE BURST ─── */
+  ScrollTrigger.create({
+    trigger: '.cta-section',
+    start: 'top 75%',
+    once: true,
+    onEnter: () => gsap.to('.cta-inner', {
+      autoAlpha: 1, scale: 1, y: 0,
+      duration: 1, ease: 'back.out(1.5)', clearProps: 'transform,opacity,visibility',
+    }),
+  });
+
+  /* ─── SECTION ORBS PARALLAX (background elements only, no content) ─── */
+  document.querySelectorAll('.cap-orb, .stats-bg-glow').forEach((orb, i) => {
+    const sec = orb.closest('section');
+    if (!sec) return;
+    gsap.to(orb, {
+      scrollTrigger: { trigger: sec, scrub: 2, start: 'top bottom', end: 'bottom top' },
+      y: (i % 2 === 0 ? -90 : 70),
+      ease: 'none',
+    });
+  });
+
+  /* ─── TEXT SCRAMBLE ON EYEBROWS ─── */
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#%&';
+  function scrambleText(el) {
+    const original = el.dataset.originalText || el.textContent;
+    el.dataset.originalText = original;
+    let iterations = 0;
+    const maxIter = original.length * 3;
+    const timer = setInterval(() => {
+      el.textContent = original.split('').map((c, idx) => {
+        if (idx < Math.floor(iterations / 3)) return original[idx];
+        if (c === ' ' || c === '·') return c;
+        return chars[Math.floor(Math.random() * chars.length)];
+      }).join('');
+      iterations++;
+      if (iterations >= maxIter) { el.textContent = original; clearInterval(timer); }
+    }, 35);
+  }
+
+  document.querySelectorAll('.section-eyebrow').forEach(el => {
+    ScrollTrigger.create({ trigger: el, start: 'top 92%', once: true, onEnter: () => scrambleText(el) });
+    el.addEventListener('mouseenter', () => scrambleText(el));
+  });
+
+  /* ─── HERO STATS COUNTER (GSAP) ─── */
+  document.querySelectorAll('[data-target]').forEach(el => {
+    const target = parseInt(el.getAttribute('data-target') || '0');
+    const obj = { val: 0 };
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 88%',
+      once: true,
+      onEnter: () => gsap.to(obj, {
+        val: target, duration: 2.2, ease: 'power2.out',
+        onUpdate() { el.textContent = Math.round(obj.val).toString(); },
+      }),
+    });
+  });
+
+  /* ─── CTA BUTTON — PARTICLE BURST ─── */
+  document.querySelectorAll('.cta-actions .btn-primary').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      for (let i = 0; i < 16; i++) {
+        const p = document.createElement('div');
+        p.style.cssText = `position:fixed;width:6px;height:6px;border-radius:50%;background:${Math.random() > 0.5 ? '#06d6c4' : '#a855f7'};pointer-events:none;z-index:9999;left:${e.clientX}px;top:${e.clientY}px;`;
+        document.body.appendChild(p);
+        const angle = (i / 16) * Math.PI * 2;
+        const dist = 60 + Math.random() * 80;
+        gsap.to(p, {
+          x: Math.cos(angle) * dist, y: Math.sin(angle) * dist,
+          autoAlpha: 0, scale: 0,
+          duration: 0.7 + Math.random() * 0.5, ease: 'power2.out',
+          onComplete: () => p.remove(),
+        });
+      }
+    });
+  });
+
+  /* ─── SECTION ENTRY HIGHLIGHT ─── */
+  document.querySelectorAll('.section').forEach((sec) => {
+    ScrollTrigger.create({
+      trigger: sec, start: 'top 88%', once: true,
+      onEnter: () => sec.classList.add('section-entered'),
+    });
+  });
+
+  /* ─── FLOATING SECTION DECORATORS ─── */
+  const decorData = [
+    { parent: '.what-we-do',          pos: 'right:2%;top:10%;opacity:0.22;',    size: 180, color: '6,214,196' },
+    { parent: '.stats-section',       pos: 'left:1%;bottom:5%;opacity:0.17;',   size: 140, color: '168,85,247' },
+    { parent: '.testimonials-section',pos: 'right:3%;bottom:10%;opacity:0.15;', size: 120, color: '99,179,255' },
+  ];
+  decorData.forEach(d => {
+    const sec = document.querySelector(d.parent);
+    if (!sec) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'section-float-decor';
+    wrap.style.cssText = `position:absolute;pointer-events:none;z-index:0;${d.pos}`;
+    wrap.innerHTML = `<svg width="${d.size}" height="${d.size}" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="50" cy="50" rx="45" ry="45" stroke="rgba(${d.color},0.5)" stroke-width="0.8"/>
+      <ellipse cx="50" cy="50" rx="45" ry="18" stroke="rgba(${d.color},0.3)" stroke-width="0.7"/>
+      <ellipse cx="50" cy="50" rx="18" ry="45" stroke="rgba(${d.color},0.3)" stroke-width="0.7"/>
+      <line x1="5" y1="50" x2="95" y2="50" stroke="rgba(${d.color},0.2)" stroke-width="0.6"/>
+      <line x1="50" y1="5" x2="50" y2="95" stroke="rgba(${d.color},0.2)" stroke-width="0.6"/>
+    </svg>`;
+    if (getComputedStyle(sec).position === 'static') sec.style.position = 'relative';
+    sec.appendChild(wrap);
+    gsap.to(wrap, { rotation: 360, duration: 28 + Math.random() * 20, repeat: -1, ease: 'none', transformOrigin: '50% 50%' });
+    gsap.to(wrap, {
+      scrollTrigger: { trigger: sec, scrub: 2, start: 'top bottom', end: 'bottom top' },
+      y: -70, ease: 'none',
+    });
+  });
+
+  /* ─── CARD HOVER SPRING SCALE ─── */
+  document.querySelectorAll('.bento-card, .stat-card').forEach(card => {
+    card.addEventListener('mouseenter', () => gsap.to(card, { scale: 1.025, duration: 0.35, ease: 'power2.out' }));
+    card.addEventListener('mouseleave', () => gsap.to(card, { scale: 1,     duration: 0.5,  ease: 'elastic.out(1, 0.7)' }));
+  });
+
+  /* ─── SVG PYRAMID + HEX SPIN ─── */
+  gsap.to('.shape-svg-pyramid', { rotation: 360, duration: 18, repeat: -1, ease: 'none', transformOrigin: '50% 50%' });
+  gsap.to('.shape-svg-hex',     { rotation: -360, duration: 22, repeat: -1, ease: 'none', transformOrigin: '50% 50%' });
+
+  /* ─── SCROLL PROGRESS LINE ─── */
+  const progressBar = document.createElement('div');
+  progressBar.id = 'scroll-progress';
+  document.body.appendChild(progressBar);
+  gsap.to(progressBar, {
+    scaleX: 1, ease: 'none',
+    scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.3 },
+  });
+
+  /* ─── INTERACTIVE HERO SHAPES ─── */
+  (function () {
+    const heroEl = document.querySelector('.hero');
+    if (!heroEl) return;
+    const iShapes = Array.from(document.querySelectorAll('.shape-wrapper[data-interactive]'));
+    const animating = new Set();
+
+    // Enable pointer events on individual shapes (overrides parent pointer-events:none)
+    iShapes.forEach(shape => {
+      shape.style.pointerEvents = 'auto';
+      shape.style.cursor = 'pointer';
+    });
+
+    // Track mouse over the hero and tilt shapes toward cursor
+    heroEl.addEventListener('mousemove', (e) => {
+      const hr = heroEl.getBoundingClientRect();
+      const mx = e.clientX - hr.left;
+      const my = e.clientY - hr.top;
+
+      iShapes.forEach(shape => {
+        if (animating.has(shape)) return;
+        const sr = shape.getBoundingClientRect();
+        const sx = sr.left + sr.width  / 2 - hr.left;
+        const sy = sr.top  + sr.height / 2 - hr.top;
+        const dx = mx - sx;
+        const dy = my - sy;
+        const dist = Math.hypot(dx, dy);
+        const MAX = 280;
+        if (dist < MAX) {
+          const inf = 1 - dist / MAX;
+          gsap.to(shape, {
+            rotationX:  (dy / MAX) *  28 * inf,
+            rotationY: -(dx / MAX) *  28 * inf,
+            scale: 1 + inf * 0.25,
+            filter: `brightness(${(1 + inf * 0.9).toFixed(2)}) drop-shadow(0 0 ${Math.round(14 * inf)}px rgba(6,214,196,0.8))`,
+            duration: 0.22, ease: 'power2.out', overwrite: 'auto',
+          });
+        } else {
+          gsap.to(shape, {
+            rotationX: 0, rotationY: 0, scale: 1, filter: 'brightness(1)',
+            duration: 0.55, ease: 'elastic.out(1, 0.6)', overwrite: 'auto',
+          });
+        }
+      });
+
+      // Hologram tilt toward mouse
+      const holo = document.querySelector('.hero-hologram');
+      if (holo) {
+        const hx = (mx / hr.width  - 0.5) * 22;
+        const hy = (my / hr.height - 0.5) * 14;
+        gsap.to(holo, { rotationY: hx, rotationX: -hy, duration: 0.5, ease: 'power2.out', overwrite: 'auto' });
+      }
+
+      // Subtle hero-content parallax depth
+      gsap.to('.hero-content', {
+        x: (mx / hr.width  - 0.5) * 10,
+        y: (my / hr.height - 0.5) *  5,
+        duration: 0.9, ease: 'power2.out', overwrite: 'auto',
+      });
+    });
+
+    heroEl.addEventListener('mouseleave', () => {
+      gsap.to(iShapes, { rotationX: 0, rotationY: 0, scale: 1, filter: 'brightness(1)', duration: 0.8, stagger: 0.04, ease: 'elastic.out(1, 0.5)' });
+      gsap.to('.hero-hologram', { rotationX: 0, rotationY: 0, duration: 0.8, ease: 'elastic.out(1, 0.5)' });
+      gsap.to('.hero-content',  { x: 0, y: 0, duration: 0.6, ease: 'power2.out' });
+    });
+
+    // Click a shape → spin + particle burst
+    const BURST_COLORS = ['#06d6c4', '#a855f7', '#63b3ff', '#f59e0b', '#ff5a5a'];
+    // Per-shape: drag+throw+shatter+flee+hover glow
+    iShapes.forEach(shape => {
+      let isDragging = false;
+      let startClientX = 0, startClientY = 0;
+      let lastClientX = 0, lastClientY = 0, lastT = 0;
+      let velX = 0, velY = 0;
+      let dblTimer = null;
+      let clickCount = 0;
+
+      // ── Hover glow ──
+      shape.addEventListener('mouseenter', () => {
+        if (!animating.has(shape) && !isDragging)
+          gsap.to(shape, { filter: 'brightness(1.8) drop-shadow(0 0 20px rgba(6,214,196,0.95))', duration: 0.22, overwrite: 'auto' });
+      });
+      shape.addEventListener('mouseleave', () => {
+        if (!isDragging)
+          gsap.to(shape, { filter: 'brightness(1)', duration: 0.35, overwrite: 'auto' });
+      });
+
+      // ── Drag + throw with velocity ──
+      shape.addEventListener('pointerdown', (e) => {
+        if (e.button === 2) return;
+        isDragging = true;
+        shape.setPointerCapture(e.pointerId);
+        gsap.killTweensOf(shape, 'x,y');
+        startClientX = e.clientX - (parseFloat(gsap.getProperty(shape, 'x')) || 0);
+        startClientY = e.clientY - (parseFloat(gsap.getProperty(shape, 'y')) || 0);
+        lastClientX = e.clientX; lastClientY = e.clientY; lastT = Date.now();
+        velX = 0; velY = 0;
+        shape.classList.add('is-dragging');
+        gsap.to(shape, { scale: 1.5, zIndex: 100, filter: 'brightness(2.2) drop-shadow(0 0 28px rgba(6,214,196,1))', duration: 0.18 });
+        e.preventDefault();
+      });
+
+      shape.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        const now = Date.now();
+        const dt = Math.max(now - lastT, 1);
+        velX = (e.clientX - lastClientX) / dt;
+        velY = (e.clientY - lastClientY) / dt;
+        lastClientX = e.clientX; lastClientY = e.clientY; lastT = now;
+        gsap.set(shape, { x: e.clientX - startClientX, y: e.clientY - startClientY });
+        // Comet trail dot
+        const d = document.createElement('div');
+        const col = ['6,214,196','168,85,247','99,179,255'][Math.floor(Math.random()*3)];
+        d.style.cssText = `position:fixed;width:7px;height:7px;border-radius:50%;background:rgba(${col},0.75);box-shadow:0 0 10px rgba(${col},0.6);pointer-events:none;z-index:9997;left:${e.clientX-3.5}px;top:${e.clientY-3.5}px;transform:translate(-50%,-50%);`;
+        document.body.appendChild(d);
+        gsap.to(d, { scale: 0.1, autoAlpha: 0, duration: 0.55, ease: 'power2.out', onComplete: () => d.remove() });
+      });
+
+      shape.addEventListener('pointerup', (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+        shape.classList.remove('is-dragging');
+        const cx = parseFloat(gsap.getProperty(shape, 'x')) || 0;
+        const cy = parseFloat(gsap.getProperty(shape, 'y')) || 0;
+        const throwDist = Math.hypot(velX, velY) * 140;
+        const throwX = cx + velX * throwDist;
+        const throwY = cy + velY * throwDist;
+        gsap.timeline()
+          .to(shape, { x: throwX, y: throwY, scale: 1.15, duration: 0.38, ease: 'power2.out' })
+          .to(shape, { x: 0, y: 0, scale: 1, rotationX: 0, rotationY: 0, filter: 'brightness(1)', zIndex: 'auto', duration: 1.35, ease: 'elastic.out(1, 0.45)' });
+      });
+
+      // ── Click (single): particle burst, double: shatter ──
+      shape.addEventListener('click', (e) => {
+        if (isDragging) return;
+        clickCount++;
+        if (dblTimer) clearTimeout(dblTimer);
+        dblTimer = setTimeout(() => {
+          if (clickCount === 1) {
+            // Single click — spin burst
+            if (animating.has(shape)) { clickCount = 0; return; }
+            animating.add(shape);
+            gsap.timeline({ onComplete: () => animating.delete(shape) })
+              .to(shape, { rotationY: '+=540', rotationX: '+=270', scale: 1.9, duration: 0.4, ease: 'power3.in' })
+              .to(shape, { rotationY: 0, rotationX: 0, scale: 1, duration: 1.0, ease: 'elastic.out(1.2, 0.45)' });
+            const sr = shape.getBoundingClientRect();
+            const pcx = sr.left + sr.width/2, pcy = sr.top + sr.height/2;
+            for (let i = 0; i < 20; i++) {
+              const p = document.createElement('div');
+              const col = BURST_COLORS[Math.floor(Math.random() * BURST_COLORS.length)];
+              const sz = 3 + Math.random() * 7;
+              p.style.cssText = `position:fixed;width:${sz}px;height:${sz}px;border-radius:${Math.random()>.5?'50%':'2px'};background:${col};box-shadow:0 0 ${sz*2}px ${col};pointer-events:none;z-index:9999;left:${pcx}px;top:${pcy}px;transform:translate(-50%,-50%);`;
+              document.body.appendChild(p);
+              const ang = (i/20)*Math.PI*2 + Math.random()*0.5;
+              const dist = 50 + Math.random() * 100;
+              gsap.to(p, { x: Math.cos(ang)*dist, y: Math.sin(ang)*dist - Math.random()*40, autoAlpha: 0, scale: 0, duration: 0.45+Math.random()*0.5, ease: 'power2.out', delay: Math.random()*0.06, onComplete:()=>p.remove() });
+            }
+            gsap.fromTo(shape, { filter: 'brightness(5) saturate(3)' }, { filter: 'brightness(1)', duration: 0.45 });
+          } else if (clickCount >= 2) {
+            // Double click — SHATTER and reassemble
+            gsap.killTweensOf(shape);
+            const sr = shape.getBoundingClientRect();
+            const cx = sr.left + sr.width/2, cy = sr.top + sr.height/2;
+            gsap.to(shape, { autoAlpha: 0, scale: 0, duration: 0.12, ease: 'power3.in' });
+            for (let i = 0; i < 16; i++) {
+              const f = document.createElement('div');
+              const col = BURST_COLORS[Math.floor(Math.random() * BURST_COLORS.length)];
+              const sz = 3 + Math.random() * 9;
+              f.style.cssText = `position:fixed;width:${sz}px;height:${sz}px;background:${col};box-shadow:0 0 ${sz*3}px ${col};pointer-events:none;z-index:9999;left:${cx}px;top:${cy}px;border-radius:${Math.random()>.5?'50%':'3px'};transform:translate(-50%,-50%);`;
+              document.body.appendChild(f);
+              const ang = (i/16)*Math.PI*2 + Math.random()*0.8;
+              const dist = 30 + Math.random()*110;
+              gsap.to(f, { x: Math.cos(ang)*dist, y: Math.sin(ang)*dist, rotation: Math.random()*720-360, autoAlpha: 0, scale: 0.1, duration: 0.55+Math.random()*0.45, ease: 'power2.out', onComplete:()=>f.remove() });
+            }
+            // Screen shake
+            gsap.to('.hero-content', { x: 6, duration: 0.05, yoyo: true, repeat: 5, ease: 'none', onComplete: () => gsap.set('.hero-content', { x: 0 }) });
+            setTimeout(() => gsap.fromTo(shape, { autoAlpha: 0, scale: 0, rotation: -360 }, { autoAlpha: 1, scale: 1, rotation: 0, duration: 0.9, ease: 'back.out(2.5)' }), 750);
+          }
+          clickCount = 0;
+        }, 260);
+      });
+
+      // ── Right-click flee ──
+      shape.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        if (isDragging) return;
+        gsap.killTweensOf(shape, 'x,y');
+        const hr = heroEl.getBoundingClientRect();
+        const rx = (Math.random() - 0.5) * hr.width * 0.55;
+        const ry = (Math.random() - 0.5) * hr.height * 0.45;
+        const spinDir = Math.random() > 0.5 ? 1 : -1;
+        gsap.timeline()
+          .to(shape, { x: rx, y: ry, scale: 1.4, rotationZ: spinDir * (120 + Math.random()*180), filter: 'brightness(2.5) drop-shadow(0 0 22px rgba(168,85,247,0.9))', duration: 0.28, ease: 'power4.out' })
+          .to(shape, { x: 0, y: 0, scale: 1, rotationZ: 0, filter: 'brightness(1)', duration: 1.6, ease: 'elastic.out(1, 0.4)', delay: 0.4 });
+      });
+    });
+
+    // Hologram rings continuous spin
+    gsap.to('.holo-r1', { rotation:  360, duration: 9,  repeat: -1, ease: 'none', transformOrigin: '50% 50%' });
+    gsap.to('.holo-r2', { rotation: -360, duration: 14, repeat: -1, ease: 'none', transformOrigin: '50% 50%' });
+    gsap.to('.holo-r3', { rotation:  360, duration: 20, repeat: -1, ease: 'none', transformOrigin: '50% 50%' });
+    gsap.to('.holo-r4', { rotation: -360, duration: 28, repeat: -1, ease: 'none', transformOrigin: '50% 50%' });
+    gsap.to('.holo-grid', { rotation: 360, duration: 60, repeat: -1, ease: 'none', transformOrigin: '50% 50%' });
+    gsap.to('.holo-equator', { scaleX: 1.25, duration: 2.8, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+    gsap.to('.holo-core', { scale: 1.35, boxShadow: '0 0 40px rgba(6,214,196,0.9)', duration: 1.8, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+    gsap.fromTo('.hero-hologram-wrap', { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 1.4, ease: 'back.out(1.8)', delay: 1.0 });
+  })();
+
+  /* ─── GLITCH TEXT ON HERO TITLE HOVER ─── */
+  const heroTitle = document.querySelector('.hero-title');
+  if (heroTitle) {
+    let glitchTimer;
+    heroTitle.style.cursor = 'default';
+    heroTitle.addEventListener('mouseenter', () => {
+      let n = 0;
+      glitchTimer = setInterval(() => {
+        heroTitle.classList.toggle('glitch-active');
+        n++;
+        if (n > 10) { clearInterval(glitchTimer); heroTitle.classList.remove('glitch-active'); }
+      }, 55);
+    });
+    heroTitle.addEventListener('mouseleave', () => {
+      clearInterval(glitchTimer);
+      heroTitle.classList.remove('glitch-active');
+    });
+  }
+
+  /* ─── AMBIENT CURSOR BLOB ─── */
+  const blob = document.createElement('div');
+  blob.id = 'cursor-blob';
+  document.body.appendChild(blob);
+  let blobTx = -400, blobTy = -400;
+  document.addEventListener('mousemove', (e) => {
+    gsap.to({ x: blobTx, y: blobTy }, {
+      x: e.clientX, y: e.clientY, duration: 2.2, ease: 'power2.out',
+      onUpdate: function () {
+        blobTx = this.targets()[0].x;
+        blobTy = this.targets()[0].y;
+        gsap.set(blob, { x: blobTx - 160, y: blobTy - 160 });
+      },
+    });
+  });
+
+  /* ─── PROCESS LINE DRAW ─── */
+  ScrollTrigger.create({
+    trigger: '.process-steps', start: 'top 76%', once: true,
+    onEnter: () => gsap.fromTo('.process-line',
+      { scaleX: 0, transformOrigin: 'left center', autoAlpha: 0 },
+      { scaleX: 1, autoAlpha: 1, duration: 1.3, ease: 'power2.inOut', stagger: 0.28, delay: 0.25, clearProps: 'all' }
+    ),
+  });
+
+  /* ─── SECTION SUBTITLE BLUR-TO-SHARP ─── */
+  document.querySelectorAll('.section-subtitle').forEach(el => {
+    gsap.set(el, { autoAlpha: 0, filter: 'blur(8px)', y: 12 });
+    ScrollTrigger.create({
+      trigger: el, start: 'top 95%', once: true,
+      onEnter: () => gsap.to(el, {
+        autoAlpha: 1, filter: 'blur(0px)', y: 0,
+        duration: 0.48, ease: 'power3.out', clearProps: 'all',
+      }),
+    });
+  });
+
+  /* ─── CARD SPOTLIGHT CURSOR GLOW ─── */
+  document.querySelectorAll('.bento-card, .cap-card, .stat-card, .testimonial-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${((e.clientX - r.left) / r.width * 100).toFixed(1)}%`);
+      card.style.setProperty('--my', `${((e.clientY - r.top) / r.height * 100).toFixed(1)}%`);
+      card.classList.add('card-lit');
+    });
+    card.addEventListener('mouseleave', () => card.classList.remove('card-lit'));
+  });
+
+  /* ─── TESTIMONIAL 3D FLIP ON CLICK ─── */
+  document.querySelectorAll('.testimonial-card').forEach(card => {
+    card.dataset.flipped = 'false';
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      const flipped = card.dataset.flipped === 'true';
+      gsap.to(card, {
+        rotationY: flipped ? 0 : 360,
+        scale: flipped ? 1 : 1.04,
+        duration: 0.85, ease: 'power3.inOut',
+        onComplete: () => { card.dataset.flipped = flipped ? 'false' : 'false'; },
+      });
+    });
+  });
+
+  /* ─── NEW SHAPE SPINS ─── */
+  gsap.to('.shape-svg-torus', { rotation: 360, duration: 14, repeat: -1, ease: 'none', transformOrigin: '50% 50%' });
+  gsap.to('.shape-svg-dna',   { scaleY: -1, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut', transformOrigin: '50% 50%' });
+  gsap.to('.shape-svg-wave',  { attr: { viewBox: '10 0 140 55' }, duration: 3, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+  gsap.to('.shape-svg-octa', { rotation: -360, duration: 18, repeat: -1, ease: 'none', transformOrigin: '50% 50%' });
+
+  /* ─── FLOATING SHAPES ENTRANCE ─── */
+  gsap.fromTo('.shape-wrapper',
+    { autoAlpha: 0, scale: 0.3, rotation: -45 },
+    { autoAlpha: 1, scale: 1, rotation: 0, duration: 1, ease: 'back.out(1.8)', stagger: { amount: 1.2 }, delay: 0.6 }
+  );
+
+  /* ─── HERO HOLOGRAM TITLE ECHO ─── */
+  // Periodic pulse of the hologram glow
+  gsap.to('.holo-glow', {
+    opacity: 0.9,
+    scale: 1.4,
+    duration: 2.5, repeat: -1, yoyo: true, ease: 'sine.inOut',
+    transformOrigin: '50% 50%',
+  });
+
+  /* ─── STAR TRAIL on SCROLL (section dividers) ─── */
+  document.querySelectorAll('.divider').forEach(div => {
+    gsap.fromTo(div,
+      { scaleX: 0, transformOrigin: 'left center' },
+      {
+        scaleX: 1, duration: 1.2, ease: 'power2.inOut',
+        scrollTrigger: { trigger: div, start: 'top 90%', once: true },
+      }
+    );
+  });
+
+  /* ─── CAP CARD ICON SPIN ON SCROLL ENTER ─── */
+  ScrollTrigger.create({
+    trigger: '.cap-grid', start: 'top 82%', once: true,
+    onEnter: () => {
+      document.querySelectorAll('.cap-icon').forEach((icon, i) => {
+        gsap.fromTo(icon,
+          { rotation: -180, scale: 0, autoAlpha: 0 },
+          { rotation: 0, scale: 1, autoAlpha: 1, duration: 0.7, delay: i * 0.1, ease: 'back.out(2)', clearProps: 'all' }
+        );
+      });
+    },
+  });
+
+  /* ─── STAT NUMBER BOUNCE SCALE ─── */
+  ScrollTrigger.create({
+    trigger: '.stats-grid', start: 'top 82%', once: true,
+    onEnter: () => {
+      document.querySelectorAll('.stat-number').forEach((num, i) => {
+        gsap.fromTo(num,
+          { scale: 0.3, autoAlpha: 0 },
+          { scale: 1, autoAlpha: 1, duration: 0.8, delay: i * 0.12, ease: 'elastic.out(1.2, 0.5)', clearProps: 'all' }
+        );
+      });
+    },
+  });
+
+  ScrollTrigger.refresh();
+})();
 </script>
 
 <style>
@@ -1944,4 +2872,552 @@ import Layout from '../layouts/Layout.astro';
   }
   .btn-primary:hover::before {
     opacity: 1;
+  }
+
+  /* ===== CUSTOM CURSOR ===== */
+  #cursor-globe {
+    position: fixed;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(6, 214, 196, 0.5);
+    background: transparent;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: background 0.3s ease, border-color 0.3s ease;
+    mix-blend-mode: screen;
+  }
+  #cursor-dot {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #06d6c4;
+    pointer-events: none;
+    z-index: 100000;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(6, 214, 196, 0.9);
+  }
+  @media (hover: none) {
+    #cursor-globe, #cursor-dot { display: none; }
+  }
+
+  /* ===== SCROLL PROGRESS BAR ===== */
+  #scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #06d6c4, #a855f7, #06d6c4);
+    background-size: 200% auto;
+    animation: gradientShift 3s linear infinite;
+    transform-origin: left center;
+    transform: scaleX(0);
+    z-index: 99998;
+    pointer-events: none;
+  }
+
+  /* ===== 3D FLOATING SHAPES ===== */
+  .hero-3d-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .shape-wrapper {
+    position: absolute;
+    will-change: transform;
+  }
+
+  /* --- CSS 3D Cube --- */
+  .cube3d {
+    width: 80px;
+    height: 80px;
+    transform-style: preserve-3d;
+    animation: rotateCube 15s linear infinite;
+    position: relative;
+  }
+
+  .cube3d-sm {
+    width: 50px;
+    height: 50px;
+    animation-duration: 11s;
+    animation-direction: reverse;
+  }
+
+  .cube3d-xs {
+    width: 35px;
+    height: 35px;
+    animation-duration: 9s;
+  }
+
+  .cube3d-face {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border: 1px solid rgba(6, 214, 196, 0.38);
+    background: rgba(6, 214, 196, 0.025);
+    backdrop-filter: blur(4px);
+  }
+  .cube3d-sm .cube3d-face { width: 50px; height: 50px; border-color: rgba(168, 85, 247, 0.38); background: rgba(168, 85, 247, 0.025); }
+  .cube3d-xs .cube3d-face { width: 35px; height: 35px; border-color: rgba(99, 179, 255, 0.38); background: rgba(99, 179, 255, 0.025); }
+
+  .cube3d .front  { transform: translateZ(40px); }
+  .cube3d .back   { transform: translateZ(-40px) rotateY(180deg); }
+  .cube3d .left   { transform: translateX(-40px) rotateY(-90deg); }
+  .cube3d .right  { transform: translateX(40px) rotateY(90deg); }
+  .cube3d .top    { transform: translateY(-40px) rotateX(90deg); }
+  .cube3d .bottom { transform: translateY(40px) rotateX(-90deg); }
+
+  .cube3d-sm .front  { transform: translateZ(25px); }
+  .cube3d-sm .back   { transform: translateZ(-25px) rotateY(180deg); }
+  .cube3d-sm .left   { transform: translateX(-25px) rotateY(-90deg); }
+  .cube3d-sm .right  { transform: translateX(25px) rotateY(90deg); }
+  .cube3d-sm .top    { transform: translateY(-25px) rotateX(90deg); }
+  .cube3d-sm .bottom { transform: translateY(25px) rotateX(-90deg); }
+
+  .cube3d-xs .front  { transform: translateZ(17.5px); }
+  .cube3d-xs .back   { transform: translateZ(-17.5px) rotateY(180deg); }
+  .cube3d-xs .left   { transform: translateX(-17.5px) rotateY(-90deg); }
+  .cube3d-xs .right  { transform: translateX(17.5px) rotateY(90deg); }
+  .cube3d-xs .top    { transform: translateY(-17.5px) rotateX(90deg); }
+  .cube3d-xs .bottom { transform: translateY(17.5px) rotateX(-90deg); }
+
+  @keyframes rotateCube {
+    0%   { transform: rotateX(0deg)   rotateY(0deg)   rotateZ(0deg); }
+    33%  { transform: rotateX(120deg) rotateY(90deg)  rotateZ(45deg); }
+    66%  { transform: rotateX(240deg) rotateY(200deg) rotateZ(120deg); }
+    100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+  }
+
+  /* --- CSS 3D Rings --- */
+  .ring3d {
+    width: 110px;
+    height: 110px;
+    border: 2px solid rgba(168, 85, 247, 0.45);
+    border-radius: 50%;
+    animation: rotateRing 9s linear infinite;
+    position: relative;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.2), inset 0 0 20px rgba(168, 85, 247, 0.05);
+  }
+
+  .ring3d::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(6, 214, 196, 0.3);
+    border-radius: 50%;
+    animation: rotateRingInner 5s linear infinite reverse;
+  }
+
+  .ring3d::after {
+    content: '';
+    position: absolute;
+    inset: 28px;
+    border: 1px dashed rgba(168, 85, 247, 0.2);
+    border-radius: 50%;
+    animation: rotateRingInner 8s linear infinite;
+  }
+
+  .ring3d-sm {
+    width: 65px;
+    height: 65px;
+    border-color: rgba(6, 214, 196, 0.4);
+    animation-duration: 6s;
+    animation-direction: reverse;
+    box-shadow: 0 0 14px rgba(6, 214, 196, 0.2);
+  }
+  .ring3d-sm::before { inset: 8px; border-color: rgba(168, 85, 247, 0.25); }
+  .ring3d-sm::after { display: none; }
+
+  .ring3d-lg {
+    width: 160px;
+    height: 160px;
+    border-color: rgba(6, 214, 196, 0.25);
+    animation-duration: 14s;
+    box-shadow: 0 0 30px rgba(6, 214, 196, 0.12);
+  }
+  .ring3d-lg::before { inset: 20px; border-color: rgba(168, 85, 247, 0.18); }
+
+  @keyframes rotateRing {
+    0%   { transform: perspective(400px) rotateX(65deg) rotateZ(0deg); }
+    100% { transform: perspective(400px) rotateX(65deg) rotateZ(360deg); }
+  }
+
+  @keyframes rotateRingInner {
+    0%   { transform: rotateZ(0deg); }
+    100% { transform: rotateZ(360deg); }
+  }
+
+  /* --- CSS 3D Diamond --- */
+  .diamond3d {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, rgba(6, 214, 196, 0.08), rgba(6, 214, 196, 0.02));
+    border: 1px solid rgba(6, 214, 196, 0.45);
+    animation: rotateDiamond 7s ease-in-out infinite;
+    box-shadow: 0 0 24px rgba(6, 214, 196, 0.22), inset 0 0 12px rgba(6, 214, 196, 0.06);
+  }
+
+  .diamond3d-purple {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.08), rgba(168, 85, 247, 0.02));
+    border-color: rgba(168, 85, 247, 0.45);
+    box-shadow: 0 0 24px rgba(168, 85, 247, 0.22), inset 0 0 12px rgba(168, 85, 247, 0.06);
+    animation-delay: -3s;
+    animation-direction: reverse;
+  }
+
+  @keyframes rotateDiamond {
+    0%   { transform: perspective(250px) rotateX(45deg) rotateZ(45deg) translateY(0px); }
+    25%  { transform: perspective(250px) rotateX(70deg) rotateZ(100deg) translateY(-12px); }
+    50%  { transform: perspective(250px) rotateX(30deg) rotateZ(135deg) translateY(-6px); }
+    75%  { transform: perspective(250px) rotateX(60deg) rotateZ(200deg) translateY(-14px); }
+    100% { transform: perspective(250px) rotateX(45deg) rotateZ(225deg) translateY(0px); }
+  }
+
+  /* --- Icosahedron (CSS approximation) --- */
+  .icosa3d {
+    width: 58px;
+    height: 58px;
+    border: 1px solid rgba(99, 179, 255, 0.38);
+    border-radius: 22% 78% 35% 65% / 68% 28% 72% 32%;
+    background: rgba(99, 179, 255, 0.03);
+    animation: rotateIcosa 10s linear infinite;
+    box-shadow: 0 0 20px rgba(99, 179, 255, 0.18);
+  }
+
+  @keyframes rotateIcosa {
+    0%   { transform: rotate(0deg) scale(1);   border-radius: 22% 78% 35% 65% / 68% 28% 72% 32%; }
+    25%  { transform: rotate(90deg) scale(1.1); border-radius: 55% 45% 70% 30% / 30% 70% 30% 70%; }
+    50%  { transform: rotate(180deg) scale(1);  border-radius: 78% 22% 65% 35% / 32% 72% 28% 68%; }
+    75%  { transform: rotate(270deg) scale(1.1);border-radius: 45% 55% 30% 70% / 70% 30% 70% 30%; }
+    100% { transform: rotate(360deg) scale(1);  border-radius: 22% 78% 35% 65% / 68% 28% 72% 32%; }
+  }
+
+  /* --- SVG Shapes --- */
+  .shape-svg-pyramid {
+    width: 90px;
+    height: 90px;
+    overflow: visible;
+    filter: drop-shadow(0 0 8px rgba(6, 214, 196, 0.25));
+  }
+
+  .shape-svg-hex {
+    width: 80px;
+    height: 80px;
+    overflow: visible;
+    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.25));
+  }
+
+  /* --- Shape Positions --- */
+  .shape-cube-1   { top: 8%;  right: 7%;  opacity: 0.65; transform-style: preserve-3d; perspective: 400px; }
+  .shape-cube-2   { bottom: 22%; left: 4%; opacity: 0.55; transform-style: preserve-3d; perspective: 400px; }
+  .shape-cube-3   { top: 45%; left: 2%;  opacity: 0.45; transform-style: preserve-3d; perspective: 400px; }
+  .shape-ring-1   { top: 18%; left: 9%;  opacity: 0.5; }
+  .shape-ring-2   { bottom: 12%; right: 12%; opacity: 0.55; }
+  .shape-ring-3   { top: 60%; right: 3%; opacity: 0.35; }
+  .shape-diamond-1 { top: 35%; right: 18%; opacity: 0.55; }
+  .shape-diamond-2 { bottom: 30%; left: 15%; opacity: 0.48; }
+  .shape-icosa-1  { top: 70%; left: 22%; opacity: 0.4; }
+  .shape-pyramid-1 { top: 14%; right: 30%; opacity: 0.45; }
+  .shape-hex-1    { bottom: 18%; left: 28%; opacity: 0.4; }
+
+  @media (max-width: 768px) {
+    .shape-cube-1, .shape-ring-3, .shape-pyramid-1, .shape-hex-1 { display: none; }
+    .hero-3d-shapes { opacity: 0.6; }
+  }
+
+  /* ===== DECOR SPHERE SVG ===== */
+  .decor-sphere-svg {
+    display: block;
+  }
+
+  /* ===== SECTION ENTRY HIGHLIGHT LINE ===== */
+  .section-entered::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(6,214,196,0.3), rgba(168,85,247,0.2), transparent);
+    animation: fadeInLine 0.8s ease forwards;
+  }
+
+  @keyframes fadeInLine {
+    from { opacity: 0; transform: scaleX(0); }
+    to   { opacity: 1; transform: scaleX(1); }
+  }
+
+  /* ===== ENHANCED REVEAL WITH 3D ===== */
+  .hero-title {
+    transform-style: preserve-3d;
+    perspective: 600px;
+  }
+
+  /* ===== FLOATING BODY PARTICLE ===== */
+  @keyframes bodyParticleFloat {
+    0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.6; }
+    90%  { opacity: 0.3; }
+    100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* ===== CAP CARD FEATURED GLOW PULSE ===== */
+  .cap-card-featured {
+    animation: featuredPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes featuredPulse {
+    0%, 100% { box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.2), 0 8px 32px rgba(0,0,0,0.4); }
+    50%       { box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.45), 0 8px 48px rgba(168,85,247,0.25); }
+  }
+
+  /* ===== HERO BADGE FLOAT ===== */
+  .hero-badge .badge {
+    animation: badgeFloat 4s ease-in-out infinite;
+  }
+
+  @keyframes badgeFloat {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-5px); }
+  }
+
+  /* ===== SECTION FLOAT DECOR ===== */
+  .section-float-decor {
+    overflow: visible;
+  }
+
+  /* ===== HERO-3D-SHAPES - REMOVE POINTER NONE SO JS CAN OVERRIDE PER-SHAPE ===== */
+  .hero-3d-shapes {
+    pointer-events: none !important; /* container stays none; JS sets auto on individual wrappers */
+  }
+
+  /* ===== NEW SHAPE POSITIONS ===== */
+  .shape-torus-1  { bottom: 28%; right: 5%;  opacity: 0.6; }
+  .shape-dna-1    { top: 10%;  left: 20%; opacity: 0.55; }
+  .shape-wave-1   { bottom: 10%; right: 25%; opacity: 0.45; }
+  .shape-octa-1   { top: 42%;  right: 28%; opacity: 0.5; }
+
+  /* Extra shape SVG sizes */
+  .shape-svg-torus { width: 130px; height: 70px;  filter: drop-shadow(0 0 6px rgba(6,214,196,0.2)); overflow: visible; }
+  .shape-svg-dna   { width: 44px;  height: 130px; filter: drop-shadow(0 0 6px rgba(168,85,247,0.22)); overflow: visible; }
+  .shape-svg-wave  { width: 140px; height: 55px;  filter: drop-shadow(0 0 5px rgba(6,214,196,0.18)); overflow: visible; }
+  .shape-svg-octa  { width: 90px;  height: 90px;  filter: drop-shadow(0 0 6px rgba(245,158,11,0.22)); overflow: visible; }
+
+  @media (max-width: 900px) {
+    .shape-torus-1, .shape-dna-1, .shape-wave-1, .shape-octa-1 { display: none; }
+  }
+
+  /* ===== HOLOGRAM SPHERE ===== */
+  .hero-hologram-wrap {
+    position: absolute;
+    right: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 300px;
+    pointer-events: none;
+    z-index: 1;
+    perspective: 700px;
+    display: none; /* shown via media query */
+  }
+
+  @media (min-width: 1100px) {
+    .hero-hologram-wrap { display: block; }
+  }
+
+  .hero-hologram {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+  }
+
+  .holo-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px solid rgba(6, 214, 196, 0.35);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .holo-r1 { width: 72px;  height: 72px;  border-color: rgba(168,85,247,0.55); transform: translate(-50%,-50%) perspective(400px) rotateX(70deg); }
+  .holo-r2 { width: 110px; height: 110px; border-color: rgba(6,214,196,0.4);   transform: translate(-50%,-50%) perspective(400px) rotateX(60deg) rotateZ(30deg); }
+  .holo-r3 { width: 160px; height: 160px; border-color: rgba(6,214,196,0.28);  transform: translate(-50%,-50%) perspective(400px) rotateX(72deg) rotateZ(60deg); }
+  .holo-r4 { width: 220px; height: 220px; border-color: rgba(168,85,247,0.2);  transform: translate(-50%,-50%) perspective(400px) rotateX(65deg) rotateZ(15deg); }
+
+  .holo-equator {
+    position: absolute;
+    width: 240px; height: 42px;
+    border: 1px solid rgba(6,214,196,0.3);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .holo-meridian {
+    position: absolute;
+    width: 42px; height: 240px;
+    border: 1px solid rgba(6,214,196,0.22);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .holo-core {
+    position: absolute;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(6,214,196,1) 0%, rgba(6,214,196,0.4) 50%, transparent 100%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 24px rgba(6, 214, 196, 0.7), 0 0 60px rgba(6, 214, 196, 0.3);
+  }
+
+  .holo-glow {
+    position: absolute;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(6,214,196,0.07) 0%, rgba(168,85,247,0.04) 50%, transparent 75%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
+  }
+
+  .holo-grid {
+    position: absolute;
+    width: 200px; height: 200px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.6;
+  }
+
+  /* ===== AMBIENT CURSOR BLOB ===== */
+  #cursor-blob {
+    position: fixed;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(6,214,196,0.06) 0%, rgba(168,85,247,0.04) 50%, transparent 75%);
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(40px);
+    mix-blend-mode: screen;
+    top: 0; left: 0;
+  }
+
+  /* ===== GLITCH EFFECT ===== */
+  .hero-title.glitch-active {
+    animation: glitchAnim 0.06s steps(1) infinite;
+  }
+
+  @keyframes glitchAnim {
+    0%   { clip-path: inset(0 0 90% 0); transform: translate(-3px, 1px); filter: hue-rotate(90deg); }
+    20%  { clip-path: inset(20% 0 60% 0); transform: translate(3px, -2px); }
+    40%  { clip-path: inset(50% 0 30% 0); transform: translate(-2px, 2px); filter: hue-rotate(-45deg); }
+    60%  { clip-path: inset(70% 0 10% 0); transform: translate(2px, 0px); }
+    80%  { clip-path: inset(10% 0 80% 0); transform: translate(-1px, -1px); }
+    100% { clip-path: none; transform: none; filter: none; }
+  }
+
+  /* ===== CARD SPOTLIGHT OVERLAY ===== */
+  .card-lit::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background: radial-gradient(circle 140px at var(--mx, 50%) var(--my, 50%), rgba(6,214,196,0.08) 0%, transparent 70%) !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+    border-radius: inherit !important;
+  }
+
+  /* ===== SHAPE-WRAPPER HOVER FEEDBACK ===== */
+  .shape-wrapper[data-interactive] {
+    transition: filter 0.3s ease;
+    transform-style: preserve-3d;
+    cursor: grab;
+  }
+  .shape-wrapper[data-interactive].is-dragging {
+    cursor: grabbing;
+    z-index: 100;
+  }
+
+  /* ===== REVEAL SUBTITLE PLACEHOLDER (prevents layout shift) ===== */
+  .section-subtitle {
+    will-change: filter, opacity, transform;
+  }
+
+  /* ===== PLATFORM TRIO SECTION ===== */
+  .bento-platform-trio {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 900px) { .bento-platform-trio { grid-template-columns: 1fr; } }
+
+  .bento-platform {
+    position: relative;
+    overflow: hidden;
+    min-height: 280px;
+  }
+
+  .bento-platform-orb {
+    position: absolute;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    filter: blur(60px);
+    top: -50px; right: -40px;
+    pointer-events: none;
+    animation: floatOrb 7s ease-in-out infinite;
+  }
+
+  .bento-icon-lg { width: 60px !important; height: 60px !important; }
+
+  .bento-whatsapp {
+    border-color: rgba(37,211,102,0.3);
+    background: linear-gradient(135deg, rgba(37,211,102,0.07) 0%, rgba(10,22,40,0.55) 100%);
+  }
+  .bento-whatsapp .bento-icon { color: #25d366; }
+  .bento-whatsapp .bento-icon-glow { filter: drop-shadow(0 0 14px rgba(37,211,102,0.6)); }
+  .bento-whatsapp .bento-platform-orb { background: radial-gradient(circle, rgba(37,211,102,0.3) 0%, transparent 70%); }
+  .bento-whatsapp:hover { border-color: rgba(37,211,102,0.55); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 44px rgba(37,211,102,0.12); }
+
+  .bento-zoho {
+    border-color: rgba(232,68,26,0.3);
+    background: linear-gradient(135deg, rgba(232,68,26,0.07) 0%, rgba(10,22,40,0.55) 100%);
+  }
+  .bento-zoho .bento-icon { color: #e8441a; }
+  .bento-zoho .bento-icon-glow { filter: drop-shadow(0 0 14px rgba(232,68,26,0.6)); }
+  .bento-zoho .bento-platform-orb { background: radial-gradient(circle, rgba(232,68,26,0.28) 0%, transparent 70%); }
+  .bento-zoho:hover { border-color: rgba(232,68,26,0.55); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 44px rgba(232,68,26,0.12); }
+
+  .bento-odoo {
+    border-color: rgba(113,75,103,0.35);
+    background: linear-gradient(135deg, rgba(113,75,103,0.1) 0%, rgba(10,22,40,0.55) 100%);
+  }
+  .bento-odoo .bento-icon { color: #c4a000; }
+  .bento-odoo .bento-icon-glow { filter: drop-shadow(0 0 14px rgba(113,75,103,0.6)); }
+  .bento-odoo .bento-platform-orb { background: radial-gradient(circle, rgba(113,75,103,0.3) 0%, transparent 70%); }
+  .bento-odoo:hover { border-color: rgba(113,75,103,0.55); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 44px rgba(113,75,103,0.12); }
+
+  .bento-platform-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 6px;
+    align-self: flex-start;
   }</style>

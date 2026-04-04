@@ -593,4 +593,169 @@ import Layout from '../layouts/Layout.astro';
     .ps-divider { display: none; }
     .coming-soon-inner { padding: 48px 28px; }
   }
+
+  /* 3D support */
+  .pf-card {
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  .product-info, .product-features {
+    will-change: transform;
+  }
+  .product-icon-wrap {
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
 </style>
+
+<script is:inline>
+(function () {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ─ Word fly-in ─ */
+  document.querySelectorAll('.ph-title, .cs-title').forEach(title => {
+    if (title.dataset.splitDone) return;
+    title.dataset.splitDone = 'true';
+    Array.from(title.childNodes).forEach(node => {
+      if (node.nodeType !== Node.TEXT_NODE) return;
+      const words = node.textContent.trim().split(/\s+/).filter(Boolean);
+      if (!words.length) return;
+      const frag = document.createDocumentFragment();
+      words.forEach((w, idx) => {
+        const outer = document.createElement('span');
+        outer.style.cssText = 'display:inline-block;overflow:hidden;vertical-align:bottom;';
+        const inner = document.createElement('span');
+        inner.className = 'gsap-word'; inner.style.display = 'inline-block';
+        inner.textContent = w; outer.appendChild(inner); frag.appendChild(outer);
+        if (idx < words.length - 1) frag.appendChild(document.createTextNode(' '));
+      });
+      title.replaceChild(frag, node);
+    });
+    title.querySelectorAll('.gradient-text').forEach(gt => {
+      const words = gt.textContent.trim().split(/\s+/).filter(Boolean);
+      gt.innerHTML = words.map(w =>
+        `<span style="display:inline-block;overflow:hidden;vertical-align:bottom;"><span class="gsap-word" style="display:inline-block;">${w}</span></span>`
+      ).join(' ');
+    });
+    ScrollTrigger.create({
+      trigger: title, start: 'top 93%', once: true,
+      onEnter: () => gsap.fromTo(title.querySelectorAll('.gsap-word'),
+        { y: '105%', opacity: 0 },
+        { y: '0%', opacity: 1, duration: 0.42, stagger: 0.03, ease: 'power3.out', clearProps: 'all' }
+      ),
+    });
+  });
+
+  /* ─ Subtitle / sub reveal ─ */
+  document.querySelectorAll('.ph-sub, .cs-sub').forEach(el => {
+    gsap.set(el, { autoAlpha: 0, y: 14, filter: 'blur(8px)' });
+    ScrollTrigger.create({
+      trigger: el, start: 'top 95%', once: true,
+      onEnter: () => gsap.to(el, { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.48, ease: 'power3.out', clearProps: 'all' }),
+    });
+  });
+
+  /* ─ Product info slide in from left ─ */
+  const pInfo = document.querySelector('.product-info');
+  if (pInfo) {
+    gsap.set(pInfo, { autoAlpha: 0, x: -60, rotationY: 15 });
+    ScrollTrigger.create({
+      trigger: pInfo, start: 'top 85%', once: true,
+      onEnter: () => gsap.to(pInfo, { autoAlpha: 1, x: 0, rotationY: 0, duration: 0.7, ease: 'power3.out', clearProps: 'all' }),
+    });
+  }
+
+  /* ─ Feature cards 3D entrance + hover tilt ─ */
+  const pfCards = Array.from(document.querySelectorAll('.pf-card'));
+  gsap.set(pfCards, { autoAlpha: 0, y: 36, rotationX: 24 });
+  ScrollTrigger.create({
+    trigger: '.product-features', start: 'top 85%', once: true,
+    onEnter: () => gsap.to(pfCards, {
+      autoAlpha: 1, y: 0, rotationX: 0,
+      stagger: { amount: 0.45, from: 'start' },
+      duration: 0.52, ease: 'back.out(1.6)', clearProps: 'transform,opacity,visibility',
+    }),
+  });
+  pfCards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const nx = (e.clientX - r.left) / r.width - 0.5, ny = (e.clientY - r.top) / r.height - 0.5;
+      gsap.to(card, { rotationY: nx * 14, rotationX: -ny * 11, scale: 1.02, transformPerspective: 700, duration: 0.22, ease: 'power2.out', overwrite: 'auto' });
+      const icon = card.querySelector('.pf-icon');
+      if (icon) gsap.to(icon, { x: nx * 8, y: ny * 6, scale: 1.12, duration: 0.22, ease: 'power2.out', overwrite: 'auto' });
+    });
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, { rotationY: 0, rotationX: 0, scale: 1, duration: 0.6, ease: 'elastic.out(1, 0.5)', overwrite: 'auto' });
+      const icon = card.querySelector('.pf-icon');
+      if (icon) gsap.to(icon, { x: 0, y: 0, scale: 1, duration: 0.6, ease: 'elastic.out(1, 0.5)', overwrite: 'auto' });
+    });
+  });
+
+  /* ─ Product stats counter animation ─ */
+  const statsRow = document.querySelector('.product-stats');
+  if (statsRow) {
+    gsap.set(statsRow, { autoAlpha: 0, y: 28 });
+    ScrollTrigger.create({
+      trigger: statsRow, start: 'top 88%', once: true,
+      onEnter: () => gsap.to(statsRow, {
+        autoAlpha: 1, y: 0, duration: 0.55, ease: 'back.out(1.8)', clearProps: 'all',
+        onComplete: () => {
+          /* Elastic number bounce */
+          document.querySelectorAll('.ps-item').forEach((item, i) => {
+            gsap.fromTo(item, { scale: 0.75, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.5, delay: i * 0.1, ease: 'back.out(2.5)', clearProps: 'all' });
+          });
+        }
+      }),
+    });
+  }
+
+  /* ─ Product eyebrow row reveal ─ */
+  const eyebrow = document.querySelector('.product-eyebrow-row');
+  if (eyebrow) {
+    gsap.set(eyebrow, { autoAlpha: 0, x: -30 });
+    ScrollTrigger.create({
+      trigger: eyebrow, start: 'top 90%', once: true,
+      onEnter: () => gsap.to(eyebrow, { autoAlpha: 1, x: 0, duration: 0.5, ease: 'power3.out', clearProps: 'all' }),
+    });
+  }
+
+  /* ─ Product icon 3D spin on hover ─ */
+  const iconWrap = document.querySelector('.product-icon-wrap');
+  if (iconWrap) {
+    iconWrap.addEventListener('mouseenter', () =>
+      gsap.to(iconWrap, { rotationY: 360, duration: 0.7, ease: 'power2.inOut', overwrite: 'auto',
+        onComplete: () => gsap.set(iconWrap, { rotationY: 0 }) })
+    );
+  }
+
+  /* ─ Coming soon box pop + float ─ */
+  const csBox = document.querySelector('.coming-soon-inner');
+  if (csBox) {
+    gsap.set(csBox, { autoAlpha: 0, scale: 0.88, y: 32 });
+    ScrollTrigger.create({
+      trigger: csBox, start: 'top 88%', once: true,
+      onEnter: () => gsap.to(csBox, {
+        autoAlpha: 1, scale: 1, y: 0, duration: 0.65, ease: 'back.out(2)', clearProps: 'transform,opacity,visibility',
+        onComplete: () => gsap.to(csBox, { y: -10, duration: 3, ease: 'sine.inOut', yoyo: true, repeat: -1 }),
+      }),
+    });
+    csBox.addEventListener('mousemove', e => {
+      const r = csBox.getBoundingClientRect();
+      const nx = (e.clientX - r.left) / r.width - 0.5, ny = (e.clientY - r.top) / r.height - 0.5;
+      gsap.to(csBox, { rotationY: nx * 10, rotationX: -ny * 7, transformPerspective: 900, duration: 0.25, ease: 'power2.out', overwrite: 'auto' });
+    });
+    csBox.addEventListener('mouseleave', () => gsap.to(csBox, { rotationY: 0, rotationX: 0, duration: 0.7, ease: 'elastic.out(1, 0.5)', overwrite: 'auto' }));
+  }
+
+  /* ─ Feature right panel 3D slide in ─ */
+  const pFeat = document.querySelector('.product-features');
+  if (pFeat) {
+    gsap.set(pFeat, { autoAlpha: 0, x: 60, rotationY: -15 });
+    ScrollTrigger.create({
+      trigger: pFeat, start: 'top 85%', once: true,
+      onEnter: () => gsap.to(pFeat, { autoAlpha: 1, x: 0, rotationY: 0, duration: 0.7, ease: 'power3.out', clearProps: 'all' }),
+    });
+  }
+})();
+</script>
