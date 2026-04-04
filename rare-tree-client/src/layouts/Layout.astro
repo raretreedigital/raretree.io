@@ -6,12 +6,82 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  url?: string;
+  keywords?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
 }
 
 const {
   title,
-  description = "Raretree Digital — AI Automation & Digital Transformation. We design intelligent systems that reduce costs, increase efficiency, and drive revenue.",
+  description = "Raretree Digital — AI Automation & Digital Transformation. We build intelligent systems that reduce costs, increase efficiency, and drive measurable revenue growth.",
+  image = "/og-image.png",
+  url = Astro.url.href,
+  keywords = "AI automation, digital transformation, web development, mobile apps, CRM, ERP, Zoho, Salesforce, digital marketing, growth marketing",
+  type = "website",
+  noindex = false,
 } = Astro.props;
+
+const siteUrl = "https://raretree.io";
+const canonicalUrl = url.startsWith("http") ? url : siteUrl + url;
+const ogImage = image.startsWith("http") ? image : siteUrl + image;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      "name": "Raretree Digital",
+      "url": siteUrl,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${siteUrl}/logo.png`,
+        "width": 200,
+        "height": 200,
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/raretree"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "email": "contact@raretree.io",
+        "availableLanguage": "English"
+      },
+      "description": "Raretree Digital is a full-service digital agency specialising in AI automation, CRM/ERP implementation, web and mobile app development, and growth marketing.",
+      "areaServed": "Worldwide",
+      "serviceType": [
+        "AI Automation", "Digital Marketing", "Web Development",
+        "Mobile App Development", "CRM Implementation", "ERP Implementation",
+        "Growth Marketing", "SEO", "Branding"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      "url": siteUrl,
+      "name": "Raretree Digital",
+      "publisher": { "@id": `${siteUrl}/#organization` },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": `${siteUrl}/?s={search_term_string}`,
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${canonicalUrl}#webpage`,
+      "url": canonicalUrl,
+      "name": title,
+      "description": description,
+      "isPartOf": { "@id": `${siteUrl}/#website` },
+      "about": { "@id": `${siteUrl}/#organization` },
+      "inLanguage": "en-US"
+    }
+  ]
+};
 ---
 
 <!doctype html>
@@ -19,15 +89,46 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Canonical & Indexing -->
+    <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {!noindex && <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />}
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="apple-touch-icon" href="/logo.png" />
+
+    <!-- Primary Meta -->
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Raretree Digital" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="Raretree Digital" />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@raretree_io" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={title} />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

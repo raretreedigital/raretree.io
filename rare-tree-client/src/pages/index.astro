@@ -2,7 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Raretree | AI Automation & Digital Transformation">
+<Layout
+  title="Raretree Digital — AI Automation & Digital Transformation Agency"
+  description="Raretree Digital helps businesses scale with AI automation, custom web & mobile apps, CRM/ERP implementation, and data-driven growth marketing. Book a free call today."
+  keywords="AI automation agency, digital transformation, web app development, mobile app development, CRM implementation, growth marketing, Zoho partner, Salesforce partner"
+  url="https://raretree.io/"
+>
 
   <!-- ====== HERO ====== -->
   <section class="hero">
@@ -577,22 +582,30 @@ import Layout from '../layouts/Layout.astro';
     const C_PURPLE = '168,85,247';
     const C_BLUE   = '99,179,255';
 
-    // --- Tech label nodes (orbiting) ---
-    const TECH = [
-      { label: '⚛  React',      color: C_TEAL,   ring: 0, angle: 0 },
-      { label: '▲  Next.js',    color: C_BLUE,   ring: 0, angle: Math.PI },
-      { label: '💚  Vue',        color: C_TEAL,   ring: 0, angle: Math.PI * 0.6 },
-      { label: '🔥  Svelte',     color: '255,110,50', ring: 1, angle: 0.4 },
-      { label: '⚙  Spring',     color: '109,200,63', ring: 1, angle: 2.2 },
-      { label: '⚡  FastAPI',    color: C_TEAL,   ring: 1, angle: 4.0 },
-      { label: '🤖  AI / ML',   color: C_PURPLE, ring: 2, angle: 0.8 },
-      { label: '🍃  Hono',       color: C_BLUE,   ring: 2, angle: 3.2 },
-      { label: '▸  Elysia',      color: C_PURPLE, ring: 2, angle: 5.1 },
+    // --- Orbit nodes (geometric, no text labels) ---
+    interface OrbNode { ring: number; angle: number; baseSize: number; color: string; phase: number; shape: 'circle' | 'diamond'; }
+    const ORBIT_NODES: OrbNode[] = [
+      { ring: 0, angle: 0,                      baseSize: 4.5, color: C_TEAL,       phase: 0.0, shape: 'diamond' },
+      { ring: 0, angle: Math.PI * 0.5,          baseSize: 3.5, color: C_BLUE,       phase: 1.5, shape: 'circle'  },
+      { ring: 0, angle: Math.PI,                baseSize: 4.5, color: C_TEAL,       phase: 2.8, shape: 'diamond' },
+      { ring: 0, angle: Math.PI * 1.5,          baseSize: 3.5, color: C_PURPLE,     phase: 0.9, shape: 'circle'  },
+      { ring: 1, angle: 0.4,                    baseSize: 5.5, color: C_PURPLE,     phase: 0.4, shape: 'diamond' },
+      { ring: 1, angle: 0.4 + Math.PI * 0.67,  baseSize: 4.0, color: C_TEAL,       phase: 2.1, shape: 'circle'  },
+      { ring: 1, angle: 0.4 + Math.PI * 1.33,  baseSize: 4.0, color: C_BLUE,       phase: 3.4, shape: 'circle'  },
+      { ring: 1, angle: 2.2,                    baseSize: 4.5, color: '255,150,55', phase: 0.2, shape: 'diamond' },
+      { ring: 2, angle: 0.8,                    baseSize: 6.0, color: C_PURPLE,     phase: 1.1, shape: 'diamond' },
+      { ring: 2, angle: 0.8 + Math.PI * 0.67,  baseSize: 4.5, color: C_TEAL,       phase: 2.5, shape: 'circle'  },
+      { ring: 2, angle: 0.8 + Math.PI * 1.33,  baseSize: 5.0, color: C_BLUE,       phase: 0.7, shape: 'circle'  },
+      { ring: 2, angle: 5.1,                    baseSize: 4.5, color: '255,90,90',  phase: 1.7, shape: 'diamond' },
     ];
 
     const RING_RADII = [0.22, 0.34, 0.44]; // fraction of min(W,H)/2
     const RING_SPEEDS = [0.00028, -0.00019, 0.00013];
     const RING_TILTS  = [0, 0.28, -0.18]; // perspective tilt (y-scale)
+
+    // --- Shooting star meteors ---
+    interface Meteor { x: number; y: number; vx: number; vy: number; life: number; maxLife: number; color: string; }
+    const meteors: Meteor[] = [];
 
     // --- Ambient particles ---
     interface Particle { x: number; y: number; vx: number; vy: number; r: number; color: string; alpha: number; }
@@ -618,6 +631,7 @@ import Layout from '../layouts/Layout.astro';
     interface Pulse { r: number; maxR: number; alpha: number; }
     const pulses: Pulse[] = [];
     let pulseTimer = 0;
+    let meteorTimer = 0;
 
     let frame = 0;
     function draw(ts: number) {
@@ -667,6 +681,43 @@ import Layout from '../layouts/Layout.astro';
       if (pulseTimer > 2800) {
         pulseTimer = 0;
         pulses.push({ r: 0, maxR: base * 0.52, alpha: 0.35 });
+      }
+
+      // --- Meteor shooting stars ---
+      meteorTimer += 16;
+      if (meteorTimer > 4200 + Math.random() * 2800) {
+        meteorTimer = 0;
+        const side = Math.floor(Math.random() * 4);
+        let mx = 0, my = 0;
+        if (side === 0) { mx = Math.random() * W; my = -5; }
+        else if (side === 1) { mx = W + 5; my = Math.random() * H * 0.7; }
+        else if (side === 2) { mx = Math.random() * W; my = H + 5; }
+        else { mx = -5; my = Math.random() * H; }
+        const ang = Math.atan2(cy - my, cx - mx) + (Math.random() - 0.5) * 0.65;
+        const spd = 5 + Math.random() * 3;
+        meteors.push({ x: mx, y: my, vx: Math.cos(ang) * spd, vy: Math.sin(ang) * spd,
+          life: 0, maxLife: 45 + Math.random() * 45, color: Math.random() > 0.5 ? C_TEAL : C_BLUE });
+      }
+      for (let i = meteors.length - 1; i >= 0; i--) {
+        const m = meteors[i];
+        m.x += m.vx; m.y += m.vy; m.life++;
+        if (m.life > m.maxLife || m.x < -60 || m.x > W + 60 || m.y < -60 || m.y > H + 60) {
+          meteors.splice(i, 1); continue;
+        }
+        const ma = Math.sin(Math.PI * m.life / m.maxLife) * 0.9;
+        const tg = ctx.createLinearGradient(m.x - m.vx * 10, m.y - m.vy * 10, m.x, m.y);
+        tg.addColorStop(0, `rgba(${m.color},0)`);
+        tg.addColorStop(1, `rgba(${m.color},${ma.toFixed(3)})`);
+        ctx.strokeStyle = tg;
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+        ctx.moveTo(m.x - m.vx * 10, m.y - m.vy * 10);
+        ctx.lineTo(m.x, m.y);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(m.x, m.y, 2.2, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${m.color},${ma.toFixed(3)})`;
+        ctx.fill();
       }
 
       // --- Draw pulses ---
@@ -742,11 +793,11 @@ import Layout from '../layouts/Layout.astro';
         }
       }
 
-      // --- Draw orbiting tech nodes ---
-      TECH.forEach(t => {
+      // --- Draw orbiting geometric nodes ---
+      const orbPos: Array<{ x: number; y: number; color: string }> = [];
+      ORBIT_NODES.forEach(t => {
         const ri = t.ring;
-        const speed = RING_SPEEDS[ri];
-        t.angle += speed * 16;
+        t.angle += RING_SPEEDS[ri] * 16;
         const rr = base * RING_RADII[ri];
         const tilt = 0.42 + RING_TILTS[ri];
         let nx = cx + Math.cos(t.angle) * rr;
@@ -755,65 +806,114 @@ import Layout from '../layouts/Layout.astro';
         // Magnetic pull toward mouse
         const mdx = mouse.x - nx, mdy = mouse.y - ny;
         const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
-        if (mDist < 130 && mDist > 0) {
-          const pull = (1 - mDist / 130) * 14;
+        if (mDist < 120 && mDist > 0) {
+          const pull = (1 - mDist / 120) * 18;
           nx += (mdx / mDist) * pull;
           ny += (mdy / mDist) * pull;
         }
+        orbPos.push({ x: nx, y: ny, color: t.color });
+
+        // Pulsing size
+        const pSize = t.baseSize * (1 + 0.28 * Math.sin(ts * 0.0018 + t.phase));
 
         // Glow halo
-        const g = ctx.createRadialGradient(nx, ny, 0, nx, ny, 28);
-        g.addColorStop(0, `rgba(${t.color},0.28)`);
+        const g = ctx.createRadialGradient(nx, ny, 0, nx, ny, pSize * 5);
+        g.addColorStop(0, `rgba(${t.color},0.32)`);
         g.addColorStop(1, `rgba(${t.color},0)`);
         ctx.fillStyle = g;
         ctx.beginPath();
-        ctx.arc(nx, ny, 28, 0, Math.PI * 2);
+        ctx.arc(nx, ny, pSize * 5, 0, Math.PI * 2);
         ctx.fill();
 
-        // Node dot
-        ctx.beginPath();
-        ctx.arc(nx, ny, 4, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${t.color},0.9)`;
+        // Node shape — diamond or circle
+        ctx.save();
+        ctx.translate(nx, ny);
+        if (t.shape === 'diamond') {
+          ctx.rotate(Math.PI / 4 + ts * 0.0005 * (ri + 1));
+          const hs = pSize * 0.82;
+          ctx.beginPath();
+          ctx.moveTo(0, -hs); ctx.lineTo(hs, 0); ctx.lineTo(0, hs); ctx.lineTo(-hs, 0);
+          ctx.closePath();
+        } else {
+          ctx.beginPath();
+          ctx.arc(0, 0, pSize, 0, Math.PI * 2);
+        }
+        ctx.fillStyle = `rgba(${t.color},0.92)`;
         ctx.fill();
+        ctx.strokeStyle = `rgba(${t.color},0.5)`;
+        ctx.lineWidth = 0.9;
+        ctx.stroke();
+        ctx.restore();
 
-        // Line to center
+        // Faint line to center
         ctx.beginPath();
         ctx.moveTo(cx, cy);
         ctx.lineTo(nx, ny);
-        ctx.strokeStyle = `rgba(${t.color},0.07)`;
-        ctx.lineWidth = 0.8;
+        ctx.strokeStyle = `rgba(${t.color},0.045)`;
+        ctx.lineWidth = 0.7;
         ctx.stroke();
-
-        // Label pill
-        ctx.font = '600 11px "Inter", system-ui, sans-serif';
-        const tw = ctx.measureText(t.label).width;
-        const px = nx + (Math.cos(t.angle) > 0 ? 10 : -tw - 14);
-        const py = ny + 4;
-        // pill bg
-        ctx.fillStyle = `rgba(2,11,18,0.72)`;
-        ctx.beginPath();
-        ctx.roundRect(px - 6, py - 13, tw + 12, 18, 9);
-        ctx.fill();
-        ctx.strokeStyle = `rgba(${t.color},0.35)`;
-        ctx.lineWidth = 0.8;
-        ctx.stroke();
-        // text
-        ctx.fillStyle = `rgba(${t.color},0.95)`;
-        ctx.fillText(t.label, px, py);
       });
 
-      // --- Center core ---
-      const cg = ctx.createRadialGradient(cx, cy, 0, cx, cy, 22);
-      cg.addColorStop(0, `rgba(${C_TEAL},0.7)`);
-      cg.addColorStop(0.5, `rgba(${C_TEAL},0.25)`);
+      // --- Arc sparks between nearby nodes ---
+      for (let i = 0; i < orbPos.length; i++) {
+        for (let j = i + 1; j < orbPos.length; j++) {
+          const adx = orbPos[i].x - orbPos[j].x;
+          const ady = orbPos[i].y - orbPos[j].y;
+          const ad = Math.sqrt(adx * adx + ady * ady);
+          if (ad < 70) {
+            const arcA = (1 - ad / 70) * 0.5;
+            const amx = (orbPos[i].x + orbPos[j].x) / 2 + (orbPos[j].y - orbPos[i].y) * 0.22;
+            const amy = (orbPos[i].y + orbPos[j].y) / 2 - (orbPos[j].x - orbPos[i].x) * 0.22;
+            ctx.beginPath();
+            ctx.moveTo(orbPos[i].x, orbPos[i].y);
+            ctx.quadraticCurveTo(amx, amy, orbPos[j].x, orbPos[j].y);
+            ctx.strokeStyle = `rgba(${C_TEAL},${arcA.toFixed(3)})`;
+            ctx.lineWidth = 0.9;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // --- Rotating hexagonal core ---
+      const hexTime = ts * 0.0007;
+      const cg = ctx.createRadialGradient(cx, cy, 0, cx, cy, 32);
+      cg.addColorStop(0, `rgba(${C_TEAL},0.6)`);
+      cg.addColorStop(0.5, `rgba(${C_TEAL},0.16)`);
       cg.addColorStop(1, `rgba(${C_TEAL},0)`);
       ctx.fillStyle = cg;
       ctx.beginPath();
-      ctx.arc(cx, cy, 22, 0, Math.PI * 2);
+      ctx.arc(cx, cy, 32, 0, Math.PI * 2);
       ctx.fill();
-      // inner dot
+      // Outer hexagon
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(hexTime);
       ctx.beginPath();
-      ctx.arc(cx, cy, 4, 0, Math.PI * 2);
+      for (let i = 0; i < 6; i++) {
+        const a = (i / 6) * Math.PI * 2;
+        i === 0 ? ctx.moveTo(Math.cos(a) * 16, Math.sin(a) * 16)
+                : ctx.lineTo(Math.cos(a) * 16, Math.sin(a) * 16);
+      }
+      ctx.closePath();
+      ctx.strokeStyle = `rgba(${C_TEAL},0.75)`;
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+      // Inner triangle counter-rotating
+      ctx.rotate(-hexTime * 2.6);
+      ctx.beginPath();
+      for (let i = 0; i < 3; i++) {
+        const a = (i / 3) * Math.PI * 2;
+        i === 0 ? ctx.moveTo(Math.cos(a) * 8, Math.sin(a) * 8)
+                : ctx.lineTo(Math.cos(a) * 8, Math.sin(a) * 8);
+      }
+      ctx.closePath();
+      ctx.strokeStyle = `rgba(${C_PURPLE},0.65)`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.restore();
+      // Center dot
+      ctx.beginPath();
+      ctx.arc(cx, cy, 3, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(${C_TEAL},1)`;
       ctx.fill();
 
@@ -854,8 +954,8 @@ import Layout from '../layouts/Layout.astro';
     counterObserver.observe(el as HTMLElement);
   });
 
-  // ===== Capability Cards 3D Tilt =====
-  document.querySelectorAll<HTMLElement>('[data-tilt]').forEach(card => {
+  // ===== Capability Cards 3D Tilt + Testimonial Tilt =====
+  document.querySelectorAll<HTMLElement>('[data-tilt], .testimonial-card').forEach(card => {
     card.addEventListener('mousemove', (e: MouseEvent) => {
       const r = card.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5;
@@ -872,6 +972,15 @@ import Layout from '../layouts/Layout.astro';
       card.style.transform = '';
       const glow = card.querySelector<HTMLElement>('.cap-card-glow');
       if (glow) glow.style.opacity = '0';
+    });
+  });
+
+  // ===== Bento Card Spotlight (cursor-tracking inner glow) =====
+  document.querySelectorAll<HTMLElement>('.bento-card').forEach(card => {
+    card.addEventListener('mousemove', (e: MouseEvent) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${((e.clientX - r.left) / r.width * 100).toFixed(1)}%`);
+      card.style.setProperty('--my', `${((e.clientY - r.top) / r.height * 100).toFixed(1)}%`);
     });
   });
 </script>
@@ -1714,4 +1823,125 @@ import Layout from '../layouts/Layout.astro';
 
   @media (max-width: 640px) {
     .cap-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== BENTO CARD SPOTLIGHT GLOW (cursor-tracking) ===== */
+  .bento-card {
+    --mx: 50%;
+    --my: 50%;
+  }
+  .bento-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--mx) var(--my), rgba(6,214,196,0.11) 0%, transparent 52%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 0;
+  }
+  .bento-card:hover::before { opacity: 1; }
+  .bento-card > * { position: relative; z-index: 1; }
+
+  /* bento icon jolts on hover */
+  .bento-card:hover .bento-icon svg {
+    animation: iconJolt 0.45s cubic-bezier(0.4,0,0.2,1);
+  }
+  @keyframes iconJolt {
+    0%   { transform: scale(1) rotate(0deg); }
+    30%  { transform: scale(1.22) rotate(-10deg); }
+    65%  { transform: scale(0.94) rotate(5deg); }
+    100% { transform: scale(1) rotate(0deg); }
+  }
+
+  /* ===== STAT CARD ENHANCED HOVER ===== */
+  .stat-card:hover {
+    border-color: rgba(6,214,196,0.28);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.45), 0 0 50px rgba(6,214,196,0.1);
+  }
+  .stat-card:hover .stat-number {
+    color: #ffffff;
+    text-shadow: 0 0 30px rgba(6,214,196,0.55), 0 0 70px rgba(6,214,196,0.2);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  .stat-card:hover .stat-icon {
+    color: #06d6c4;
+    opacity: 1;
+    animation: statIconSpin 0.65s cubic-bezier(0.4,0,0.2,1);
+  }
+  @keyframes statIconSpin {
+    0%   { transform: rotate(0deg) scale(1); }
+    45%  { transform: rotate(200deg) scale(1.25); }
+    100% { transform: rotate(360deg) scale(1); }
+  }
+
+  /* ===== PROCESS STEP HOVER ===== */
+  .process-step {
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  .process-step:hover {
+    transform: translateX(10px);
+  }
+  .process-num {
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  .process-step:hover .process-num {
+    color: rgba(6,214,196,0.75);
+    text-shadow: 0 0 32px rgba(6,214,196,0.45);
+  }
+  .process-body h3 {
+    transition: color 0.3s ease;
+  }
+  .process-step:hover .process-body h3 {
+    color: #06d6c4;
+  }
+
+  /* ===== TESTIMONIAL CARD — disable translateY to let JS tilt take over ===== */
+  .testimonial-card {
+    transform-style: preserve-3d;
+    will-change: transform;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+  }
+  .testimonial-card:hover {
+    transform: none; /* overridden by JS perspective tilt */
+    border-color: rgba(6,214,196,0.2);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35), 0 0 40px rgba(6,214,196,0.07);
+  }
+  .testimonial-stars {
+    transition: letter-spacing 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+    font-size: 1rem;
+    color: #f59e0b;
+    margin-top: 4px;
+    display: block;
+  }
+  .testimonial-card:hover .testimonial-stars {
+    letter-spacing: 3px;
+    text-shadow: 0 0 14px rgba(245,158,11,0.6);
+  }
+
+  /* ===== SECTION EYEBROW PULSE ON HOVER ===== */
+  .section-eyebrow {
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+  }
+  .section-eyebrow:hover {
+    box-shadow: 0 0 20px rgba(6,214,196,0.35);
+    background: rgba(6,214,196,0.2);
+  }
+
+  /* ===== PRIMARY BUTTON — outer glow ring ===== */
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(6,214,196,0.6), rgba(168,85,247,0.4));
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.35s ease;
+    filter: blur(10px);
+  }
+  .btn-primary:hover::before {
+    opacity: 1;
   }</style>
