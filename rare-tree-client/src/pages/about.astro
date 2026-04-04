@@ -1,0 +1,734 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const values = [
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
+    title: "Results First",
+    desc: "We obsess over measurable outcomes. Every strategy, campaign, and automation is tied to clear KPIs."
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
+    title: "Speed & Precision",
+    desc: "Fast execution without sacrificing quality. We launch, learn, and optimize faster than anyone else."
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>`,
+    title: "Radical Transparency",
+    desc: "No black boxes. Real-time dashboards, honest reporting, and direct communication at every step."
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+    title: "True Partnership",
+    desc: "We work as an extension of your team — invested in your success with the same urgency as your in-house talent."
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`,
+    title: "Relentless Innovation",
+    desc: "We stay ahead of AI and tech trends so you don't have to — always shipping the most intelligent solutions."
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    title: "Built to Scale",
+    desc: "Systems architected from day one to grow with your business — not break under pressure."
+  },
+];
+
+const expertise = [
+  { skill: "AI & Automation", pct: 95 },
+  { skill: "AI & ML Engineering", pct: 93 },
+  { skill: "Digital Marketing", pct: 92 },
+  { skill: "Campaign Analytics", pct: 90 },
+  { skill: "SEO & Organic Growth", pct: 89 },
+  { skill: "E-Commerce (Shopify)", pct: 88 },
+  { skill: "CRM & Lead Systems", pct: 93 },
+  { skill: "Branding & Creative", pct: 87 },
+];
+
+const whyUs = [
+  "Data-Driven Decision Making",
+  "Tailored Solutions for All Business Types",
+  "Transparent, Real-Time Reporting",
+  "Affordable & Scalable Packages",
+  "Multidisciplinary Expert Team",
+  "Trusted by Clients Across Sectors",
+  "AI-First Methodology",
+  "Rapid 2-Week Onboarding",
+];
+---
+
+<Layout title="About | Raretree Digital">
+
+  <!-- PAGE HERO -->
+  <section class="about-hero">
+    <div class="about-orb about-orb-1"></div>
+    <div class="about-orb about-orb-2"></div>
+    <div class="container">
+      <div class="about-hero-inner">
+        <span class="section-eyebrow reveal">Our Story</span>
+        <h1 class="about-hero-title reveal delay-1">
+          Rooted in Strategy.<br/>
+          <span class="gradient-text">Grown with Innovation.</span>
+        </h1>
+        <p class="about-hero-sub reveal delay-2">
+          RareTree Digital is a full-stack AI automation and digital solutions agency empowering businesses to thrive in the evolving digital economy — where speed, intelligence, and creative execution intersect.
+        </p>
+        <div class="about-img-container reveal delay-3">
+          <img
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80"
+            alt="Raretree team collaborating"
+            class="about-hero-img"
+            loading="lazy"
+          />
+          <div class="about-img-overlay"></div>
+          <div class="about-img-badge">
+            <span>50+</span>
+            Projects
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="section about-story">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-text reveal-left">
+          <span class="section-eyebrow">Who We Are</span>
+          <h2 class="section-title" style="text-align:left; margin-bottom:24px;">
+            Your Partner in <span class="gradient-text">Digital Growth</span>
+          </h2>
+          <p>
+            At RareTree Digital, we believe digital transformation is not just about tools — it's about strategic growth. We work as your partner, not just a service provider, delivering measurable value by turning clicks into conversions, leads into loyalty, and visions into real-world impact.
+          </p>
+          <p>
+            Our team of strategists, creatives, developers, and data scientists brings together decades of combined experience across industries. We use this expertise to design scalable, tailored solutions that blend strategy, automation, and storytelling — all for one purpose: growth.
+          </p>
+          <div class="about-metrics">
+            <div class="about-metric">
+              <span class="about-metric-num">50+</span>
+              <span class="about-metric-label">Projects Delivered</span>
+            </div>
+            <div class="about-metric">
+              <span class="about-metric-num">30+</span>
+              <span class="about-metric-label">Clients Served</span>
+            </div>
+            <div class="about-metric">
+              <span class="about-metric-num">95%</span>
+              <span class="about-metric-label">Satisfaction Rate</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-visual reveal-right delay-2">
+          <div class="story-image-card">
+            <img
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
+              alt="Data and analytics dashboard"
+              loading="lazy"
+            />
+          </div>
+          <div class="story-accent-card">
+            <div class="accent-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="accent-card-num">3x</div>
+              <div class="accent-card-label">Average ROI</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section values-section">
+    <div class="values-bg"></div>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow reveal">What Drives Us</span>
+        <h2 class="section-title reveal delay-1">Our Core <span class="gradient-text">Values</span></h2>
+        <p class="section-subtitle reveal delay-2">The principles behind every decision, strategy, and system we build.</p>
+      </div>
+      <div class="values-grid">
+        {values.map((v, i) => (
+          <div class={`value-card reveal delay-${(i % 3) + 1}`}>
+            <div class="value-icon" set:html={v.icon}></div>
+            <h3>{v.title}</h3>
+            <p>{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERTISE BARS -->
+  <section class="section expertise-section">
+    <div class="container">
+      <div class="expertise-grid">
+        <div class="expertise-text reveal-left">
+          <span class="section-eyebrow">Our Expertise</span>
+          <h2 class="section-title" style="text-align:left; margin-bottom:24px;">
+            Mastery Across <span class="gradient-text">Every Channel</span>
+          </h2>
+          <p style="color:#94a3b8; line-height:1.8; margin-bottom:32px;">
+            Our team brings deep, specialized expertise across the full digital stack — from AI-powered automation engineering to creative campaign execution.
+          </p>
+          <a href="/services" class="btn btn-primary">View All Services</a>
+        </div>
+        <div class="expertise-bars reveal-right delay-2">
+          {expertise.map((e, i) => (
+            <div class="skill-bar" style={`--delay: ${i * 0.1}s`}>
+              <div class="skill-header">
+                <span class="skill-name">{e.skill}</span>
+                <span class="skill-pct">{e.pct}%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-fill" style={`--width: ${e.pct}%`}></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="section why-section">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-visual reveal-left">
+          <img
+            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
+            alt="Growth analytics chart"
+            class="why-image"
+            loading="lazy"
+          />
+          <div class="why-image-overlay"></div>
+        </div>
+        <div class="why-content reveal-right delay-1">
+          <span class="section-eyebrow">Why Raretree</span>
+          <h2 class="section-title" style="text-align:left; margin-bottom:32px;">
+            The <span class="gradient-text">Smartest</span> Choice for Growth
+          </h2>
+          <ul class="why-list">
+            {whyUs.map((item, i) => (
+              <li class={`why-item reveal delay-${(i % 4) + 1}`}>
+                <span class="why-check">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <a href="/contact" class="btn btn-primary" style="margin-top:32px; display:inline-flex;">
+            Start Your Growth Journey
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK MARQUEE -->
+  <section class="section-sm tech-section">
+    <div class="container">
+      <p class="trusted-label reveal" style="text-align:center; font-size:0.78rem; color:#475569; text-transform:uppercase; letter-spacing:0.12em; font-weight:600; margin-bottom:24px;">
+        Technologies & Tools We Master
+      </p>
+      <!-- Row 1: Frontend + Backend -->
+      <div class="tech-track reveal delay-1" style="margin-bottom:12px">
+        <div class="tech-list">
+          {["⚛ React", "▲ Next.js", "💚 Vue", "Nuxt", "🔥 Svelte", "🍃 Spring Boot", "⚡ FastAPI", "Gin (Go)", "Elysia", "Hono", "Express.js", "Node.js", "TypeScript", "Python"].map(t => (
+            <span class="tech-item">{t}</span>
+          ))}
+          {["⚛ React", "▲ Next.js", "💚 Vue", "Nuxt", "🔥 Svelte", "🍃 Spring Boot", "⚡ FastAPI", "Gin (Go)", "Elysia", "Hono", "Express.js", "Node.js", "TypeScript", "Python"].map(t => (
+            <span class="tech-item" aria-hidden="true">{t}</span>
+          ))}
+        </div>
+      </div>
+      <!-- Row 2: AI/ML + Tooling (reversed direction) -->
+      <div class="tech-track tech-track-reverse reveal delay-2">
+        <div class="tech-list">
+          {["🤖 OpenAI GPT-4", "🔥 PyTorch", "TensorFlow", "LangChain", "🤗 HuggingFace", "Anthropic Claude", "n8n", "Zapier", "Shopify", "HubSpot", "AWS", "Klaviyo", "Salesforce", "Airtable"].map(t => (
+            <span class="tech-item tech-item-ai">{t}</span>
+          ))}
+          {["🤖 OpenAI GPT-4", "🔥 PyTorch", "TensorFlow", "LangChain", "🤗 HuggingFace", "Anthropic Claude", "n8n", "Zapier", "Shopify", "HubSpot", "AWS", "Klaviyo", "Salesforce", "Airtable"].map(t => (
+            <span class="tech-item tech-item-ai" aria-hidden="true">{t}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  // Skill bar animation on scroll
+  const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fills = entry.target.querySelectorAll('.skill-fill');
+        fills.forEach((fill: Element) => {
+          const el = fill as HTMLElement;
+          el.style.width = el.style.getPropertyValue('--width');
+        });
+        skillObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const barsSection = document.querySelector('.expertise-bars');
+  if (barsSection) skillObserver.observe(barsSection);
+</script>
+
+<style>
+  /* HERO */
+  .about-hero {
+    padding: 120px 0 80px;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 0%, #0d1b2a 0%, #030712 70%);
+  }
+
+  .about-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+    animation: floatOrb 11s ease-in-out infinite;
+  }
+
+  .about-orb-1 {
+    width: 500px; height: 400px;
+    background: radial-gradient(circle, rgba(20,184,166,0.18) 0%, transparent 70%);
+    top: -100px; right: 0;
+  }
+
+  .about-orb-2 {
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(139,92,246,0.14) 0%, transparent 70%);
+    bottom: 0; left: -80px;
+    animation-delay: 4s;
+  }
+
+  @keyframes floatOrb {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.06); }
+  }
+
+  .about-hero-inner {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-hero-title {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    color: #f1f5f9;
+    margin: 14px 0 20px;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .about-hero-sub {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    line-height: 1.75;
+    max-width: 620px;
+    margin: 0 auto 48px;
+  }
+
+  .about-img-container {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    max-height: 420px;
+    border: 1px solid rgba(20, 184, 166, 0.15);
+  }
+
+  .about-hero-img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .about-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(3,7,18,0.8) 100%);
+  }
+
+  .about-img-badge {
+    position: absolute;
+    bottom: 28px;
+    right: 28px;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(20, 184, 166, 0.3);
+    border-radius: 14px;
+    padding: 14px 20px;
+    text-align: center;
+    backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .about-img-badge span:first-child {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #14b8a6;
+    line-height: 1;
+  }
+
+  .about-img-badge {
+    font-size: 0.8rem;
+    color: #64748b;
+    font-weight: 600;
+  }
+
+  /* STORY */
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .story-text p {
+    color: #94a3b8;
+    line-height: 1.8;
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+  }
+
+  .about-metrics {
+    display: flex;
+    gap: 32px;
+    margin-top: 36px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .about-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .about-metric-num {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #14b8a6;
+    letter-spacing: -0.03em;
+  }
+
+  .about-metric-label {
+    font-size: 0.78rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+
+  .story-visual {
+    position: relative;
+  }
+
+  .story-image-card {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    aspect-ratio: 4/3;
+  }
+
+  .story-image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .story-image-card:hover img {
+    transform: scale(1.04);
+  }
+
+  .story-accent-card {
+    position: absolute;
+    bottom: -24px;
+    left: -24px;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(20, 184, 166, 0.25);
+    border-radius: 16px;
+    padding: 20px 24px;
+    backdrop-filter: blur(16px);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .accent-card-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(20, 184, 166, 0.15);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #14b8a6;
+    flex-shrink: 0;
+  }
+
+  .accent-card-num {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #f1f5f9;
+    line-height: 1;
+  }
+
+  .accent-card-label {
+    font-size: 0.78rem;
+    color: #64748b;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 900px) {
+    .story-grid { grid-template-columns: 1fr; gap: 48px; }
+    .story-accent-card { bottom: -16px; left: 16px; }
+  }
+
+  /* VALUES */
+  .values-section { position: relative; overflow: hidden; }
+
+  .values-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(15, 23, 42, 0.6) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .value-card {
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.08);
+    border-radius: 20px;
+    padding: 32px;
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .value-card:hover {
+    border-color: rgba(20, 184, 166, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+  }
+
+  .value-icon {
+    width: 44px;
+    height: 44px;
+    color: #14b8a6;
+  }
+
+  .value-icon svg { width: 100%; height: 100%; }
+
+  .value-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f1f5f9;
+  }
+
+  .value-card p {
+    font-size: 0.88rem;
+    color: #64748b;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 900px) { .values-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .values-grid { grid-template-columns: 1fr; } }
+
+  /* EXPERTISE */
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .expertise-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .skill-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .skill-name {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #94a3b8;
+  }
+
+  .skill-pct {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #14b8a6;
+  }
+
+  .skill-track {
+    height: 6px;
+    background: rgba(30, 41, 59, 0.8);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .skill-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #14b8a6, #8b5cf6);
+    border-radius: 100px;
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1) var(--delay, 0s);
+  }
+
+  @media (max-width: 900px) {
+    .expertise-grid { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  /* WHY */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .why-visual {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+  }
+
+  .why-image {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 24px;
+    border: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .why-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(20,184,166,0.05) 0%, transparent 60%);
+    border-radius: 24px;
+  }
+
+  .why-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .why-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.06);
+    font-size: 0.95rem;
+    color: #94a3b8;
+    transition: all 0.2s ease;
+  }
+
+  .why-item:hover {
+    color: #f1f5f9;
+    padding-left: 6px;
+  }
+
+  .why-check {
+    width: 24px;
+    height: 24px;
+    background: rgba(20, 184, 166, 0.12);
+    border: 1px solid rgba(20, 184, 166, 0.25);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #14b8a6;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 900px) {
+    .why-grid { grid-template-columns: 1fr; }
+    .why-visual { display: none; }
+  }
+
+  /* TECH MARQUEE */
+  .tech-track {
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, black 15%, black 85%, transparent);
+  }
+
+  .tech-list {
+    display: flex;
+    gap: 32px;
+    width: max-content;
+    animation: scrollMarquee 30s linear infinite;
+  }
+
+  @keyframes scrollMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .tech-item {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #334155;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding: 8px 16px;
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(148, 163, 184, 0.07);
+    border-radius: 8px;
+  }
+
+  .tech-track-reverse .tech-list {
+    animation: scrollMarqueeRev 32s linear infinite;
+  }
+
+  @keyframes scrollMarqueeRev {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+
+  .tech-item-ai {
+    color: #475569;
+    background: rgba(20, 184, 166, 0.04);
+    border-color: rgba(20, 184, 166, 0.1);
+  }
+</style>

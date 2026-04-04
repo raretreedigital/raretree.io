@@ -1,0 +1,732 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const contactItems = [
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>`,
+    label: "Email",
+    value: "contact@raretree.io",
+    href: "mailto:contact@raretree.io",
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>`,
+    label: "LinkedIn",
+    value: "Raretree Digital",
+    href: "https://www.linkedin.com/company/raretree-digital/?viewAsMember=true",
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>`,
+    label: "Book a Call",
+    value: "Schedule via Calendly",
+    href: "/contact",
+  },
+];
+
+const faqs = [
+  {
+    q: "How quickly can you start on a project?",
+    a: "We typically onboard new clients within 2 weeks. Our discovery-to-kickoff process is streamlined to get results fast."
+  },
+  {
+    q: "What industries do you work with?",
+    a: "We've delivered results across healthcare, e-commerce, B2B SaaS, retail, professional services, and more. If you're growing, we can help."
+  },
+  {
+    q: "Do you offer ongoing support?",
+    a: "Yes. All engagements include ongoing monitoring, optimization, and support with SLA-backed response times."
+  },
+  {
+    q: "What does a typical engagement look like?",
+    a: "Discovery call → Strategy session → Proposal → Build & Deploy (2-4 weeks) → Measure & Optimize. Simple, transparent, and results-focused."
+  },
+];
+---
+
+<Layout title="Contact | Raretree Digital">
+
+  <!-- PAGE HERO -->
+  <section class="contact-hero">
+    <div class="contact-orb contact-orb-1"></div>
+    <div class="contact-orb contact-orb-2"></div>
+    <div class="container">
+      <div class="contact-hero-inner">
+        <span class="section-eyebrow reveal">Get In Touch</span>
+        <h1 class="contact-hero-title reveal delay-1">
+          Let's Build Something<br/>
+          <span class="gradient-text">Remarkable Together</span>
+        </h1>
+        <p class="contact-hero-sub reveal delay-2">
+          Book a free 30-minute strategy call. We'll assess your current setup, identify growth opportunities, and map a clear path forward — zero pressure.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CONTENT -->
+  <section class="section contact-main">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- LEFT: Contact Info -->
+        <div class="contact-sidebar">
+          <div class="contact-info-block reveal-left">
+            <h2 class="contact-sidebar-title">
+              Ready to <span class="gradient-text">Scale?</span>
+            </h2>
+            <p class="contact-sidebar-sub">
+              Reach out directly — we respond within 4 hours on business days.
+            </p>
+
+            <div class="contact-items">
+              {contactItems.map((item, i) => (
+                <a href={item.href} target={item.href.startsWith('http') ? '_blank' : '_self'} class={`contact-item reveal-left delay-${i+2}`}>
+                  <div class="contact-item-icon" set:html={item.icon}></div>
+                  <div class="contact-item-body">
+                    <span class="contact-item-label">{item.label}</span>
+                    <span class="contact-item-value">{item.value}</span>
+                  </div>
+                  <svg class="contact-item-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </a>
+              ))}
+            </div>
+
+            <!-- Response time badge -->
+            <div class="response-badge reveal delay-4">
+              <div class="response-dot"></div>
+              <span>Average response: <strong>under 4 hours</strong></span>
+            </div>
+
+            <!-- Availability note -->
+            <div class="availability reveal delay-5">
+              <div class="avail-row">
+                <span>Mon – Fri</span>
+                <span class="avail-open">Open</span>
+              </div>
+              <div class="avail-row">
+                <span>Sat – Sun</span>
+                <span class="avail-limited">Limited</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Contact Form -->
+        <div class="contact-form-wrap reveal-right delay-1">
+          <form class="contact-form" id="contactForm">
+            <div class="form-header">
+              <h3>Send Us a Message</h3>
+              <p>Tell us about your project and goals</p>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" placeholder="John" required />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Doe" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="john@company.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="company">Company / Organisation</label>
+              <input type="text" id="company" name="company" placeholder="Your Company Ltd." />
+            </div>
+
+            <div class="form-group">
+              <label for="service">Service Interest</label>
+              <select id="service" name="service">
+                <option value="" disabled selected>Select a service</option>
+                <option value="ai-automation">AI & Automation</option>
+                <option value="digital-marketing">Digital Marketing</option>
+                <option value="lead-gen">Lead Generation</option>
+                <option value="email">Email Marketing</option>
+                <option value="ecommerce">Shopify / E-Commerce</option>
+                <option value="analytics">Campaign Analytics</option>
+                <option value="consulting">Strategy Consulting</option>
+                <option value="other">Other / Full-Stack</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="budget">Estimated Budget</label>
+              <select id="budget" name="budget">
+                <option value="" disabled selected>Select budget range</option>
+                <option value="<1k">Under $1,000</option>
+                <option value="1k-5k">$1,000 – $5,000</option>
+                <option value="5k-15k">$5,000 – $15,000</option>
+                <option value="15k+">$15,000+</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Tell Us About Your Project</label>
+              <textarea id="message" name="message" rows="4" placeholder="Describe your goals, challenges, and what success looks like..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit">
+              <span id="submitText">Send Message</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+
+            <p class="form-disclaimer">
+              No spam, ever. We'll reply within 4 hours on business days.
+            </p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq-section">
+    <div class="container container-sm">
+      <div class="section-header">
+        <span class="section-eyebrow reveal">FAQ</span>
+        <h2 class="section-title reveal delay-1">Common <span class="gradient-text">Questions</span></h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map((faq, i) => (
+          <div class={`faq-item reveal delay-${(i % 4) + 1}`} data-faq>
+            <button class="faq-question" aria-expanded="false">
+              {faq.q}
+              <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M6 9l6 6 6-6"/>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>{faq.a}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="section-sm final-cta">
+    <div class="container">
+      <div class="final-cta-inner reveal-scale">
+        <div class="final-cta-glow"></div>
+        <p class="final-cta-hint">Still on the fence?</p>
+        <h2 class="final-cta-title">The First Call is <span class="gradient-text">Always Free</span></h2>
+        <p class="final-cta-sub">30 minutes. Zero obligation. Just honest advice about what will move the needle for your business.</p>
+        <a href="mailto:contact@raretree.io" class="btn btn-primary btn-lg">
+          Email Us Now
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  // Simple form handler (demo)
+  const form = document.getElementById('contactForm') as HTMLFormElement;
+  const submitText = document.getElementById('submitText')!;
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    submitText.textContent = 'Sending...';
+    setTimeout(() => {
+      submitText.textContent = '✓ Message Sent!';
+      form.reset();
+      setTimeout(() => { submitText.textContent = 'Send Message'; }, 3000);
+    }, 1500);
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('[data-faq]').forEach(item => {
+    const btn = item.querySelector('.faq-question') as HTMLButtonElement;
+    btn?.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      // close all
+      document.querySelectorAll('.faq-question').forEach(b => b.setAttribute('aria-expanded', 'false'));
+      document.querySelectorAll('[data-faq]').forEach(i => i.classList.remove('open'));
+      // open clicked if was closed
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        item.classList.add('open');
+      }
+    });
+  });
+</script>
+
+<style>
+  /* HERO */
+  .contact-hero {
+    padding: 120px 0 80px;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 0%, #0d1b2a 0%, #030712 70%);
+  }
+
+  .contact-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+    animation: floatOrb 10s ease-in-out infinite;
+  }
+
+  .contact-orb-1 {
+    width: 450px; height: 350px;
+    background: radial-gradient(circle, rgba(20,184,166,0.2) 0%, transparent 70%);
+    top: -80px; right: 5%;
+  }
+
+  .contact-orb-2 {
+    width: 350px; height: 300px;
+    background: radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%);
+    bottom: -60px; left: 5%;
+    animation-delay: 3.5s;
+  }
+
+  @keyframes floatOrb {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  .contact-hero-inner {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .contact-hero-title {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    color: #f1f5f9;
+    margin: 14px 0 20px;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .contact-hero-sub {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    line-height: 1.75;
+  }
+
+  /* CONTACT LAYOUT */
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  /* SIDEBAR */
+  .contact-sidebar-title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: #f1f5f9;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .contact-sidebar-sub {
+    font-size: 0.92rem;
+    color: #64748b;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  .contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.08);
+    border-radius: 14px;
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .contact-item:hover {
+    border-color: rgba(20, 184, 166, 0.25);
+    background: rgba(20, 184, 166, 0.06);
+    transform: translateX(4px);
+  }
+
+  .contact-item-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(20, 184, 166, 0.12);
+    border: 1px solid rgba(20, 184, 166, 0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #14b8a6;
+    flex-shrink: 0;
+  }
+
+  .contact-item-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .contact-item-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .contact-item-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #475569;
+    font-weight: 700;
+  }
+
+  .contact-item-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #94a3b8;
+  }
+
+  .contact-item-arrow {
+    color: #475569;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .contact-item:hover .contact-item-arrow {
+    color: #14b8a6;
+    transform: translateX(2px);
+  }
+
+  .response-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.84rem;
+    color: #64748b;
+    padding: 10px 0;
+  }
+
+  .response-dot {
+    width: 8px;
+    height: 8px;
+    background: #14b8a6;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(20,184,166,0.4); }
+    50% { opacity: 0.8; transform: scale(0.9); box-shadow: 0 0 0 6px rgba(20,184,166,0); }
+  }
+
+  .response-badge strong { color: #f1f5f9; }
+
+  .availability {
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(148, 163, 184, 0.07);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .avail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.84rem;
+    color: #64748b;
+  }
+
+  .avail-open {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    background: rgba(16, 185, 129, 0.12);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    border-radius: 100px;
+  }
+
+  .avail-limited {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: 100px;
+  }
+
+  /* FORM */
+  .contact-form-wrap {
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.08);
+    border-radius: 24px;
+    backdrop-filter: blur(16px);
+    overflow: hidden;
+  }
+
+  .contact-form {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-header h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-bottom: 4px;
+  }
+
+  .form-header p {
+    font-size: 0.85rem;
+    color: #64748b;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .form-group label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(3, 7, 18, 0.6);
+    border: 1px solid rgba(148, 163, 184, 0.12);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    color: #f1f5f9;
+    font-family: inherit;
+    transition: all 0.25s ease;
+    outline: none;
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .form-group select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 7L11 1' stroke='%2364748b' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: #334155;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: rgba(20, 184, 166, 0.4);
+    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.08);
+  }
+
+  .form-submit {
+    width: 100%;
+    justify-content: center;
+    padding: 15px !important;
+    font-size: 0.95rem !important;
+    margin-top: 4px;
+  }
+
+  .form-disclaimer {
+    font-size: 0.78rem;
+    color: #475569;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+    .contact-form { padding: 28px 24px; }
+  }
+
+  @media (max-width: 900px) {
+    .contact-layout { grid-template-columns: 1fr; }
+  }
+
+  /* FAQ */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .faq-item {
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.08);
+    border-radius: 14px;
+    backdrop-filter: blur(12px);
+    overflow: hidden;
+    transition: border-color 0.25s ease;
+  }
+
+  .faq-item.open {
+    border-color: rgba(20, 184, 166, 0.2);
+  }
+
+  .faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    background: transparent;
+    border: none;
+    color: #f1f5f9;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    text-align: left;
+    gap: 16px;
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    color: #64748b;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.open .faq-icon {
+    transform: rotate(180deg);
+    color: #14b8a6;
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 200px;
+  }
+
+  .faq-answer p {
+    padding: 0 24px 20px;
+    font-size: 0.9rem;
+    color: #64748b;
+    line-height: 1.75;
+  }
+
+  /* FINAL CTA */
+  .final-cta {
+    padding-bottom: 100px;
+  }
+
+  .final-cta-inner {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 28px;
+    padding: 80px 60px;
+    text-align: center;
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .final-cta-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(20,184,166,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .final-cta-inner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(20,184,166,0.5), transparent);
+  }
+
+  .final-cta-hint {
+    font-size: 0.8rem;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .final-cta-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    color: #f1f5f9;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .final-cta-sub {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+  }
+
+  @media (max-width: 600px) {
+    .final-cta-inner { padding: 48px 28px; }
+  }
+</style>
