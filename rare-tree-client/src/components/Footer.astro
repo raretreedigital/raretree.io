@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
 const currentYear = new Date().getFullYear();
 ---
 
@@ -9,7 +11,7 @@ const currentYear = new Date().getFullYear();
       <!-- Brand -->
       <div class="footer-brand">
         <a href="/" class="footer-logo">
-          <img src="/logo.png" alt="Raretree" class="footer-logo-img" />
+          <Image src={logo} alt="Raretree" class="footer-logo-img" width={180} height={60} />
         </a>
         <p class="footer-tagline">
           AI Automation &amp; Digital Transformation for businesses that want to scale intelligently.

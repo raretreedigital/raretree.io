@@ -821,17 +821,18 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .badge-dot {
-    width: 7px;
-    height: 7px;
-    background: #14b8a6;
+    width: 8px;
+    height: 8px;
+    background: #00f5e4;
     border-radius: 50%;
     display: inline-block;
+    box-shadow: 0 0 8px rgba(0, 245, 228, 0.8);
     animation: pulse 2s ease-in-out infinite;
   }
 
   @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(0.85); }
+    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 8px rgba(0,245,228,0.8); }
+    50% { opacity: 0.55; transform: scale(0.75); box-shadow: 0 0 4px rgba(0,245,228,0.4); }
   }
 
   .hero-title {
@@ -884,7 +885,10 @@ import Layout from '../layouts/Layout.astro';
   .hero-stat-num {
     font-size: 1.9rem;
     font-weight: 800;
-    color: #14b8a6;
+    background: linear-gradient(135deg, #00f5e4, #06d6c4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     letter-spacing: -0.02em;
   }
 

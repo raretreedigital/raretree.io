@@ -1,29 +1,42 @@
 /* ====================== CSS Variables ====================== */
 :root {
-    --bg-base: #030712;
-    --bg-surface: #0f172a;
-    --bg-elevated: #1e293b;
-    --bg-card: rgba(15, 23, 42, 0.6);
+    --bg-base: #020b12;
+    --bg-surface: #0a1628;
+    --bg-elevated: #111e33;
+    --bg-card: rgba(10, 22, 40, 0.65);
 
-    --accent: #14b8a6;
-    --accent-dim: #0d9488;
-    --accent-glow: rgba(20, 184, 166, 0.3);
-    --accent-2: #8b5cf6;
-    --accent-2-glow: rgba(139, 92, 246, 0.3);
+    /* Teal accent */
+    --accent: #06d6c4;
+    --accent-bright: #00f5e4;
+    --accent-dim: #049e91;
+    --accent-glow: rgba(6, 214, 196, 0.4);
 
-    --text: #f1f5f9;
-    --text-muted: #94a3b8;
-    --text-subtle: #64748b;
+    /* Purple accent */
+    --accent-2: #7c3aed;
+    --accent-2-bright: #a855f7;
+    --accent-2-glow: rgba(168, 85, 247, 0.4);
 
-    --border: rgba(148, 163, 184, 0.1);
-    --border-accent: rgba(20, 184, 166, 0.25);
+    /* Extras */
+    --gold: #f59e0b;
+    --gold-glow: rgba(245, 158, 11, 0.35);
+    --hot-pink: #ec4899;
+
+    --text: #f0f6ff;
+    --text-muted: #8ba0bc;
+    --text-subtle: #4d6480;
+
+    --border: rgba(120, 160, 200, 0.1);
+    --border-accent: rgba(6, 214, 196, 0.28);
+    --border-purple: rgba(168, 85, 247, 0.28);
 
     --radius: 12px;
     --radius-lg: 20px;
+    --radius-xl: 28px;
 
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
-    --shadow-glow: 0 0 40px var(--accent-glow);
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 48px var(--accent-glow);
+    --shadow-glow-2: 0 0 48px var(--accent-2-glow);
 }
 
 /* ====================== Reset ====================== */
@@ -78,10 +91,22 @@ h6 {
 }
 
 .gradient-text {
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    background: linear-gradient(120deg, #00f5e4 0%, #06d6c4 30%, #a855f7 70%, #c084fc 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    background-size: 200% auto;
+    animation: gradientShift 5s linear infinite alternate;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: 100% center;
+    }
 }
 
 .gradient-text-gold {
@@ -101,48 +126,106 @@ h6 {
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
     border: none;
     text-decoration: none;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.015em;
+    position: relative;
+    overflow: hidden;
 }
 
+/* ----- Primary: solid luminous teal ---- */
 .btn-primary {
-    background: linear-gradient(135deg, var(--accent), var(--accent-dim));
-    color: #fff;
-    box-shadow: 0 4px 20px var(--accent-glow);
+    background: #06d6c4;
+    color: #020b12;
+    font-weight: 700;
+    box-shadow:
+        0 0 0 1px rgba(0, 245, 228, 0.5),
+        0 4px 24px rgba(6, 214, 196, 0.45),
+        0 1px 0 rgba(255, 255, 255, 0.25) inset;
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.22) 50%, transparent 70%);
+    transform: translateX(-130%);
+    transition: transform 0.52s ease;
+    pointer-events: none;
+}
+
+.btn-primary:hover::after {
+    transform: translateX(130%);
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px var(--accent-glow);
-    filter: brightness(1.1);
+    background: #00f5e4;
+    transform: translateY(-3px);
+    box-shadow:
+        0 0 0 1px rgba(0, 245, 228, 0.7),
+        0 8px 36px rgba(6, 214, 196, 0.55),
+        0 2px 0 rgba(255, 255, 255, 0.2) inset;
+    color: #020b12;
 }
 
+.btn-primary:active {
+    transform: translateY(-1px);
+    box-shadow: 0 0 0 1px rgba(0, 245, 228, 0.4), 0 4px 16px rgba(6, 214, 196, 0.35);
+}
+
+/* ----- Secondary: glass outline ---- */
 .btn-secondary {
-    background: transparent;
-    color: var(--accent);
-    border: 1.5px solid var(--border-accent);
-    backdrop-filter: blur(8px);
+    background: rgba(6, 214, 196, 0.07);
+    color: #00f5e4;
+    border: 1.5px solid rgba(6, 214, 196, 0.35);
+    backdrop-filter: blur(12px);
+}
+
+.btn-secondary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 30%, rgba(6, 214, 196, 0.15) 50%, transparent 70%);
+    transform: translateX(-130%);
+    transition: transform 0.52s ease;
+    pointer-events: none;
+}
+
+.btn-secondary:hover::after {
+    transform: translateX(130%);
 }
 
 .btn-secondary:hover {
-    background: var(--accent-glow);
-    transform: translateY(-2px);
-    border-color: var(--accent);
+    background: rgba(6, 214, 196, 0.14);
+    border-color: rgba(0, 245, 228, 0.65);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 28px rgba(6, 214, 196, 0.3), 0 0 0 1px rgba(0, 245, 228, 0.2);
+    color: #fff;
 }
 
+.btn-secondary:active {
+    transform: translateY(-1px);
+}
+
+/* ----- Ghost: dark glass ---- */
 .btn-ghost {
-    background: var(--bg-elevated);
-    color: var(--text);
-    border: 1px solid var(--border);
+    background: rgba(17, 30, 51, 0.8);
+    color: var(--text-muted);
+    border: 1px solid rgba(120, 160, 200, 0.18);
+    backdrop-filter: blur(12px);
 }
 
 .btn-ghost:hover {
-    background: var(--bg-card);
-    border-color: var(--accent);
-    color: var(--accent);
-    transform: translateY(-2px);
+    background: rgba(17, 30, 51, 0.95);
+    border-color: rgba(6, 214, 196, 0.4);
+    color: #00f5e4;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(6, 214, 196, 0.12);
+}
+
+.btn-ghost:active {
+    transform: translateY(-1px);
 }
 
 /* ====================== Container ====================== */
@@ -174,13 +257,20 @@ h6 {
 }
 
 .section-eyebrow {
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 12px;
-    display: block;
+    color: #00f5e4;
+    margin-bottom: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(6, 214, 196, 0.1) 0%, rgba(168, 85, 247, 0.06) 100%);
+    border: 1px solid rgba(6, 214, 196, 0.3);
+    padding: 6px 16px;
+    border-radius: 100px;
+    box-shadow: 0 0 20px rgba(6, 214, 196, 0.1), 0 1px 0 rgba(255, 255, 255, 0.05) inset;
 }
 
 .section-title {
@@ -217,15 +307,19 @@ h6 {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    background: linear-gradient(90deg, transparent, var(--accent-bright), var(--accent-2-bright), transparent);
     opacity: 0;
     transition: var(--transition);
 }
 
 .card:hover {
-    border-color: var(--border-accent);
+    border-color: rgba(6, 214, 196, 0.22);
     transform: translateY(-6px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px var(--accent-glow);
+    box-shadow:
+        0 24px 64px rgba(0, 0, 0, 0.55),
+        0 0 48px rgba(6, 214, 196, 0.15),
+        0 0 24px rgba(168, 85, 247, 0.1);
+    background: rgba(10, 22, 40, 0.85);
 }
 
 .card:hover::before {
@@ -245,15 +339,17 @@ h6 {
 }
 
 .badge-teal {
-    color: var(--accent);
-    border-color: var(--border-accent);
-    background: rgba(20, 184, 166, 0.08);
+    color: #00f5e4;
+    border-color: rgba(6, 214, 196, 0.35);
+    background: rgba(6, 214, 196, 0.1);
+    box-shadow: 0 0 16px rgba(6, 214, 196, 0.15);
 }
 
 .badge-purple {
-    color: var(--accent-2);
-    border-color: rgba(139, 92, 246, 0.3);
-    background: rgba(139, 92, 246, 0.08);
+    color: #c084fc;
+    border-color: rgba(168, 85, 247, 0.35);
+    background: rgba(168, 85, 247, 0.1);
+    box-shadow: 0 0 16px rgba(168, 85, 247, 0.15);
 }
 
 /* ====================== Grid ====================== */
@@ -427,11 +523,12 @@ h6 {
     border-radius: 6px;
     font-size: 0.75rem;
     font-weight: 600;
-    background: rgba(20, 184, 166, 0.12);
-    color: var(--accent);
-    border: 1px solid rgba(20, 184, 166, 0.2);
+    background: rgba(6, 214, 196, 0.1);
+    color: #00f5e4;
+    border: 1px solid rgba(6, 214, 196, 0.3);
     letter-spacing: 0.05em;
     text-transform: uppercase;
+    box-shadow: 0 0 14px rgba(6, 214, 196, 0.12);
 }
 
 /* ====================== Responsive ====================== */
@@ -489,11 +586,11 @@ h6 {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-dim);
+    background: var(--accent);
 }
 
 /* ====================== Selection ====================== */
 ::selection {
-    background: rgba(20, 184, 166, 0.3);
+    background: rgba(20, 184, 166, 0.35);
     color: #fff;
 }

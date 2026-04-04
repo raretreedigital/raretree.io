@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
@@ -12,7 +14,7 @@ const currentPath = Astro.url.pathname;
 <header id="navbar">
   <div class="nav-container">
     <a href="/" class="nav-logo">
-      <img src="/logo.png" alt="Raretree Logo" class="logo-img" />
+      <Image src={logo} alt="Raretree Logo" class="logo-img" width={180} height={64} />
     </a>
 
     <nav class="nav-links" id="navLinks">
@@ -113,7 +115,7 @@ const currentPath = Astro.url.pathname;
   }
 
   .logo-img {
-    height: 44px;
+    height: 64px;
     width: auto;
     object-fit: contain;
     transition: all 0.3s ease;
@@ -162,21 +164,33 @@ const currentPath = Astro.url.pathname;
   .nav-cta-dot {
     width: 7px;
     height: 7px;
-    background: #fff;
+    background: #020b12;
     border-radius: 50%;
-    opacity: 0.85;
-    animation: ctaDot 2.4s ease-in-out infinite;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    animation: ctaDot 2s ease-in-out infinite;
   }
 
   @keyframes ctaDot {
-    0%, 100% { opacity: 0.85; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.7); }
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(0.6); }
   }
 
   .nav-cta {
     padding: 9px 22px !important;
     font-size: 0.88rem !important;
     margin-left: 8px;
+    background: #06d6c4 !important;
+    color: #020b12 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 0 0 1px rgba(0,245,228,0.4), 0 3px 18px rgba(6,214,196,0.4) !important;
+    border: none !important;
+  }
+
+  .nav-cta:hover {
+    background: #00f5e4 !important;
+    box-shadow: 0 0 0 1px rgba(0,245,228,0.6), 0 6px 28px rgba(6,214,196,0.5) !important;
+    transform: translateY(-2px) !important;
+    filter: none !important;
   }
 
   .hamburger {
