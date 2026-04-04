@@ -59,16 +59,8 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
 
-    <!-- Floating tech tags -->
-    <div class="hero-float-tags">
-      <span class="float-tag ftag-react" style="--delay: 0s; --x: 7%; --y: 28%;">⚛ React</span>
-      <span class="float-tag ftag-next" style="--delay: 1.2s; --x: 87%; --y: 24%;">▲ Next.js</span>
-      <span class="float-tag ftag-svelte" style="--delay: 0.4s; --x: 4%; --y: 62%;">🔥 Svelte</span>
-      <span class="float-tag ftag-spring" style="--delay: 1.8s; --x: 81%; --y: 66%;">🍃 Spring Boot</span>
-      <span class="float-tag ftag-ai" style="--delay: 2.4s; --x: 44%; --y: 87%;">🤖 AI / ML</span>
-      <span class="float-tag ftag-fastapi" style="--delay: 0.9s; --x: 88%; --y: 45%;">⚡ FastAPI</span>
-      <span class="float-tag ftag-vue" style="--delay: 2.1s; --x: 3%; --y: 44%;">💚 Vue / Nuxt</span>
-    </div>
+    <!-- Hero canvas animation -->
+    <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
   </section>
 
   <!-- ====== LOGOS / TRUSTED BY ====== -->
@@ -670,6 +662,237 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <script>
+  // ===== HERO CANVAS ANIMATION =====
+  (function () {
+    const canvas = document.getElementById('heroCanvas') as HTMLCanvasElement | null;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d')!;
+
+    let W = 0, H = 0, mouse = { x: -9999, y: -9999 };
+
+    function resize() {
+      W = canvas!.offsetWidth;
+      H = canvas!.offsetHeight;
+      canvas!.width = W;
+      canvas!.height = H;
+    }
+    resize();
+    window.addEventListener('resize', () => { resize(); });
+    window.addEventListener('mousemove', e => {
+      const r = canvas!.getBoundingClientRect();
+      mouse.x = e.clientX - r.left;
+      mouse.y = e.clientY - r.top;
+    });
+    window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+
+    // Color palette
+    const C_TEAL   = '6,214,196';
+    const C_PURPLE = '168,85,247';
+    const C_BLUE   = '99,179,255';
+
+    // --- Tech label nodes (orbiting) ---
+    const TECH = [
+      { label: '⚛  React',      color: C_TEAL,   ring: 0, angle: 0 },
+      { label: '▲  Next.js',    color: C_BLUE,   ring: 0, angle: Math.PI },
+      { label: '💚  Vue',        color: C_TEAL,   ring: 0, angle: Math.PI * 0.6 },
+      { label: '🔥  Svelte',     color: '255,110,50', ring: 1, angle: 0.4 },
+      { label: '⚙  Spring',     color: '109,200,63', ring: 1, angle: 2.2 },
+      { label: '⚡  FastAPI',    color: C_TEAL,   ring: 1, angle: 4.0 },
+      { label: '🤖  AI / ML',   color: C_PURPLE, ring: 2, angle: 0.8 },
+      { label: '🍃  Hono',       color: C_BLUE,   ring: 2, angle: 3.2 },
+      { label: '▸  Elysia',      color: C_PURPLE, ring: 2, angle: 5.1 },
+    ];
+
+    const RING_RADII = [0.22, 0.34, 0.44]; // fraction of min(W,H)/2
+    const RING_SPEEDS = [0.00028, -0.00019, 0.00013];
+    const RING_TILTS  = [0, 0.28, -0.18]; // perspective tilt (y-scale)
+
+    // --- Ambient particles ---
+    interface Particle { x: number; y: number; vx: number; vy: number; r: number; color: string; alpha: number; }
+    const particles: Particle[] = [];
+    const NUM_P = 55;
+    const LINK_DIST = 130;
+
+    function spawnParticle(): Particle {
+      return {
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 1.8 + 0.6,
+        color: Math.random() > 0.55 ? C_TEAL : (Math.random() > 0.5 ? C_PURPLE : C_BLUE),
+        alpha: Math.random() * 0.5 + 0.2,
+      };
+    }
+
+    for (let i = 0; i < NUM_P; i++) particles.push(spawnParticle());
+
+    // --- Pulse rings ---
+    interface Pulse { r: number; maxR: number; alpha: number; }
+    const pulses: Pulse[] = [];
+    let pulseTimer = 0;
+
+    let frame = 0;
+    function draw(ts: number) {
+      ctx.clearRect(0, 0, W, H);
+      frame = ts;
+
+      const cx = W / 2;
+      const cy = H * 0.46;
+      const base = Math.min(W, H) * 0.5;
+
+      // --- Spawn pulse every ~2.8s ---
+      pulseTimer += 16;
+      if (pulseTimer > 2800) {
+        pulseTimer = 0;
+        pulses.push({ r: 0, maxR: base * 0.52, alpha: 0.35 });
+      }
+
+      // --- Draw pulses ---
+      pulses.forEach((p, i) => {
+        p.r += 1.2;
+        p.alpha -= 0.0028;
+        if (p.alpha <= 0) { pulses.splice(i, 1); return; }
+        ctx.beginPath();
+        ctx.arc(cx, cy, p.r, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(${C_TEAL},${p.alpha.toFixed(3)})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      });
+
+      // --- Draw orbit ring traces ---
+      RING_RADII.forEach((rf, ri) => {
+        const rr = base * rf;
+        const tilt = RING_TILTS[ri];
+        ctx.beginPath();
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.scale(1, 0.42 + tilt);
+        ctx.arc(0, 0, rr, 0, Math.PI * 2);
+        ctx.restore();
+        ctx.strokeStyle = ri === 1
+          ? `rgba(${C_PURPLE},0.1)`
+          : `rgba(${C_TEAL},0.08)`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      });
+
+      // --- Draw & update ambient particles ---
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        // Mouse repulsion
+        const dx = p.x - mouse.x, dy = p.y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 100) {
+          p.vx += (dx / dist) * 0.06;
+          p.vy += (dy / dist) * 0.06;
+        }
+        p.x += p.vx; p.y += p.vy;
+        // Clamp speed
+        const spd = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+        if (spd > 0.8) { p.vx *= 0.97; p.vy *= 0.97; }
+        // Wrap
+        if (p.x < -10) p.x = W + 10;
+        if (p.x > W + 10) p.x = -10;
+        if (p.y < -10) p.y = H + 10;
+        if (p.y > H + 10) p.y = -10;
+        // Draw dot
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${p.color},${p.alpha})`;
+        ctx.fill();
+      }
+
+      // --- Draw connections between nearby particles ---
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < LINK_DIST) {
+            const a = (1 - d / LINK_DIST) * 0.18;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(${C_TEAL},${a.toFixed(3)})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // --- Draw orbiting tech nodes ---
+      TECH.forEach(t => {
+        const ri = t.ring;
+        const speed = RING_SPEEDS[ri];
+        t.angle += speed * 16;
+        const rr = base * RING_RADII[ri];
+        const tilt = 0.42 + RING_TILTS[ri];
+        const nx = cx + Math.cos(t.angle) * rr;
+        const ny = cy + Math.sin(t.angle) * rr * tilt;
+
+        // Glow halo
+        const g = ctx.createRadialGradient(nx, ny, 0, nx, ny, 28);
+        g.addColorStop(0, `rgba(${t.color},0.28)`);
+        g.addColorStop(1, `rgba(${t.color},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(nx, ny, 28, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Node dot
+        ctx.beginPath();
+        ctx.arc(nx, ny, 4, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${t.color},0.9)`;
+        ctx.fill();
+
+        // Line to center
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(nx, ny);
+        ctx.strokeStyle = `rgba(${t.color},0.07)`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+
+        // Label pill
+        ctx.font = '600 11px "Inter", system-ui, sans-serif';
+        const tw = ctx.measureText(t.label).width;
+        const px = nx + (Math.cos(t.angle) > 0 ? 10 : -tw - 14);
+        const py = ny + 4;
+        // pill bg
+        ctx.fillStyle = `rgba(2,11,18,0.72)`;
+        ctx.beginPath();
+        ctx.roundRect(px - 6, py - 13, tw + 12, 18, 9);
+        ctx.fill();
+        ctx.strokeStyle = `rgba(${t.color},0.35)`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+        // text
+        ctx.fillStyle = `rgba(${t.color},0.95)`;
+        ctx.fillText(t.label, px, py);
+      });
+
+      // --- Center core ---
+      const cg = ctx.createRadialGradient(cx, cy, 0, cx, cy, 22);
+      cg.addColorStop(0, `rgba(${C_TEAL},0.7)`);
+      cg.addColorStop(0.5, `rgba(${C_TEAL},0.25)`);
+      cg.addColorStop(1, `rgba(${C_TEAL},0)`);
+      ctx.fillStyle = cg;
+      ctx.beginPath();
+      ctx.arc(cx, cy, 22, 0, Math.PI * 2);
+      ctx.fill();
+      // inner dot
+      ctx.beginPath();
+      ctx.arc(cx, cy, 4, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${C_TEAL},1)`;
+      ctx.fill();
+
+      requestAnimationFrame(draw);
+    }
+
+    requestAnimationFrame(draw);
+  })();
+
   // Counter animation
   function animateCounter(el: HTMLElement) {
     const target = parseInt(el.dataset.target || '0');
@@ -907,37 +1130,19 @@ import Layout from '../layouts/Layout.astro';
     background: rgba(148, 163, 184, 0.15);
   }
 
-  .hero-float-tags {
+  /* ===== HERO CANVAS ===== */
+  .hero-canvas {
     position: absolute;
     inset: 0;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
     z-index: 1;
-  }
-
-  .float-tag {
-    position: absolute;
-    left: var(--x);
-    top: var(--y);
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: rgba(20, 184, 166, 0.7);
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(20, 184, 166, 0.2);
-    padding: 6px 14px;
-    border-radius: 100px;
-    backdrop-filter: blur(8px);
-    animation: floatTag 6s ease-in-out infinite var(--delay);
-    letter-spacing: 0.04em;
-    white-space: nowrap;
-  }
-
-  @keyframes floatTag {
-    0%, 100% { transform: translateY(0px); opacity: 0.7; }
-    50% { transform: translateY(-12px); opacity: 1; }
+    opacity: 0.75;
   }
 
   @media (max-width: 768px) {
-    .hero-float-tags { display: none; }
+    .hero-canvas { opacity: 0.45; }
     .hero-stats { gap: 20px; padding: 20px; }
     .hero-stat-num { font-size: 1.5rem; }
   }
@@ -1421,15 +1626,6 @@ import Layout from '../layouts/Layout.astro';
   @media (max-width: 600px) {
     .cta-inner { padding: 48px 28px; }
   }
-
-  /* ===== FLOAT TAG VARIANTS ===== */
-  .ftag-react { color: rgba(97,218,251,0.9) !important; border-color: rgba(97,218,251,0.25) !important; background: rgba(97,218,251,0.06) !important; }
-  .ftag-next  { color: rgba(255,255,255,0.8) !important; border-color: rgba(255,255,255,0.15) !important; background: rgba(255,255,255,0.04) !important; }
-  .ftag-svelte{ color: rgba(255,62,0,0.9) !important;  border-color: rgba(255,62,0,0.25) !important;  background: rgba(255,62,0,0.07) !important;  }
-  .ftag-spring{ color: rgba(109,179,63,0.9)!important; border-color: rgba(109,179,63,0.25)!important; background: rgba(109,179,63,0.07)!important; }
-  .ftag-fastapi{color: rgba(5,150,105,0.9) !important; border-color: rgba(5,150,105,0.25)!important; background: rgba(5,150,105,0.07)!important; }
-  .ftag-vue   { color: rgba(79,192,141,0.9)!important; border-color: rgba(79,192,141,0.25)!important; background: rgba(79,192,141,0.07)!important; }
-  .ftag-ai    { color: rgba(168,85,247,0.9) !important; border-color: rgba(168,85,247,0.25)!important; background: rgba(168,85,247,0.08)!important; }
 
   /* ===== BENTO AI/ML ===== */
   .bento-ai-ml {
