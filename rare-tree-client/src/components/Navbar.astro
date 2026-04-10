@@ -28,17 +28,45 @@ const currentPath = Astro.url.pathname;
         </a>
       ))}
       <div class="nav-divider"></div>
+
+      <!-- Theme Pill Toggle (desktop) -->
+      <button class="theme-pill" id="themeToggle" aria-label="Toggle dark/light mode">
+        <span class="pill-thumb">
+          <svg class="pill-icon pill-icon--moon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <svg class="pill-icon pill-icon--sun" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"/>
+            <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+        </span>
+      </button>
+
       <a href="/contact" class="btn btn-primary nav-cta">
         <span class="nav-cta-dot"></span>
         Book a Call
       </a>
     </nav>
 
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <div class="nav-right-mobile">
+      <!-- Theme Pill Toggle (mobile) -->
+      <button class="theme-pill theme-pill-mobile" id="themeToggleMobile" aria-label="Toggle dark/light mode">
+        <span class="pill-thumb">
+          <svg class="pill-icon pill-icon--moon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <svg class="pill-icon pill-icon--sun" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"/>
+            <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+        </span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -46,6 +74,8 @@ const currentPath = Astro.url.pathname;
   const navbar = document.getElementById('navbar')!;
   const hamburger = document.getElementById('hamburger')!;
   const navLinks = document.getElementById('navLinks')!;
+  const themeToggle = document.getElementById('themeToggle')!;
+  const themeToggleMobile = document.getElementById('themeToggleMobile')!;
 
   // Scroll effect
   window.addEventListener('scroll', () => {
@@ -69,6 +99,23 @@ const currentPath = Astro.url.pathname;
       navLinks.classList.remove('mobile-open');
     });
   });
+
+  // Theme toggle function
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    const newTheme = isDark ? 'light' : 'dark';
+
+    // Briefly add transitioning class for smooth swap
+    html.classList.add('theme-transitioning');
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+
+    setTimeout(() => html.classList.remove('theme-transitioning'), 350);
+  }
+
+  themeToggle.addEventListener('click', toggleTheme);
+  themeToggleMobile.addEventListener('click', toggleTheme);
 </script>
 
 <style>
@@ -86,15 +133,17 @@ const currentPath = Astro.url.pathname;
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(3, 7, 18, 0);
+    background: transparent;
     backdrop-filter: blur(0px);
     transition: all 0.4s ease;
+    border-bottom: 1px solid transparent;
   }
 
   #navbar.scrolled::before {
-    background: rgba(3, 7, 18, 0.85);
+    background: var(--nav-scrolled-bg);
     backdrop-filter: blur(20px);
-    box-shadow: 0 1px 0 rgba(148, 163, 184, 0.08), 0 4px 24px rgba(0,0,0,0.3);
+    border-bottom-color: var(--nav-scrolled-border);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
   }
 
   .nav-container {
@@ -116,27 +165,35 @@ const currentPath = Astro.url.pathname;
   }
 
   .logo-img {
-    height: 64px;
+    height: 48px;
     width: auto;
     object-fit: contain;
     transition: all 0.3s ease;
-    filter: brightness(1);
   }
 
   .logo-img:hover {
-    filter: drop-shadow(0 0 12px rgba(20, 184, 166, 0.6));
+    filter: drop-shadow(0 0 10px rgba(var(--accent-rgb), 0.5));
+  }
+
+  /* Light mode: invert logo to stay visible */
+  [data-theme="light"] .logo-img {
+    filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%);
+  }
+
+  [data-theme="light"] .logo-img:hover {
+    filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) drop-shadow(0 0 8px rgba(79, 70, 229, 0.4));
   }
 
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
   }
 
   .nav-link {
     font-size: 0.9rem;
     font-weight: 500;
-    color: rgba(241, 245, 249, 0.7);
+    color: var(--text-muted);
     padding: 8px 14px;
     border-radius: 8px;
     transition: all 0.25s ease;
@@ -144,31 +201,111 @@ const currentPath = Astro.url.pathname;
     align-items: center;
     gap: 6px;
     white-space: nowrap;
+    text-decoration: none;
   }
 
-  .nav-link:hover, .nav-link.active {
-    color: #f1f5f9;
-    background: rgba(148, 163, 184, 0.08);
+  .nav-link:hover {
+    color: var(--text);
+    background: var(--bg-elevated);
   }
 
   .nav-link.active {
-    color: #14b8a6;
+    color: var(--accent-bright);
+    background: rgba(var(--accent-rgb), 0.08);
   }
 
   .nav-divider {
     width: 1px;
     height: 20px;
-    background: rgba(148, 163, 184, 0.15);
-    margin: 0 4px;
+    background: var(--border);
+    margin: 0 6px;
+    flex-shrink: 0;
+  }
+
+  /* ---- Theme Pill Toggle ---- */
+  .theme-pill {
+    position: relative;
+    width: 52px;
+    height: 28px;
+    border-radius: 100px;
+    background: #1e2a3a;
+    border: 1.5px solid rgba(148, 163, 184, 0.15);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    padding: 0;
+    outline: none;
+  }
+
+  .theme-pill:focus-visible {
+    box-shadow: 0 0 0 2px var(--accent-bright);
+  }
+
+  .pill-thumb {
+    position: absolute;
+    top: 3px;
+    left: calc(100% - 22px - 2px); /* right side = dark mode default */
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #3b4f6b;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                background 0.3s ease,
+                color 0.3s ease,
+                box-shadow 0.3s ease;
+  }
+
+  /* Default: dark mode – show moon, hide sun */
+  .pill-icon { display: none; }
+  .pill-icon--moon { display: block; }
+
+  /* Light mode overrides */
+  :global([data-theme="light"]) .theme-pill {
+    background: #fef3c7;
+    border-color: rgba(234, 179, 8, 0.35);
+  }
+
+  :global([data-theme="light"]) .pill-thumb {
+    left: 2px; /* left side */
+    background: #f59e0b;
+    color: #78350f;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.45);
+  }
+
+  :global([data-theme="light"]) .pill-icon--moon { display: none; }
+  :global([data-theme="light"]) .pill-icon--sun  { display: block; }
+
+  /* Explicit dark mode (for when data-theme="dark" is set) */
+  :global([data-theme="dark"]) .theme-pill {
+    background: #1e2a3a;
+    border-color: rgba(148, 163, 184, 0.15);
+  }
+
+  :global([data-theme="dark"]) .pill-thumb {
+    left: calc(100% - 22px - 2px);
+    background: #3b4f6b;
+    color: #94a3b8;
+    box-shadow: none;
+  }
+
+  :global([data-theme="dark"]) .pill-icon--moon { display: block; }
+  :global([data-theme="dark"]) .pill-icon--sun  { display: none; }
+
+  .theme-pill:hover {
+    transform: translateY(-1px);
   }
 
   .nav-cta-dot {
     width: 7px;
     height: 7px;
-    background: #020b12;
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 50%;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
     animation: ctaDot 2s ease-in-out infinite;
+    flex-shrink: 0;
   }
 
   @keyframes ctaDot {
@@ -179,19 +316,19 @@ const currentPath = Astro.url.pathname;
   .nav-cta {
     padding: 9px 22px !important;
     font-size: 0.88rem !important;
-    margin-left: 8px;
-    background: #06d6c4 !important;
-    color: #020b12 !important;
-    font-weight: 700 !important;
-    box-shadow: 0 0 0 1px rgba(0,245,228,0.4), 0 3px 18px rgba(6,214,196,0.4) !important;
-    border: none !important;
+    margin-left: 6px;
+    white-space: nowrap;
   }
 
-  .nav-cta:hover {
-    background: #00f5e4 !important;
-    box-shadow: 0 0 0 1px rgba(0,245,228,0.6), 0 6px 28px rgba(6,214,196,0.5) !important;
-    transform: translateY(-2px) !important;
-    filter: none !important;
+  /* Mobile right cluster */
+  .nav-right-mobile {
+    display: none;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .theme-pill-mobile {
+    display: none;
   }
 
   .hamburger {
@@ -209,7 +346,7 @@ const currentPath = Astro.url.pathname;
     display: block;
     width: 24px;
     height: 2px;
-    background: #f1f5f9;
+    background: var(--text);
     border-radius: 2px;
     transition: all 0.3s ease;
     transform-origin: center;
@@ -229,7 +366,20 @@ const currentPath = Astro.url.pathname;
   }
 
   @media (max-width: 900px) {
+    .nav-right-mobile {
+      display: flex;
+    }
+
     .hamburger {
+      display: flex;
+    }
+
+    /* Hide desktop pill; show mobile pill */
+    .theme-pill:not(.theme-pill-mobile) {
+      display: none;
+    }
+
+    .theme-pill-mobile {
       display: flex;
     }
 
@@ -238,13 +388,13 @@ const currentPath = Astro.url.pathname;
       top: 72px;
       left: 0;
       right: 0;
-      background: rgba(3, 7, 18, 0.97);
+      background: var(--mobile-menu-bg);
       backdrop-filter: blur(24px);
       flex-direction: column;
       align-items: stretch;
       padding: 20px 24px 32px;
       gap: 4px;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      border-bottom: 1px solid var(--border);
       transform: translateY(-100%);
       opacity: 0;
       pointer-events: none;
@@ -262,6 +412,10 @@ const currentPath = Astro.url.pathname;
       font-size: 1rem;
     }
 
+    .nav-divider {
+      display: none;
+    }
+
     .nav-cta {
       margin-left: 0 !important;
       text-align: center;
@@ -270,3 +424,4 @@ const currentPath = Astro.url.pathname;
     }
   }
 </style>
+

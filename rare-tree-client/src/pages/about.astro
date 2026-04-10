@@ -179,7 +179,7 @@ const whyUs = [
           <h2 class="section-title" style="text-align:left; margin-bottom:24px;">
             Mastery Across <span class="gradient-text">Every Channel</span>
           </h2>
-          <p style="color:#94a3b8; line-height:1.8; margin-bottom:32px;">
+          <p style="color:var(--text-muted); line-height:1.8; margin-bottom:32px;">
             Our team brings deep, specialized expertise across the full digital stack — from AI-powered automation engineering to creative campaign execution.
           </p>
           <a href="/services" class="btn btn-primary">View All Services</a>
@@ -242,7 +242,7 @@ const whyUs = [
   <!-- TECH STACK MARQUEE -->
   <section class="section-sm tech-section">
     <div class="container">
-      <p class="trusted-label reveal" style="text-align:center; font-size:0.78rem; color:#475569; text-transform:uppercase; letter-spacing:0.12em; font-weight:600; margin-bottom:24px;">
+      <p class="trusted-label reveal" style="text-align:center; font-size:0.78rem; color:var(--text-subtle); text-transform:uppercase; letter-spacing:0.12em; font-weight:600; margin-bottom:24px;">
         Technologies & Tools We Master
       </p>
       <!-- Row 1: Frontend + Backend -->
@@ -297,7 +297,7 @@ const whyUs = [
     padding: 120px 0 80px;
     position: relative;
     overflow: hidden;
-    background: radial-gradient(ellipse at 50% 0%, #0d1b2a 0%, #030712 70%);
+    background: radial-gradient(ellipse at 50% 0%, var(--bg-surface) 0%, var(--bg-base) 70%);
   }
 
   .about-orb {
@@ -334,7 +334,7 @@ const whyUs = [
 
   .about-hero-title {
     font-size: clamp(2.2rem, 5vw, 3.8rem);
-    color: #f1f5f9;
+    color: var(--text);
     margin: 14px 0 20px;
     letter-spacing: -0.03em;
     line-height: 1.1;
@@ -342,7 +342,7 @@ const whyUs = [
 
   .about-hero-sub {
     font-size: 1.1rem;
-    color: #94a3b8;
+    color: var(--text-muted);
     line-height: 1.75;
     max-width: 620px;
     margin: 0 auto 48px;
@@ -366,15 +366,16 @@ const whyUs = [
   .about-img-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent 40%, rgba(3,7,18,0.8) 100%);
+    background: linear-gradient(to bottom, transparent 40%, var(--bg-base) 100%);
+    opacity: 0.85;
   }
 
   .about-img-badge {
     position: absolute;
     bottom: 28px;
     right: 28px;
-    background: rgba(15, 23, 42, 0.9);
-    border: 1px solid rgba(20, 184, 166, 0.3);
+    background: var(--bg-card-solid);
+    border: 1px solid var(--border-accent-2);
     border-radius: 14px;
     padding: 14px 20px;
     text-align: center;
@@ -387,13 +388,13 @@ const whyUs = [
   .about-img-badge span:first-child {
     font-size: 1.8rem;
     font-weight: 900;
-    color: #14b8a6;
+    color: var(--accent-2-bright);
     line-height: 1;
   }
 
   .about-img-badge {
     font-size: 0.8rem;
-    color: #64748b;
+    color: var(--text-muted);
     font-weight: 600;
   }
 
@@ -406,7 +407,7 @@ const whyUs = [
   }
 
   .story-text p {
-    color: #94a3b8;
+    color: var(--text-muted);
     line-height: 1.8;
     margin-bottom: 16px;
     font-size: 0.95rem;
@@ -417,7 +418,7 @@ const whyUs = [
     gap: 32px;
     margin-top: 36px;
     padding-top: 32px;
-    border-top: 1px solid rgba(148, 163, 184, 0.1);
+    border-top: 1px solid var(--border);
   }
 
   .about-metric {
@@ -429,13 +430,13 @@ const whyUs = [
   .about-metric-num {
     font-size: 1.8rem;
     font-weight: 900;
-    color: #14b8a6;
+    color: var(--accent-2-bright);
     letter-spacing: -0.03em;
   }
 
   .about-metric-label {
     font-size: 0.78rem;
-    color: #64748b;
+    color: var(--text-subtle);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-weight: 600;
@@ -467,8 +468,8 @@ const whyUs = [
     position: absolute;
     bottom: -24px;
     left: -24px;
-    background: rgba(15, 23, 42, 0.95);
-    border: 1px solid rgba(20, 184, 166, 0.25);
+    background: var(--bg-card-solid);
+    border: 1px solid var(--border-accent-2);
     border-radius: 16px;
     padding: 20px 24px;
     backdrop-filter: blur(16px);
@@ -480,25 +481,25 @@ const whyUs = [
   .accent-card-icon {
     width: 48px;
     height: 48px;
-    background: rgba(20, 184, 166, 0.15);
+    background: rgba(16, 185, 129, 0.12);
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #14b8a6;
+    color: var(--accent-2-bright);
     flex-shrink: 0;
   }
 
   .accent-card-num {
     font-size: 1.6rem;
     font-weight: 900;
-    color: #f1f5f9;
+    color: var(--text);
     line-height: 1;
   }
 
   .accent-card-label {
     font-size: 0.78rem;
-    color: #64748b;
+    color: var(--text-muted);
     font-weight: 600;
     margin-top: 4px;
   }
@@ -514,7 +515,7 @@ const whyUs = [
   .values-bg {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(ellipse at 50% 50%, rgba(15, 23, 42, 0.6) 0%, transparent 70%);
+    background: radial-gradient(ellipse at 50% 50%, var(--bg-surface) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -525,8 +526,8 @@ const whyUs = [
   }
 
   .value-card {
-    background: rgba(15, 23, 42, 0.5);
-    border: 1px solid rgba(148, 163, 184, 0.08);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 20px;
     padding: 32px;
     backdrop-filter: blur(12px);
@@ -537,15 +538,15 @@ const whyUs = [
   }
 
   .value-card:hover {
-    border-color: rgba(20, 184, 166, 0.2);
+    border-color: var(--border-accent-2);
     transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+    box-shadow: var(--shadow-elevated);
   }
 
   .value-icon {
     width: 44px;
     height: 44px;
-    color: #14b8a6;
+    color: var(--accent-2-bright);
   }
 
   .value-icon svg { width: 100%; height: 100%; }
@@ -553,12 +554,12 @@ const whyUs = [
   .value-card h3 {
     font-size: 1rem;
     font-weight: 700;
-    color: #f1f5f9;
+    color: var(--text);
   }
 
   .value-card p {
     font-size: 0.88rem;
-    color: #64748b;
+    color: var(--text-muted);
     line-height: 1.7;
   }
 
@@ -594,18 +595,18 @@ const whyUs = [
   .skill-name {
     font-size: 0.88rem;
     font-weight: 600;
-    color: #94a3b8;
+    color: var(--text-muted);
   }
 
   .skill-pct {
     font-size: 0.8rem;
     font-weight: 700;
-    color: #14b8a6;
+    color: var(--accent-2-bright);
   }
 
   .skill-track {
     height: 6px;
-    background: rgba(30, 41, 59, 0.8);
+    background: var(--bg-elevated);
     border-radius: 100px;
     overflow: hidden;
   }
@@ -613,7 +614,7 @@ const whyUs = [
   .skill-fill {
     height: 100%;
     width: 0;
-    background: linear-gradient(90deg, #14b8a6, #8b5cf6);
+    background: linear-gradient(90deg, var(--accent-2-bright), var(--accent-3-bright));
     border-radius: 100px;
     transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1) var(--delay, 0s);
   }
@@ -662,27 +663,27 @@ const whyUs = [
     align-items: center;
     gap: 14px;
     padding: 14px 0;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.06);
+    border-bottom: 1px solid var(--border);
     font-size: 0.95rem;
-    color: #94a3b8;
+    color: var(--text-muted);
     transition: all 0.2s ease;
   }
 
   .why-item:hover {
-    color: #f1f5f9;
+    color: var(--text);
     padding-left: 6px;
   }
 
   .why-check {
     width: 24px;
     height: 24px;
-    background: rgba(20, 184, 166, 0.12);
-    border: 1px solid rgba(20, 184, 166, 0.25);
+    background: rgba(var(--accent-2-rgb, 16,185,129), 0.12);
+    border: 1px solid rgba(var(--accent-2-rgb, 16,185,129), 0.25);
     border-radius: 7px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #14b8a6;
+    color: var(--accent-2-bright);
     flex-shrink: 0;
   }
 
@@ -712,13 +713,13 @@ const whyUs = [
   .tech-item {
     font-size: 0.82rem;
     font-weight: 700;
-    color: #334155;
+    color: var(--text-muted);
     letter-spacing: 0.05em;
     text-transform: uppercase;
     white-space: nowrap;
     padding: 8px 16px;
-    background: rgba(15, 23, 42, 0.4);
-    border: 1px solid rgba(148, 163, 184, 0.07);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
     border-radius: 8px;
   }
 
@@ -732,9 +733,9 @@ const whyUs = [
   }
 
   .tech-item-ai {
-    color: #475569;
-    background: rgba(20, 184, 166, 0.04);
-    border-color: rgba(20, 184, 166, 0.1);
+    color: var(--text-subtle);
+    background: var(--bg-card);
+    border-color: var(--border-accent-2);
   }
 
   /* 3D / interaction support */
@@ -752,7 +753,7 @@ const whyUs = [
     margin-left: -6px;
   }
   .why-item:hover {
-    background: rgba(20,184,166,0.05);
+    background: var(--bg-elevated);
     padding-left: 14px;
   }
 </style>
@@ -769,15 +770,20 @@ const whyUs = [
       title.dataset.splitDone = 'true';
       Array.from(title.childNodes).forEach(node => {
         if (node.nodeType !== Node.TEXT_NODE) return;
-        const words = node.textContent.trim().split(/\s+/).filter(Boolean);
+        const raw = node.textContent;
+        const words = raw.trim().split(/\s+/).filter(Boolean);
         if (!words.length) return;
+        const hadLeading  = /^\s/.test(raw);
+        const hadTrailing = /\s$/.test(raw);
         const frag = document.createDocumentFragment();
+        if (hadLeading) frag.appendChild(document.createTextNode(' '));
         words.forEach((w, idx) => {
           const outer = document.createElement('span'); outer.style.cssText = 'display:inline-block;overflow:hidden;vertical-align:bottom;';
           const inner = document.createElement('span'); inner.className = 'gsap-word'; inner.style.display = 'inline-block';
           inner.textContent = w; outer.appendChild(inner); frag.appendChild(outer);
           if (idx < words.length-1) frag.appendChild(document.createTextNode(' '));
         });
+        if (hadTrailing) frag.appendChild(document.createTextNode(' '));
         title.replaceChild(frag, node);
       });
       title.querySelectorAll('.gradient-text').forEach(gt => {
