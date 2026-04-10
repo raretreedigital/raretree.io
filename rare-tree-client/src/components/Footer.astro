@@ -101,8 +101,8 @@ const currentYear = new Date().getFullYear();
 
 <style>
   .footer {
-    background: #050b18;
-    border-top: 1px solid rgba(148, 163, 184, 0.08);
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border);
     padding: 80px 0 0;
     position: relative;
     overflow: hidden;
@@ -115,7 +115,7 @@ const currentYear = new Date().getFullYear();
     transform: translateX(-50%);
     width: 600px;
     height: 200px;
-    background: radial-gradient(ellipse, rgba(20, 184, 166, 0.12) 0%, transparent 70%);
+    background: radial-gradient(ellipse, var(--accent-2-glow) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -138,9 +138,13 @@ const currentYear = new Date().getFullYear();
     object-fit: contain;
   }
 
+  [data-theme="light"] .footer-logo-img {
+    filter: brightness(0);
+  }
+
   .footer-tagline {
     font-size: 0.9rem;
-    color: #64748b;
+    color: var(--text-muted);
     line-height: 1.7;
     max-width: 280px;
   }
@@ -157,7 +161,7 @@ const currentYear = new Date().getFullYear();
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #334155;
+    color: var(--text-subtle);
   }
 
   .social-link {
@@ -166,10 +170,10 @@ const currentYear = new Date().getFullYear();
     justify-content: center;
     width: 38px;
     height: 38px;
-    background: rgba(30, 41, 59, 0.6);
-    border: 1px solid rgba(148, 163, 184, 0.1);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
     border-radius: 10px;
-    color: #94a3b8;
+    color: var(--text-muted);
     transition: all 0.3s ease;
     gap: 0;
     overflow: hidden;
@@ -183,7 +187,7 @@ const currentYear = new Date().getFullYear();
   }
 
   .social-linkedin {
-    background: rgba(10, 102, 194, 0.12);
+    background: rgba(10, 102, 194, 0.1);
     border-color: rgba(10, 102, 194, 0.25);
     color: #0a66c2;
     width: auto;
@@ -193,7 +197,7 @@ const currentYear = new Date().getFullYear();
 
   .social-linkedin .social-link-label {
     display: block;
-    color: #7fb0dc;
+    color: #5ba0d0;
   }
 
   .social-link:hover {
@@ -205,7 +209,7 @@ const currentYear = new Date().getFullYear();
   }
 
   .social-link:hover .social-link-label {
-    color: #f1f5f9;
+    color: var(--text);
   }
 
   .footer-heading {
@@ -213,7 +217,7 @@ const currentYear = new Date().getFullYear();
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #94a3b8;
+    color: var(--text-muted);
     margin-bottom: 20px;
   }
 
@@ -225,15 +229,16 @@ const currentYear = new Date().getFullYear();
 
   .footer-links a {
     font-size: 0.9rem;
-    color: #64748b;
+    color: var(--text-subtle);
     transition: all 0.25s ease;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+    text-decoration: none;
   }
 
   .footer-links a:hover {
-    color: #14b8a6;
+    color: var(--accent-2-bright);
     transform: translateX(4px);
   }
 
@@ -245,7 +250,7 @@ const currentYear = new Date().getFullYear();
 
   .footer-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
     margin-bottom: 28px;
   }
 
@@ -258,7 +263,7 @@ const currentYear = new Date().getFullYear();
 
   .footer-copy {
     font-size: 0.85rem;
-    color: #475569;
+    color: var(--text-subtle);
   }
 
   .footer-bottom-links {
@@ -266,17 +271,18 @@ const currentYear = new Date().getFullYear();
     align-items: center;
     gap: 8px;
     font-size: 0.85rem;
-    color: #475569;
+    color: var(--text-subtle);
   }
 
   .built-with-tag {
     padding: 2px 10px;
-    background: rgba(20, 184, 166, 0.1);
-    color: #14b8a6;
+    background: rgba(var(--accent-rgb), 0.08);
+    color: var(--accent-bright);
     border-radius: 6px;
     font-size: 0.78rem;
     font-weight: 600;
-    border: 1px solid rgba(20, 184, 166, 0.2);
+    border: 1px solid rgba(var(--accent-rgb), 0.2);
+    text-decoration: none;
   }
 
   @media (max-width: 1024px) {

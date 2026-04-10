@@ -48,17 +48,23 @@ import Layout from '../layouts/Layout.astro';
       </div>
       <div class="hero-stats reveal delay-4">
         <div class="hero-stat">
-          <span class="hero-stat-num" data-target="50">0</span><span class="hero-stat-num">+</span>
+          <div class="hero-stat-num-row">
+            <span class="hero-stat-num" data-target="50">0</span><span class="hero-stat-num">+</span>
+          </div>
           <span class="hero-stat-label">Projects</span>
         </div>
         <div class="hero-stat-divider"></div>
         <div class="hero-stat">
-          <span class="hero-stat-num" data-target="30">0</span><span class="hero-stat-num">+</span>
+          <div class="hero-stat-num-row">
+            <span class="hero-stat-num" data-target="30">0</span><span class="hero-stat-num">+</span>
+          </div>
           <span class="hero-stat-label">Clients</span>
         </div>
         <div class="hero-stat-divider"></div>
         <div class="hero-stat">
-          <span class="hero-stat-num" data-target="95">0</span><span class="hero-stat-num">%</span>
+          <div class="hero-stat-num-row">
+            <span class="hero-stat-num" data-target="95">0</span><span class="hero-stat-num">%</span>
+          </div>
           <span class="hero-stat-label">Satisfaction</span>
         </div>
       </div>
@@ -1329,9 +1335,14 @@ import Layout from '../layouts/Layout.astro';
     const childNodes = Array.from(title.childNodes);
     childNodes.forEach(node => {
       if (node.nodeType !== Node.TEXT_NODE) return;
-      const words = node.textContent.trim().split(/\s+/).filter(Boolean);
+      const raw = node.textContent;
+      const words = raw.trim().split(/\s+/).filter(Boolean);
       if (!words.length) return;
+      const hadLeading  = /^\s/.test(raw);
+      const hadTrailing = /\s$/.test(raw);
       const frag = document.createDocumentFragment();
+      // Preserve a leading space so this text node doesn't kiss a preceding element
+      if (hadLeading) frag.appendChild(document.createTextNode(' '));
       words.forEach((w, idx) => {
         const outer = document.createElement('span');
         outer.style.cssText = 'display:inline-block;overflow:hidden;vertical-align:bottom;';
@@ -1343,6 +1354,8 @@ import Layout from '../layouts/Layout.astro';
         frag.appendChild(outer);
         if (idx < words.length - 1) frag.appendChild(document.createTextNode(' '));
       });
+      // Preserve a trailing space so the next sibling element (e.g. .gradient-text) isn't kissing this text
+      if (hadTrailing) frag.appendChild(document.createTextNode(' '));
       title.replaceChild(frag, node);
     });
     // Also wrap .gradient-text words
@@ -1921,7 +1934,7 @@ import Layout from '../layouts/Layout.astro';
     align-items: center;
     position: relative;
     overflow: hidden;
-    background: radial-gradient(ellipse at 50% 0%, #0f172a 0%, #030712 60%);
+    background: radial-gradient(ellipse at 50% 0%, var(--bg-surface) 0%, var(--bg-base) 60%);
     padding: 100px 0 60px;
   }
 
@@ -1929,8 +1942,8 @@ import Layout from '../layouts/Layout.astro';
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(rgba(20, 184, 166, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(20, 184, 166, 0.04) 1px, transparent 1px);
+      linear-gradient(rgba(var(--accent-rgb), 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--accent-rgb), 0.04) 1px, transparent 1px);
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
   }
@@ -1994,21 +2007,21 @@ import Layout from '../layouts/Layout.astro';
   .badge-dot {
     width: 8px;
     height: 8px;
-    background: #00f5e4;
+    background: var(--accent-2-bright);
     border-radius: 50%;
     display: inline-block;
-    box-shadow: 0 0 8px rgba(0, 245, 228, 0.8);
+    box-shadow: 0 0 8px var(--accent-2-glow);
     animation: pulse 2s ease-in-out infinite;
   }
 
   @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 8px rgba(0,245,228,0.8); }
-    50% { opacity: 0.55; transform: scale(0.75); box-shadow: 0 0 4px rgba(0,245,228,0.4); }
+    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 8px var(--accent-2-glow); }
+    50% { opacity: 0.55; transform: scale(0.75); box-shadow: 0 0 4px var(--accent-2-glow); }
   }
 
   .hero-title {
     font-size: clamp(2.4rem, 6vw, 4.2rem);
-    color: #f1f5f9;
+    color: var(--text);
     margin-bottom: 24px;
     line-height: 1.1;
     letter-spacing: -0.03em;
@@ -2016,7 +2029,7 @@ import Layout from '../layouts/Layout.astro';
 
   .hero-subtitle {
     font-size: clamp(1rem, 2vw, 1.2rem);
-    color: #94a3b8;
+    color: var(--text-muted);
     max-width: 600px;
     margin: 0 auto 40px;
     line-height: 1.75;
@@ -2041,8 +2054,8 @@ import Layout from '../layouts/Layout.astro';
     justify-content: center;
     gap: 40px;
     padding: 28px 40px;
-    background: rgba(15, 23, 42, 0.5);
-    border: 1px solid rgba(148, 163, 184, 0.1);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
     border-radius: 16px;
     backdrop-filter: blur(12px);
     max-width: 500px;
@@ -2050,32 +2063,45 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .hero-stat {
+    /* Fix: flex-column so number and label don't stick together */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
     text-align: center;
+  }
+
+  .hero-stat-num-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
   }
 
   .hero-stat-num {
     font-size: 1.9rem;
     font-weight: 800;
-    background: linear-gradient(135deg, #00f5e4, #06d6c4);
+    background: linear-gradient(135deg, var(--accent-bright), var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     letter-spacing: -0.02em;
+    line-height: 1;
   }
 
   .hero-stat-label {
-    font-size: 0.78rem;
-    color: #64748b;
+    font-size: 0.75rem;
+    color: var(--text-subtle);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-top: 2px;
-    font-weight: 500;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    display: block;
   }
 
   .hero-stat-divider {
     width: 1px;
     height: 40px;
-    background: rgba(148, 163, 184, 0.15);
+    background: var(--border);
+    flex-shrink: 0;
   }
 
   /* ===== HERO CANVAS ===== */
@@ -2097,16 +2123,16 @@ import Layout from '../layouts/Layout.astro';
 
   /* ===== TRUSTED ===== */
   .trusted {
-    border-top: 1px solid rgba(148, 163, 184, 0.06);
-    border-bottom: 1px solid rgba(148, 163, 184, 0.06);
-    background: rgba(15, 23, 42, 0.3);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-elevated);
     overflow: hidden;
   }
 
   .trusted-label {
     text-align: center;
     font-size: 0.8rem;
-    color: #475569;
+    color: var(--text-subtle);
     text-transform: uppercase;
     letter-spacing: 0.12em;
     font-weight: 600;
@@ -2133,10 +2159,14 @@ import Layout from '../layouts/Layout.astro';
   .trusted-item {
     font-size: 0.95rem;
     font-weight: 700;
-    color: #334155;
+    color: var(--text-muted);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     white-space: nowrap;
+    padding: 6px 18px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    background: var(--bg-surface);
   }
 
   /* ===== BENTO GRID ===== */
@@ -2147,8 +2177,8 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .bento-card {
-    background: rgba(15, 23, 42, 0.5);
-    border: 1px solid rgba(148, 163, 184, 0.08);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 20px;
     padding: 32px;
     backdrop-filter: blur(12px);
@@ -2214,12 +2244,12 @@ import Layout from '../layouts/Layout.astro';
   .bento-title {
     font-size: 1.1rem;
     font-weight: 700;
-    color: #f1f5f9;
+    color: var(--text);
   }
 
   .bento-desc {
     font-size: 0.9rem;
-    color: #94a3b8;
+    color: var(--text-muted);
     line-height: 1.7;
     flex: 1;
   }
@@ -2237,7 +2267,7 @@ import Layout from '../layouts/Layout.astro';
     gap: 6px;
     font-size: 0.85rem;
     font-weight: 600;
-    color: #14b8a6;
+    color: var(--accent-2-bright);
     margin-top: 4px;
     transition: gap 0.2s ease;
   }
@@ -2269,7 +2299,7 @@ import Layout from '../layouts/Layout.astro';
     transform: translate(-50%, -50%);
     width: 800px;
     height: 400px;
-    background: radial-gradient(ellipse, rgba(20, 184, 166, 0.06) 0%, transparent 70%);
+    background: radial-gradient(ellipse, var(--accent-2-glow) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -2280,8 +2310,8 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .stat-card {
-    background: rgba(15, 23, 42, 0.5);
-    border: 1px solid rgba(148, 163, 184, 0.08);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 20px;
     padding: 36px 28px;
     text-align: center;
@@ -2299,15 +2329,15 @@ import Layout from '../layouts/Layout.astro';
     transform: translateX(-50%);
     width: 60%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, #14b8a6, transparent);
+    background: linear-gradient(90deg, transparent, var(--accent-2-bright), transparent);
     opacity: 0;
     transition: opacity 0.3s ease;
   }
 
   .stat-card:hover {
-    border-color: rgba(20, 184, 166, 0.2);
+    border-color: var(--border-accent-2);
     transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-elevated);
   }
 
   .stat-card:hover::before {
@@ -2318,8 +2348,8 @@ import Layout from '../layouts/Layout.astro';
     width: 44px;
     height: 44px;
     margin: 0 auto 16px;
-    color: #14b8a6;
-    opacity: 0.8;
+    color: var(--accent-2-bright);
+    opacity: 0.85;
   }
 
   .stat-icon svg {
@@ -2330,7 +2360,7 @@ import Layout from '../layouts/Layout.astro';
   .stat-number {
     font-size: 3rem;
     font-weight: 900;
-    color: #f1f5f9;
+    color: var(--text);
     letter-spacing: -0.04em;
     line-height: 1;
     margin-bottom: 4px;
@@ -2339,13 +2369,13 @@ import Layout from '../layouts/Layout.astro';
   .stat-suffix {
     font-size: 1rem;
     font-weight: 700;
-    color: #14b8a6;
+    color: var(--accent-2-bright);
     margin-bottom: 8px;
   }
 
   .stat-label {
     font-size: 0.8rem;
-    color: #64748b;
+    color: var(--text-subtle);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-weight: 500;
@@ -2395,13 +2425,13 @@ import Layout from '../layouts/Layout.astro';
 
   .process-body h3 {
     font-size: 1.05rem;
-    color: #f1f5f9;
+    color: var(--text);
     margin-bottom: 10px;
   }
 
   .process-body p {
     font-size: 0.88rem;
-    color: #64748b;
+    color: var(--text-muted);
     line-height: 1.7;
   }
 
@@ -2422,51 +2452,59 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .testimonial-card {
-    background: rgba(15, 23, 42, 0.5);
-    border: 1px solid rgba(148, 163, 184, 0.08);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 20px;
     padding: 36px;
     backdrop-filter: blur(12px);
     transition: all 0.3s ease;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
 
   .testimonial-card:hover {
-    border-color: rgba(20, 184, 166, 0.15);
+    border-color: var(--border-accent-2);
     transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-elevated);
   }
 
   .testimonial-quote {
     font-size: 4rem;
     font-weight: 900;
-    color: #14b8a6;
-    opacity: 0.3;
+    color: var(--accent-2-bright);
+    opacity: 0.35;
     line-height: 0.8;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     font-family: Georgia, serif;
+    flex-shrink: 0;
   }
 
   .testimonial-text {
     font-size: 0.92rem;
-    color: #94a3b8;
-    line-height: 1.75;
+    color: var(--text-muted);
+    line-height: 1.8;
     margin-bottom: 24px;
     font-style: italic;
+    flex: 1;
   }
 
   .testimonial-author {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
+    padding-top: 4px;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
   }
 
   .testimonial-avatar {
     width: 40px;
     height: 40px;
     border-radius: 10px;
-    background: linear-gradient(135deg, #14b8a6, #8b5cf6);
+    background: linear-gradient(135deg, var(--accent-2-bright), var(--accent-3-bright));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2479,13 +2517,13 @@ import Layout from '../layouts/Layout.astro';
   .testimonial-name {
     font-size: 0.88rem;
     font-weight: 600;
-    color: #f1f5f9;
+    color: var(--text);
   }
 
   .testimonial-role {
     font-size: 0.78rem;
-    color: #64748b;
-    margin-top: 2px;
+    color: var(--text-subtle);
+    margin-top: 3px;
   }
 
   .testimonial-stars {
@@ -2503,7 +2541,7 @@ import Layout from '../layouts/Layout.astro';
     padding: 120px 0;
     position: relative;
     overflow: hidden;
-    background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.8) 0%, #030712 100%);
+    background: radial-gradient(ellipse at center, var(--bg-surface) 0%, var(--bg-base) 100%);
   }
 
   .cta-glow-1 {
@@ -2528,8 +2566,8 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .cta-inner {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(148, 163, 184, 0.1);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 28px;
     padding: 80px 60px;
     text-align: center;
@@ -2552,13 +2590,13 @@ import Layout from '../layouts/Layout.astro';
 
   .cta-title {
     font-size: clamp(2rem, 4vw, 3rem);
-    color: #f1f5f9;
+    color: var(--text);
     margin: 12px 0 20px;
     line-height: 1.15;
   }
 
   .cta-subtitle {
-    color: #94a3b8;
+    color: var(--text-muted);
     font-size: 1rem;
     margin-bottom: 40px;
     line-height: 1.7;
@@ -2644,8 +2682,8 @@ import Layout from '../layouts/Layout.astro';
 
   .cap-card {
     position: relative;
-    background: rgba(10, 22, 40, 0.6);
-    border: 1px solid rgba(120,160,200,0.1);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 20px;
     padding: 30px 28px 28px;
     backdrop-filter: blur(14px);
@@ -2657,9 +2695,9 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .cap-card:hover {
-    border-color: rgba(var(--cg-r,6),var(--cg-g,214),var(--cg-b,196),0.3);
+    border-color: rgba(var(--cg-r,6),var(--cg-g,214),var(--cg-b,196),0.35);
     box-shadow:
-      0 24px 64px rgba(0,0,0,0.45),
+      var(--shadow-elevated),
       0 0 40px rgba(var(--cg-r,6),var(--cg-g,214),var(--cg-b,196),0.1);
   }
 
@@ -2678,8 +2716,8 @@ import Layout from '../layouts/Layout.astro';
 
   .cap-card-featured {
     grid-column: span 1;
-    background: linear-gradient(135deg, rgba(168,85,247,0.08), rgba(10,22,40,0.7));
-    border-color: rgba(168,85,247,0.2);
+    background: linear-gradient(135deg, rgba(168,85,247,0.08) 0%, var(--bg-card) 100%);
+    border-color: rgba(168,85,247,0.25);
   }
 
   .cap-icon {
@@ -2702,16 +2740,16 @@ import Layout from '../layouts/Layout.astro';
   .cap-title {
     font-size: 1.05rem;
     font-weight: 700;
-    color: #e8f0ff;
+    color: var(--text);
     margin-bottom: 10px;
     letter-spacing: -0.01em;
   }
 
   .cap-desc {
-    font-size: 0.85rem;
-    color: #607898;
-    line-height: 1.7;
-    margin-bottom: 18px;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 20px;
     flex: 1;
   }
 
@@ -2726,16 +2764,16 @@ import Layout from '../layouts/Layout.astro';
     font-size: 0.68rem;
     font-weight: 600;
     letter-spacing: 0.05em;
-    color: #4d6480;
-    background: rgba(120,160,200,0.07);
-    border: 1px solid rgba(120,160,200,0.12);
+    color: var(--text-subtle);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
     padding: 3px 10px;
     border-radius: 100px;
     text-transform: uppercase;
   }
 
   .cap-arrow {
-    color: #3a5270;
+    color: var(--text-subtle);
     transition: all 0.25s ease;
     display: inline-flex;
   }
@@ -2834,8 +2872,8 @@ import Layout from '../layouts/Layout.astro';
   }
   .testimonial-card:hover {
     transform: none; /* overridden by JS perspective tilt */
-    border-color: rgba(6,214,196,0.2);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.35), 0 0 40px rgba(6,214,196,0.07);
+    border-color: var(--border-accent-2);
+    box-shadow: var(--shadow-elevated), 0 0 40px rgba(16,185,129,0.07);
   }
   .testimonial-stars {
     transition: letter-spacing 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
@@ -3382,30 +3420,30 @@ import Layout from '../layouts/Layout.astro';
 
   .bento-whatsapp {
     border-color: rgba(37,211,102,0.3);
-    background: linear-gradient(135deg, rgba(37,211,102,0.07) 0%, rgba(10,22,40,0.55) 100%);
+    background: linear-gradient(135deg, rgba(37,211,102,0.07) 0%, var(--bg-card) 100%);
   }
   .bento-whatsapp .bento-icon { color: #25d366; }
   .bento-whatsapp .bento-icon-glow { filter: drop-shadow(0 0 14px rgba(37,211,102,0.6)); }
   .bento-whatsapp .bento-platform-orb { background: radial-gradient(circle, rgba(37,211,102,0.3) 0%, transparent 70%); }
-  .bento-whatsapp:hover { border-color: rgba(37,211,102,0.55); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 44px rgba(37,211,102,0.12); }
+  .bento-whatsapp:hover { border-color: rgba(37,211,102,0.55); box-shadow: var(--shadow-elevated), 0 0 44px rgba(37,211,102,0.12); }
 
   .bento-zoho {
     border-color: rgba(232,68,26,0.3);
-    background: linear-gradient(135deg, rgba(232,68,26,0.07) 0%, rgba(10,22,40,0.55) 100%);
+    background: linear-gradient(135deg, rgba(232,68,26,0.07) 0%, var(--bg-card) 100%);
   }
   .bento-zoho .bento-icon { color: #e8441a; }
   .bento-zoho .bento-icon-glow { filter: drop-shadow(0 0 14px rgba(232,68,26,0.6)); }
   .bento-zoho .bento-platform-orb { background: radial-gradient(circle, rgba(232,68,26,0.28) 0%, transparent 70%); }
-  .bento-zoho:hover { border-color: rgba(232,68,26,0.55); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 44px rgba(232,68,26,0.12); }
+  .bento-zoho:hover { border-color: rgba(232,68,26,0.55); box-shadow: var(--shadow-elevated), 0 0 44px rgba(232,68,26,0.12); }
 
   .bento-odoo {
     border-color: rgba(113,75,103,0.35);
-    background: linear-gradient(135deg, rgba(113,75,103,0.1) 0%, rgba(10,22,40,0.55) 100%);
+    background: linear-gradient(135deg, rgba(113,75,103,0.1) 0%, var(--bg-card) 100%);
   }
   .bento-odoo .bento-icon { color: #c4a000; }
   .bento-odoo .bento-icon-glow { filter: drop-shadow(0 0 14px rgba(113,75,103,0.6)); }
   .bento-odoo .bento-platform-orb { background: radial-gradient(circle, rgba(113,75,103,0.3) 0%, transparent 70%); }
-  .bento-odoo:hover { border-color: rgba(113,75,103,0.55); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 44px rgba(113,75,103,0.12); }
+  .bento-odoo:hover { border-color: rgba(113,75,103,0.55); box-shadow: var(--shadow-elevated), 0 0 44px rgba(113,75,103,0.12); }
 
   .bento-platform-badge {
     display: inline-block;
@@ -3415,9 +3453,9 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 700;
     letter-spacing: 0.09em;
     text-transform: uppercase;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.14);
-    color: rgba(255,255,255,0.65);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-subtle);
     margin-bottom: 6px;
     align-self: flex-start;
   }</style>
