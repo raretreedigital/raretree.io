@@ -142,11 +142,35 @@ const services = [
 ---
 
 <Layout
-  title="Services — AI, Web & Mobile Development, CRM/ERP, Digital Marketing | Raretree"
-  description="Explore Raretree's full service stack: AI workflow automation, custom web & mobile apps, Zoho & Salesforce CRM, Odoo ERP, WhatsApp automation, SEO, growth marketing, and more."
-  keywords="AI automation services, web development services, mobile app development, Zoho CRM, Salesforce implementation, Odoo ERP, WhatsApp Business API, SEO services, growth marketing"
+  title="Digital Services — AI Automation, CRM, ERP, Full-Stack Dev & Marketing | Raretree Digital"
+  description="Raretree Digital offers end-to-end digital services: AI automation, Zoho CRM, Zoho Books, Zoho Desk, Zoho People, Zoho Projects, Salesforce CRM, HubSpot CRM, Odoo ERP, Microsoft Dynamics, Pipedrive, WhatsApp Business API, full-stack web & mobile development (React, Node.js, Flutter), SEO, branding, and growth marketing."
+  keywords="Raretree Digital services, AI automation services, Zoho CRM implementation, Zoho Books accounting, Zoho Desk helpdesk, Zoho People HR, Zoho Projects management, Zoho Campaigns, Salesforce CRM implementation, Salesforce Sales Cloud, Salesforce Service Cloud, HubSpot CRM setup, HubSpot implementation, Odoo ERP implementation, Odoo full stack, Odoo accounting, Odoo inventory, Microsoft Dynamics 365, Pipedrive CRM, Monday.com CRM, WhatsApp Business API setup, WhatsApp chatbot, WhatsApp automation, full-stack web development, React development, Next.js development, Node.js development, Flutter mobile app, React Native app, SEO optimization, technical SEO, digital marketing agency, growth marketing, branding agency, Raretree"
   url="https://raretree.io/services/"
 >
+  <!-- Services Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Raretree Digital Services",
+    "description": "Full-stack digital services by Raretree Digital — AI automation, Zoho CRM, Zoho Books, Zoho Desk, Zoho People, WhatsApp Business API, Odoo ERP, Salesforce, SEO, and growth marketing.",
+    "url": "https://raretree.io/services/",
+    "numberOfItems": services.length,
+    "itemListElement": services.map((s, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "item": {
+        "@type": "Service",
+        "name": s.title,
+        "description": s.desc,
+        "provider": {
+          "@type": "Organization",
+          "name": "Raretree Digital",
+          "url": "https://raretree.io"
+        },
+        "url": "https://raretree.io/services/"
+      }
+    }))
+  })} />
 
   <!-- PAGE HERO -->
   <section class="page-hero">
@@ -244,6 +268,111 @@ const services = [
       </div>
     </div>
   </section>
+
+  <!-- SEO: PLATFORMS & FAQ -->
+  <section class="section seo-faq-section">
+    <div class="container container-sm">
+      <div class="section-header">
+        <span class="section-eyebrow reveal">Platforms & Tools</span>
+        <h2 class="section-title reveal delay-1">Frequently Asked <span class="gradient-text">Questions</span></h2>
+      </div>
+
+      <div class="faq-grid">
+        {[
+          {
+            q: "What CRM platforms does Raretree Digital implement?",
+            a: "Raretree Digital implements all major CRM platforms — Zoho CRM, Salesforce (Sales Cloud & Service Cloud), HubSpot CRM, Pipedrive, Microsoft Dynamics 365, Monday.com CRM, and Freshsales. We handle setup, data migration, custom modules, workflow automation, and team training."
+          },
+          {
+            q: "Does Raretree offer Zoho Books and Zoho Desk implementation?",
+            a: "Yes. We are a specialist Zoho partner offering full Zoho suite implementations including Zoho CRM, Zoho Books (accounting & invoicing), Zoho Desk (helpdesk & ticketing), Zoho People (HR), Zoho Projects (project management), Zoho Campaigns (email marketing), and Zoho Analytics — all integrated into one unified platform."
+          },
+          {
+            q: "Can Raretree Digital implement Odoo ERP?",
+            a: "Absolutely. We offer end-to-end Odoo ERP implementation including Sales, Purchase, Inventory, Accounting, Manufacturing, HR, Website, and POS modules. We also build custom Python modules and handle third-party integrations for a fully tailored Odoo environment."
+          },
+          {
+            q: "What is WhatsApp Business API automation?",
+            a: "We set up the official WhatsApp Business API, build AI-powered chatbots, create broadcast campaigns, automate order & appointment notifications, and integrate WhatsApp with your CRM (Zoho, HubSpot, Salesforce) and e-commerce platforms — turning WhatsApp into a revenue channel."
+          },
+          {
+            q: "Does Raretree do full-stack web and mobile development?",
+            a: "Yes. We build full-stack web applications using React, Next.js, Node.js, and TypeScript, and cross-platform mobile apps with Flutter and React Native. We also develop native iOS (Swift) and Android (Kotlin) applications with full API integration and real-time capabilities."
+          },
+          {
+            q: "What SEO services does Raretree Digital provide?",
+            a: "We offer comprehensive SEO services: technical SEO audits, Core Web Vitals optimization, keyword research & content strategy, high-authority link building, local SEO, Google Business Profile management, and schema markup implementation — all designed to compound organic traffic month over month."
+          },
+        ].map(({q, a}) => (
+          <div class="faq-item reveal">
+            <h3 class="faq-q">{q}</h3>
+            <p class="faq-a">{a}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Hidden crawlable keyword block for search engines -->
+      <div class="seo-keyword-block" aria-hidden="true">
+        <p>Raretree Digital — Expert implementation partner for: Zoho CRM · Zoho Books · Zoho Desk · Zoho People · Zoho Projects · Zoho Campaigns · Zoho Analytics · Salesforce Sales Cloud · Salesforce Service Cloud · HubSpot CRM · HubSpot Marketing Hub · Odoo ERP · Odoo Accounting · Odoo Inventory · Odoo Manufacturing · Microsoft Dynamics 365 · Pipedrive CRM · Freshsales · Monday.com · WhatsApp Business API · n8n Automation · Zapier Workflows · React · Next.js · Node.js · Flutter · React Native · Python · AI/ML Development · LangChain · OpenAI GPT-4 · Claude AI</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What CRM platforms does Raretree Digital implement?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Raretree Digital implements all major CRM platforms — Zoho CRM, Salesforce (Sales Cloud & Service Cloud), HubSpot CRM, Pipedrive, Microsoft Dynamics 365, Monday.com CRM, and Freshsales. We handle setup, data migration, custom modules, workflow automation, and team training."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Raretree offer Zoho Books and Zoho Desk implementation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We are a specialist Zoho partner offering full Zoho suite implementations including Zoho CRM, Zoho Books, Zoho Desk, Zoho People, Zoho Projects, Zoho Campaigns, and Zoho Analytics — all integrated into one unified platform."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can Raretree Digital implement Odoo ERP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We offer end-to-end Odoo ERP implementation including Sales, Purchase, Inventory, Accounting, Manufacturing, HR, Website, and POS modules. We also build custom Python modules and third-party integrations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is WhatsApp Business API automation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We set up the official WhatsApp Business API, build AI-powered chatbots, automate broadcast campaigns and order notifications, and integrate WhatsApp with your CRM and e-commerce platforms."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Raretree do full-stack web and mobile development?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We build full-stack web applications with React, Next.js, and Node.js, and mobile apps with Flutter and React Native. We also develop native iOS and Android applications."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What SEO services does Raretree Digital provide?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Technical SEO audits, Core Web Vitals optimization, keyword research, content strategy, high-authority link building, local SEO, and Google Business Profile management."
+        }
+      }
+    ]
+  })} />
 
 </Layout>
 
@@ -546,6 +675,57 @@ const services = [
     pointer-events: none;
   }
   .service-card.card-glow::after { opacity: 1; }
+
+  /* ===== FAQ SECTION ===== */
+  .seo-faq-section { background: var(--bg-surface); }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 768px) { .faq-grid { grid-template-columns: 1fr; } }
+
+  .faq-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    transition: border-color 0.3s;
+  }
+
+  .faq-item:hover { border-color: var(--accent); }
+
+  .faq-q {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 12px;
+    line-height: 1.4;
+  }
+
+  .faq-a {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .seo-keyword-block {
+    margin-top: 40px;
+    padding: 20px 24px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    opacity: 0.6;
+  }
+
+  .seo-keyword-block p { margin: 0; }
 </style>
 
 <script is:inline>
