@@ -15,10 +15,10 @@ interface Props {
 
 const {
   title,
-  description = "Raretree Digital — AI Automation & Digital Transformation. We build intelligent systems that reduce costs, increase efficiency, and drive measurable revenue growth.",
+  description = "Raretree Digital — full-stack digital agency for AI automation, CRM/ERP implementation (Zoho, Salesforce, HubSpot, Odoo), WhatsApp Business API, full-stack web & mobile development, SEO, and growth marketing.",
   image = "/og-image.png",
   url = Astro.url.href,
-  keywords = "AI automation, digital transformation, web development, mobile apps, CRM, ERP, Zoho, Salesforce, digital marketing, growth marketing",
+  keywords = "Raretree Digital, Raretree, AI automation, digital transformation, Zoho CRM, Zoho Books, Zoho Desk, Zoho People, Zoho Projects, Salesforce CRM, HubSpot CRM, Odoo ERP, Microsoft Dynamics, WhatsApp Business API, full-stack development, React, Node.js, Flutter, SEO, digital marketing, growth marketing",
   type = "website",
   noindex = false,
 } = Astro.props;
@@ -50,12 +50,19 @@ const jsonLd = {
         "email": "contact@raretree.io",
         "availableLanguage": "English"
       },
-      "description": "Raretree Digital is a full-service digital agency specialising in AI automation, CRM/ERP implementation, web and mobile app development, and growth marketing.",
+      "description": "Raretree Digital is a full-stack digital agency specialising in AI automation, CRM/ERP implementation (Zoho, Salesforce, HubSpot, Odoo), WhatsApp Business API, full-stack web & mobile development, SEO, and data-driven growth marketing.",
       "areaServed": "Worldwide",
       "serviceType": [
-        "AI Automation", "Digital Marketing", "Web Development",
-        "Mobile App Development", "CRM Implementation", "ERP Implementation",
-        "Growth Marketing", "SEO", "Branding"
+        "AI Automation", "Workflow Automation", "Digital Transformation",
+        "Full-Stack Web Development", "React Development", "Node.js Development", "Next.js Development",
+        "Mobile App Development", "Flutter App Development", "React Native Development",
+        "Zoho CRM Implementation", "Zoho Books", "Zoho Desk", "Zoho People", "Zoho Projects", "Zoho Campaigns", "Zoho Analytics",
+        "Salesforce CRM Implementation", "Salesforce Sales Cloud", "Salesforce Service Cloud",
+        "HubSpot CRM Implementation", "HubSpot Marketing Hub",
+        "Odoo ERP Implementation", "Odoo Full Stack", "Odoo Accounting", "Odoo Inventory",
+        "Microsoft Dynamics 365", "Pipedrive CRM",
+        "WhatsApp Business API Automation", "WhatsApp Chatbot",
+        "Digital Marketing", "SEO", "SEM", "Growth Marketing", "Email Marketing", "Branding"
       ]
     },
     {
@@ -99,6 +106,10 @@ const jsonLd = {
     <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="apple-touch-icon" href="/logo.png" />
 
+    <!-- DNS Prefetch for external resources -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+
     <!-- Primary Meta -->
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
@@ -129,17 +140,25 @@ const jsonLd = {
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts (non-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
-    <!-- GSAP Animation Engine -->
-    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <!-- GSAP Animation Engine (deferred — non-blocking) -->
+    <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
     <!-- Anti-FOUC: apply saved theme before paint -->
     <script is:inline>
@@ -169,10 +188,11 @@ const jsonLd = {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
             }
           });
         },
-        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+        { threshold: 0.05, rootMargin: '0px 0px 60px 0px' }
       );
       document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale')
         .forEach((el) => observer.observe(el));
