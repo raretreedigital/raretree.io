@@ -239,18 +239,6 @@ const faqs = [
 </Layout>
 
 <script>
-  import emailjs from '@emailjs/browser';
-
-  // ── EmailJS config ──────────────────────────────────────────
-  // Replace these three values with your EmailJS dashboard values:
-  //   https://dashboard.emailjs.com/admin
-  const EMAILJS_PUBLIC_KEY  = 'fKr4q8EP9jJCEPwHB';  // Account > API Keys
-  const EMAILJS_SERVICE_ID  = 'service_mnokgta';   // Email Services
-  const EMAILJS_TEMPLATE_ID = 'template_ua0g68a';  // Email Templates
-  // ────────────────────────────────────────────────────────────
-
-  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-
   const form       = document.getElementById('contactForm') as HTMLFormElement;
   const submitBtn  = document.getElementById('submitBtn') as HTMLButtonElement;
   const submitText = document.getElementById('submitText')!;
@@ -269,18 +257,39 @@ const faqs = [
     statusEl.textContent = '';
 
     const fd = new FormData(form);
-    const templateParams = {
-      from_name:  `${fd.get('firstName')} ${fd.get('lastName')}`.trim(),
-      from_email: fd.get('email'),
-      company:    fd.get('company') || 'N/A',
-      service:    fd.get('service') || 'N/A',
-      budget:     fd.get('budget')  || 'N/A',
-      message:    fd.get('message'),
-      to_email:   'raretreedigital@gmail.com',
-    };
+    const firstName = (fd.get('firstName') as string || '').trim();
+    const lastName  = (fd.get('lastName') as string || '').trim();
+    const name      = `${firstName} ${lastName}`.trim();
+    const email     = fd.get('email') as string;
+    const company   = (fd.get('company') as string)  || 'N/A';
+    const service   = (fd.get('service') as string)  || 'N/A';
+    const budget    = (fd.get('budget') as string)   || 'N/A';
+    const message   = fd.get('message') as string;
+
+    const html = `
+      <h2>New Contact Form Submission</h2>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Company:</strong> ${company}</p>
+      <p><strong>Service Interest:</strong> ${service}</p>
+      <p><strong>Budget:</strong> ${budget}</p>
+      <p><strong>Message:</strong></p>
+      <p>${message.replace(/\n/g, '<br/>')}</p>
+    `;
 
     try {
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+      const res = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          subject: `New Enquiry from ${name}`,
+          html,
+          name,
+        }),
+      });
+
+      if (!res.ok) throw new Error(`Status ${res.status}`);
+
       submitText.textContent = '✓ Message Sent!';
       setStatus('success', '🎉 Got it! We\'ll be in touch within 4 hours.');
       form.reset();
@@ -289,7 +298,7 @@ const faqs = [
         submitBtn.disabled = false;
       }, 4000);
     } catch (err) {
-      console.error('EmailJS error:', err);
+      console.error('Send email error:', err);
       submitText.textContent = 'Send Message';
       submitBtn.disabled = false;
       setStatus('error', '⚠ Something went wrong. Please email us directly at contact@raretree.io');
