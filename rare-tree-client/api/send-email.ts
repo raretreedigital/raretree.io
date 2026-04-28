@@ -59,7 +59,7 @@ export default async function handler(req: Request) {
             },
             {
               email_address: {
-                address: "raretree@gmail.com",
+                address: "raretreedigital@gmail.com",
                 name: "RareTree Gmail",
               },
             },
