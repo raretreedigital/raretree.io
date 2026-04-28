@@ -32,7 +32,7 @@ export default async function handler(req: Request) {
     }
 
     const response = await fetch(
-      "https://api.zeptomail.in/v1.1/email",
+      "https://api.zeptomail.com/v1.1/email",
       {
         method: "POST",
         headers: {
