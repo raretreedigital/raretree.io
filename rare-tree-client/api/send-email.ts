@@ -37,7 +37,7 @@ export default async function handler(req: Request) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Zoho-enczapikey ${apiKey}`,
+          Authorization: apiKey,
         },
         body: JSON.stringify({
           from: {
