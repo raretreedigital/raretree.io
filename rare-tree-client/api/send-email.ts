@@ -14,7 +14,7 @@ export default async function handler(req: Request) {
   }
 
   try {
-    const { subject, html, name } = await req.json();
+    const { subject, html, name, email } = await req.json();
 
     if (!subject || !html) {
       return new Response(
@@ -57,7 +57,14 @@ export default async function handler(req: Request) {
                 name: "Sales – RareTree",
               },
             },
+            {
+              email_address: {
+                address: "raretree@gmail.com",
+                name: "RareTree Gmail",
+              },
+            },
           ],
+          reply_to: email ? [{ address: email, name: name || "" }] : undefined,
           subject,
           htmlbody: html,
         }),
