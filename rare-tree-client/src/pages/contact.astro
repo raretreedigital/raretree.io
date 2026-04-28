@@ -1,12 +1,12 @@
----
+sen---
 import Layout from '../layouts/Layout.astro';
 
 const contactItems = [
   {
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>`,
     label: "Email",
-    value: "contact@raretree.io",
-    href: "mailto:contact@raretree.io",
+    value: "sales-quote@raretree.io",
+    href: "mailto:sales@raretree.io",
   },
   {
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>`,
@@ -229,7 +229,7 @@ const faqs = [
         <p class="final-cta-hint">Still on the fence?</p>
         <h2 class="final-cta-title">The First Call is <span class="gradient-text">Always Free</span></h2>
         <p class="final-cta-sub">30 minutes. Zero obligation. Just honest advice about what will move the needle for your business.</p>
-        <a href="mailto:contact@raretree.io" class="btn btn-primary btn-lg">
+        <a href="mailto:sales@raretree.io" class="btn btn-primary btn-lg">
           Email Us Now
         </a>
       </div>
@@ -239,18 +239,6 @@ const faqs = [
 </Layout>
 
 <script>
-  import emailjs from '@emailjs/browser';
-
-  // ── EmailJS config ──────────────────────────────────────────
-  // Replace these three values with your EmailJS dashboard values:
-  //   https://dashboard.emailjs.com/admin
-  const EMAILJS_PUBLIC_KEY  = 'fKr4q8EP9jJCEPwHB';  // Account > API Keys
-  const EMAILJS_SERVICE_ID  = 'service_mnokgta';   // Email Services
-  const EMAILJS_TEMPLATE_ID = 'template_ua0g68a';  // Email Templates
-  // ────────────────────────────────────────────────────────────
-
-  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-
   const form       = document.getElementById('contactForm') as HTMLFormElement;
   const submitBtn  = document.getElementById('submitBtn') as HTMLButtonElement;
   const submitText = document.getElementById('submitText')!;
@@ -269,18 +257,39 @@ const faqs = [
     statusEl.textContent = '';
 
     const fd = new FormData(form);
-    const templateParams = {
-      from_name:  `${fd.get('firstName')} ${fd.get('lastName')}`.trim(),
-      from_email: fd.get('email'),
-      company:    fd.get('company') || 'N/A',
-      service:    fd.get('service') || 'N/A',
-      budget:     fd.get('budget')  || 'N/A',
-      message:    fd.get('message'),
-      to_email:   'raretreedigital@gmail.com',
-    };
+    const firstName = (fd.get('firstName') as string || '').trim();
+    const lastName  = (fd.get('lastName') as string || '').trim();
+    const name      = `${firstName} ${lastName}`.trim();
+    const email     = fd.get('email') as string;
+    const company   = (fd.get('company') as string)  || 'N/A';
+    const service   = (fd.get('service') as string)  || 'N/A';
+    const budget    = (fd.get('budget') as string)   || 'N/A';
+    const message   = fd.get('message') as string;
+
+    const html = `
+      <h2>New Contact Form Submission</h2>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Company:</strong> ${company}</p>
+      <p><strong>Service Interest:</strong> ${service}</p>
+      <p><strong>Budget:</strong> ${budget}</p>
+      <p><strong>Message:</strong></p>
+      <p>${message.replace(/\n/g, '<br/>')}</p>
+    `;
 
     try {
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+      const res = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          subject: `New Enquiry from ${name}`,
+          html,
+          name,
+        }),
+      });
+
+      if (!res.ok) throw new Error(`Status ${res.status}`);
+
       submitText.textContent = '✓ Message Sent!';
       setStatus('success', '🎉 Got it! We\'ll be in touch within 4 hours.');
       form.reset();
@@ -289,10 +298,10 @@ const faqs = [
         submitBtn.disabled = false;
       }, 4000);
     } catch (err) {
-      console.error('EmailJS error:', err);
+      console.error('Send email error:', err);
       submitText.textContent = 'Send Message';
       submitBtn.disabled = false;
-      setStatus('error', '⚠ Something went wrong. Please email us directly at contact@raretree.io');
+      setStatus('error', '⚠ Something went wrong. Please email us directly at sales@raretree.io');
     }
   });
 
