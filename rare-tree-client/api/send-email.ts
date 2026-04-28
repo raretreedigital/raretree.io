@@ -23,13 +23,21 @@ export default async function handler(req: Request) {
       );
     }
 
+    const apiKey = process.env.ZEPTO_API_KEY;
+    if (!apiKey) {
+      return new Response(
+        JSON.stringify({ error: "Server misconfiguration: missing ZEPTO_API_KEY" }),
+        { status: 500 }
+      );
+    }
+
     const response = await fetch(
       "https://api.zeptomail.in/v1.1/email",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Zoho-enczapikey ${process.env.ZEPTO_API_KEY}`,
+          Authorization: `Zoho-enczapikey ${apiKey}`,
         },
         body: JSON.stringify({
           from: {
@@ -39,16 +47,14 @@ export default async function handler(req: Request) {
           to: [
             {
               email_address: {
-                address: "raretree@gmail.com",
-                name: name || "RareTree",
+                address: "cto@raretree.io",
+                name: "CTO – RareTree",
               },
             },
-          ],
-          bcc: [
             {
               email_address: {
-                address: "cto@raretree.io",
-                name: "CTO",
+                address: "sales@raretree.io",
+                name: "Sales – RareTree",
               },
             },
           ],
@@ -58,18 +64,44 @@ export default async function handler(req: Request) {
       }
     );
 
-    const data = await response.json();
+    // ZeptoMail may return plain text on auth/validation errors
+    const rawText = await response.text();
+    let data: unknown;
+    try {
+      data = JSON.parse(rawText);
+    } catch {
+      data = { message: rawText };
+    }
+
+    if (!response.ok) {
+      console.error("[send-email] ZeptoMail rejected request", {
+        status: response.status,
+        response: data,
+        subject,
+        name,
+      });
+      return new Response(
+        JSON.stringify({ error: "ZeptoMail API error", details: data, status: response.status }),
+        { status: response.status, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    console.log("[send-email] Email sent successfully", { subject, name });
 
     return new Response(JSON.stringify(data), {
-      status: response.status,
+      status: 200,
       headers: {
         "Content-Type": "application/json",
       },
     });
   } catch (error) {
+    console.error("[send-email] Unexpected error", {
+      error: error instanceof Error ? error.message : String(error),
+    });
     return new Response(
       JSON.stringify({
         error: "Failed to send email",
+        details: error instanceof Error ? error.message : String(error),
       }),
       { status: 500 }
     );
